@@ -5,7 +5,7 @@ Donate link: https://bookingpressplugin.com/
 Requires at least: 5.3.0
 Tested up to: 6.5.2
 Requires PHP: 5.6
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,7 +34,7 @@ Anyone who wants to manage their appointment scheduling online can use this plug
 
 ###🔗 USEFUL LINKS
 
-[Official Page](https://www.bookingpressplugin.com/ "BookingPress plugin")  || [BookingPress Demos](https://www.bookingpressplugin.com/demo/ "BookingPress Demos") || [Documentation](https://www.bookingpressplugin.com/documents/installing-updating-bookingpress/ "BookingPress Documentation") || [Facebook](https://www.facebook.com/BookingPressPlugin "BookingPress Facebook Page") || [YouTube](https://www.youtube.com/bookingpress "BookingPress YouTube Channel") || [Instagram](https://www.instagram.com/bookingpress/ "BookingPress Instagram Handle") || [BookingPress Community](https://www.facebook.com/groups/bookingpress "BookingPress Community")
+[Official Page](https://www.bookingpressplugin.com/ "BookingPress plugin")  || [BookingPress Demos](https://www.bookingpressplugin.com/demo/ "BookingPress Demos") || [Documentation](https://www.bookingpressplugin.com/documents/installing-updating-bookingpress/ "BookingPress Documentation") || [Facebook](https://www.facebook.com/BookingPressPlugin "BookingPress Facebook Page") || [YouTube](https://www.youtube.com/@BookingPress/videos?sub_confirmation=1 "BookingPress YouTube Channel") || [Instagram](https://www.instagram.com/bookingpress/ "BookingPress Instagram Handle") || [BookingPress Community](https://www.facebook.com/groups/bookingpress "BookingPress Community")
 
 <p>&nbsp;</p>
 [youtube https://www.youtube.com/watch?v=HLkj0mohv3M]
@@ -59,7 +59,7 @@ Anyone who wants to manage their appointment scheduling online can use this plug
 
 And much more...
 
-Note: BookingPress lite has many cool features than other free WordPress booking plugins, but if you want to experience the true power of BookingPress, you can go for BookingPress Premium. You will get 17+ payment gateways, 35+ add-ons, integrations completely free in BookingPress Premium. Visit our official [BookingPress home page](https://www.bookingpressplugin.com/ "BookingPress - Appointment Booking Plugin").
+Note: BookingPress lite has many cool features than other free WordPress booking plugins, but if you want to experience the true power of BookingPress, you can go for BookingPress Premium. You will get 20+ payment gateways, 40+ add-ons, integrations completely free in BookingPress Premium. Visit our official [BookingPress home page](https://www.bookingpressplugin.com/ "BookingPress - Appointment Booking Plugin").
 
 
 ###WHAT YOU CAN GET IN BOOKINGPRESS WORDPRESS BOOKING PLUGIN PREMIUM VERSION 💪
@@ -70,13 +70,12 @@ Note: BookingPress lite has many cool features than other free WordPress booking
 * 📊 Advanced staff dashboard for staff members.
 * 📝 Invoicing feature with pdf support.
 * 🖌️ Fully customizable booking forms and customer panel
-* 💳 17+ new online payment gateways integration (PayPal, RazorPay, Stripe, Mollie, Authorize.net, 2Checkout, PagSeguro, Braintree, Worldpay, Paystack, PayUMoney, PayPal Pro, PayFast, Square, Skrill, WooCommerce, Klarna, Paddle, Mercado Pago etc.)
+* 💳 20+ new online payment gateways integration (PayPal, RazorPay, Stripe, Mollie, Authorize.net, 2Checkout, PagSeguro, Braintree, Worldpay, Paystack, PayUMoney, PayPal Pro, PayFast, Square, Skrill, WooCommerce, Klarna, CCAvenue, Paddle, Mercado Pago, ECpay etc.)
 * 🗓️ Google, Outlook calendar integrations.
 * 📽️ Integrations with Zoom, Zapier, Mailchimp, Google ReCaptcha.
 * 📍 Manage Unlimited Business location
 * 😀 Happy Hours (Dynamic) Pricing
 * 📦 Service Package (create packages of multiple services)
-* 📙 Multi-language support
 * 📊 Conversion tracking
 * 🔄 Recurring Appointments
 * 🧾 Advanced reports and analysis.
@@ -197,6 +196,10 @@ Please follow the steps for installation:
 13. BookingPress - General Settings
 
 == Changelog ==
+
+= 1.1.1 =
+* New: Added an option to set start time for timeslot grouping
+* Other minor bug fixes
 
 = 1.1 =
 * Added new functionality to import/export data from one website to another

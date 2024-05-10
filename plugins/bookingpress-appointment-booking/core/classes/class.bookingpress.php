@@ -1900,7 +1900,7 @@ if (! class_exists('BookingPress') ) {
         {
             global $bookingpress_version;
             $bookingpress_old_version = get_option('bookingpress_version', true);
-            if (version_compare($bookingpress_old_version, '1.1', '<') ) {
+            if (version_compare($bookingpress_old_version, '1.1.1', '<') ) {
                 $bookingpress_load_upgrade_file = BOOKINGPRESS_VIEWS_DIR . '/upgrade_latest_data.php';
                 include $bookingpress_load_upgrade_file;
                 $this->bookingpress_send_anonymous_data_cron();
@@ -3373,6 +3373,21 @@ if (! class_exists('BookingPress') ) {
                                                         dialog_pos_right = dialog_pos_right - 30;
                                                         dialog__wrapper.style.left = (pos_to_place -  ( dialog__wrapper.getBoundingClientRect().left + 40 ) ) + 'px';
                                                     } else {
+                                                        let currentElementId = currentElement.target.id;
+                                                        let is_mobile = false;
+                                                        if( null != document.getElementById('bpa-mobile-menu') ){
+                                                            let is_mob_menu_visible = getComputedStyle( document.getElementById('bpa-mobile-menu') ).display;
+                                                            if( 'block' == is_mob_menu_visible ){
+                                                                is_mobile = true;
+                                                            }
+                                                        }
+                                                        if( is_mobile == true && (('BUTTON' == currentElement.target.nodeName && currentElementId == 'bpa-appointment-share-url-button') || ( 'SPAN' == currentElement.target.nodeName && currentElement.target.parentNode != null && currentElement.target.parentNode.id == 'bpa-appointment-share-url-button' ) || ('SPAN' == currentElement.target.nodeName && currentElementId == 'bpa-appointment-share-url-span-txt')) ){
+                                                            let buttonWidth = document.getElementById( 'bpa-appointment-share-url-button' ).offsetWidth;   
+                                                            let popupWidth = dialog__wrapper.offsetWidth;
+                                                            if( pos_x <= 44 ){
+                                                                dialog_pos_right = dialog_pos_right - 110;
+                                                            }   
+                                                        }
                                                         dialog_pos_right = dialog_pos_right - 50;
                                                         dialog__wrapper.style.left = pos_to_place - dialog_pos_right + 'px';
                                                     }
@@ -7048,7 +7063,10 @@ if (! class_exists('BookingPress') ) {
                 'default_date_format'                 => $default_date_format,
                 'default_time_format'                 => $wp_default_time_format,
                 'anonymous_data'		              => 'false',
-                'debug_mode'                          => false
+                'debug_mode'                          => false,
+                'bpa_afternoon_start_time'            => '12:00:00',
+                'bpa_evening_start_time'              => '16:00:00',
+                'bpa_night_start_time'                => '20:00:00',
             );
 
             $bookingpress_company_setting_form_default_data      = array(

@@ -410,6 +410,9 @@ if (! class_exists('bookingpress_settings') ) {
                     'general_setting_phone_number'        => '',
                     'anonymous_data'                      => 'false',
                     'default_time_format'                 => 'g:i a',
+                    'bpa_afternoon_start_time'            => '12:00:00',
+                    'bpa_evening_start_time'              => '16:00:00',
+                    'bpa_night_start_time'                => '20:00:00',
                 ),
                 'company_setting_form'             => array(
                     'company_avatar_img'    => '',
@@ -2653,6 +2656,15 @@ if (! class_exists('bookingpress_settings') ) {
                     console.log( error );
                 });
             },
+            bookingpress_timesolts_afternoon_grouping( timing){
+                const vm = this;
+                vm.general_setting_form.bpa_evening_start_time = "";
+                vm.general_setting_form.bpa_night_start_time = "";
+            },  
+            bookingpress_timesolts_evening_grouping(){
+                const vm = this;
+                vm.general_setting_form.bpa_night_start_time = "";
+            },
             <?php
             do_action('bookingpress_add_setting_dynamic_vue_methods');
         }
@@ -2713,6 +2725,45 @@ if (! class_exists('bookingpress_settings') ) {
                          
             $bookingpress_dynamic_setting_data_fields['holiday_range_possible_end_date'] = '';
             $bookingpress_dynamic_setting_data_fields['holiday_range_temp'] = array('start'=>'','end'=>'');
+
+            /* grouping timesolt changes start */
+            $default_start_time    = '00:00:00';
+			$default_end_time      = '23:55:00';
+			$step_duration_val     = 01;
+			$default_break_timings = array();
+			$curr_time             = $tmp_start_time = date( 'H:i:s', strtotime( $default_start_time ) );
+			$tmp_end_time          = date( 'H:i:s', strtotime( $default_end_time ) );
+			do {
+
+				$tmp_start_time = $default_start_time;
+				$tmp_time_obj = new DateTime( $curr_time );
+				$tmp_time_obj->add( new DateInterval( 'PT' . $step_duration_val . 'H' ) );
+				$end_time                = $tmp_time_obj->format( 'H:i:s' );
+
+				if($end_time == "00:00:00"){
+                    $end_time = "24:00:00";
+                }
+
+				$default_break_timings[] = array(
+					'start_time'           => $curr_time,
+					'formatted_start_time' => date( $bookingpress_options['wp_default_time_format'], strtotime( $curr_time ) ),
+					'end_time'             => $end_time,
+					'formatted_end_time' => date($bookingpress_options['wp_default_time_format'], strtotime($end_time))." ".($end_time == "24:00:00" ? esc_html__('Next Day', 'bookingpress-appointment-booking') : '' ),
+					
+				);
+
+				if($end_time == "24:00:00"){
+                    break;
+                }
+
+				$tmp_time_obj            = new DateTime( $curr_time );
+				$tmp_time_obj->add( new DateInterval( 'PT' . $step_duration_val . 'H' ) );
+				$curr_time = $tmp_time_obj->format( 'H:i:s' );
+			} while ( $curr_time <= $default_end_time );
+
+			$bookingpress_dynamic_setting_data_fields['timeslots_grouping_list'] = $default_break_timings;
+
+            /* grouping timesolt changes end */
 
             $bookingpress_dynamic_setting_data_fields = apply_filters('bookingpress_add_setting_dynamic_data_fields', $bookingpress_dynamic_setting_data_fields);
             

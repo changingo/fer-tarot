@@ -46,7 +46,7 @@
                         <div class="bpa-pre-features-box">
                             <div class="bpa-feature-list-head"> <span class="bpa-page-heading-highlight"> Premium </span> Features Highlight </div>
                             <ul class="bpa-feature-list-cls">
-                                <li class="bpa-feature-list-li"> 17+ payment gateways free to use </li>
+                                <li class="bpa-feature-list-li"> 20+ payment gateways free to use </li>
                                 <li class="bpa-feature-list-li"> Manage Unlimited Business Location </li>
                                 <li class="bpa-feature-list-li"> Recurring Appointments </li>
                                 <li class="bpa-feature-list-li"> Separate Staff Member Panel </li>

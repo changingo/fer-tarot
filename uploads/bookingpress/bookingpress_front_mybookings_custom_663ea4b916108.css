@@ -8,10 +8,10 @@
                         .bpa-front-ma-view-appointment-card,
                         .bpa-vac-pd__item.__bpa-pd-is-total-item,
                         .bpa-front-cp-cancel-mob-drawer {
-                            background-color:#fff !important;
+                            background-color:#F8EDF7 !important;
                         }
                         .bpa-front-data-empty-view--my-bookings .bpa-front-dev__form-bg{
-                            fill:#fff !important;
+                            fill:#F8EDF7 !important;
                         }
                         .bpa-cp-ma-table.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell,
                         .bpa-front-toast-notification.--bpa-error,
@@ -19,10 +19,10 @@
                         .bpa-front-ma--pagination-wrapper.__bpa-is-sticky,
                         .el-year-table td.disabled .cell,
                         .el-month-table td.disabled .cell{
-                            background-color: #f4f7fb !important;
+                            background-color: #FFFFFF !important;
                         }
                         .bpa-front-data-empty-view--my-bookings .bpa-front-dev__panel-bg{
-                            fill: #f4f7fb !important;
+                            fill: #FFFFFF !important;
                         }
                         .bpa-front-cp-top-navbar,
                         .bpa-front-cp-card,
@@ -49,19 +49,19 @@
                         .bpa-tn__dropdown-head .bpa-cp-avatar__default-img,
                         .bpa-front-form-control.--bpa-country-dropdown.vue-tel-input:focus-within,
                         .el-date-picker__header--bordered {
-                            border-color: #CFD6E5 !important;
+                            border-color: #976DC6 !important;
                         }
                         .bpa-front-form-control input::placeholder,
                         .bpa-front-form-control .el-textarea__inner::placeholder,
                         .el-date-picker__time-header .el-input .el-input__inner::placeholder {
-                            color:rgba(114,126,149,0.75) !important;
+                            color:rgba(172,145,203,0.75) !important;
                         }.bpa-front-btn--primary,
                         .bpa-front-ma--pagination-wrapper .el-pager li.active,
                         .bpa-ma-vac--action-btn-group .bpa-front-btn:hover,
                         .bpa-front-ma-table-actions-wrap .bpa-front-btn--icon-without-box:hover,
                         .bpa-front-btn--primary:hover,
                         .el-date-table td.current:not(.disabled) span  {
-                            background: #12D488 !important;
+                            background: #A7BAEC !important;
                         }
                         .bpa-front-btn--primary,.bpa-ma-vac--action-btn-group .bpa-front-btn:hover,
                         .bpa-front-ma--pagination-wrapper .btn-prev:hover,
@@ -69,13 +69,13 @@
                         .bpa-front-btn--primary:hover,
                         .bpa-front-ma--pagination-wrapper .el-pager li.active,
                         .bpa-front-ma--pagination-wrapper .el-pager li:hover {
-                            border-color:#12D488 !important;
+                            border-color:#A7BAEC !important;
                         }
                         .el-button--bpa-front-btn.bpa-front-btn--danger.el-button--mini:hover {
                             border-color:var(--bpa-sc-danger) !important;
                         }
                         .el-button--bpa-front-btn:hover {
-                            border-color:#727E95 !important;
+                            border-color:#AC91CB !important;
                         }.bpa-tn__dropdown-menu .bpa-tn__dropdown-item a.bpa-tm__item.__bpa-is-active,
                         .bpa-tn__dropdown-menu .bpa-tn__dropdown-item a.bpa-tm__item.__bpa-is-active span,
                         .bpa-front-ma--pagination-wrapper .el-pager li:hover,
@@ -94,31 +94,31 @@
                         .bpa-front-cp-custom-popover .el-month-table td.today .cell,
                         .bpa-custom-datepicker .el-year-table td.today .cell,
                         .bpa-custom-datepicker .el-month-table td.today .cell {
-                            color: #12D488 !important;
+                            color: #A7BAEC !important;
                         }
                         .bpa-front-dcw__vector .bpa-front-dcw__vector-primary-color,.bpa-front-loader-cl-primary,
                         .bpa-tn__dropdown-menu .bpa-tn__dropdown-item a.bpa-tm__item.__bpa-is-active svg,
                         .bpa-front-data-empty-view--my-bookings .bpa-front-dev__primary-bg{
-                            fill:#12D488 !important;
+                            fill:#A7BAEC !important;
                         }
                         .bpa-front-data-empty-view--my-bookings .bpa-front-dev__primary-bg{
-                            stroke:#12D488 !important;
+                            stroke:#A7BAEC !important;
                         }
                         .bpa-cp-ma-table.el-table td.el-table__cell .bpa-ma-date-time-details .bpa-ma-dt__time-val svg,
                         .bpa-tn__dropdown-menu .bpa-tn__dropdown-item svg,
                         .bpa-front-ma-table-actions-wrap .bpa-front-ma-taw__card .bpa-front-btn--icon-without-box span svg,
                         .bpa-tn__dropdown-head .bpa-cp-avatar__default-img svg {
-                            fill:#727E95 !important;
+                            fill:#AC91CB !important;
                         }
                         .bpa-ma-vac--action-btn-group .bpa-front-btn span svg {
-                            fill:#535D71 !important;    
+                            fill:#F791C9 !important;    
                         }
                         .bpa-ma-vac--action-btn-group .bpa-front-btn:hover span svg,
                         .bpa-front-ma-table-actions-wrap .bpa-front-ma-taw__card .bpa-front-btn--icon-without-box:hover span svg {
                             fill: var(--bpa-cl-white) !important;
                         }
                         .bpa-front-default-card{
-                            background: #fff !important;
+                            background: #F8EDF7 !important;
                         }
 
                         .bpa-front-btn--primary span,
@@ -135,7 +135,7 @@
                         .el-date-table td.current:not(.disabled) span,
                         .bpa-front-cp-delete-account-wrapper .bpa-front-dcw__body-btn-group .bpa-front-btn--danger,
                         .bpa-front-cp-delete-account-wrapper .bpa-front-dcw__body-btn-group .bpa-front-btn--danger span{  
-                            color:#fff !important;
+                            color:#976DC6 !important;
                         }
                         .bpa-front-module-heading,
                         .bpa-cp-pd__title,
@@ -178,7 +178,7 @@
                         .el-month-table td .cell,
                         .bpa-front-ma--pagination-wrapper .btn-prev span,
                         .bpa-front-ma--pagination-wrapper .btn-next span{ 
-                        font-family: Poppins !important;   
+                        font-family: Reem Kufi !important;   
                         }
                         .bpa-front-module-heading,
                         .bpa-cp-pd__title,
@@ -199,17 +199,17 @@
                         .el-year-table td .cell,
                         .el-month-table td .cell
                         {
-                            color: #202C45 !important;
+                            color: #976DC6 !important;
                         }
                         .bpa-left__service-detail .bpa-sd__appointment-id,
                         .bpa-tn__dropdown-menu .bpa-tn__dropdown-item span,
                         .bpa-cp-ma-table.el-table .el-table__expand-icon .el-icon-arrow-right::before,
                         .bpa-front-data-empty-view--my-bookings .bpa-front-dev__title
                         {
-                            color: #727E95 !important;
+                            color: #AC91CB !important;
                         } 
                         .bpa-tn__dropdown-head svg {
-                            fill: #727E95 !important;
+                            fill: #AC91CB !important;
                         }
                         .el-picker-panel .el-icon-arrow-left::before,
                         .el-picker-panel .el-icon-arrow-right::before,
@@ -220,7 +220,7 @@
                         .bpa-front-cp--fw__col.__bpa-is-search-icon .bpa-front-form-control .el-input__prefix .el-icon-search:before,
                         .bpa-front-ma--pagination-wrapper .btn-prev::before, 
                         .bpa-front-ma--pagination-wrapper .btn-next::after {
-                            background-color: #727E95 !important;
+                            background-color: #AC91CB !important;
                         }
                         .bpa-tn__dropdown-menu .bpa-tn__dropdown-item a.bpa-tm__item,
                         .bpa-cp-ma-table.el-table td.el-table__cell .cell,
@@ -246,7 +246,7 @@
                         .el-popconfirm .el-popconfirm__main,
                         .el-popconfirm .el-popconfirm__action .el-button--bpa-front-btn:not(.bpa-front-btn--danger) 
                         {
-                            color: #535D71 !important;
+                            color: #F791C9 !important;
                         }               
                         @media (min-width: 1200px){    
                             .bpa-front-module-heading
@@ -331,16 +331,16 @@
                             }
                             .bpa-front-ma--pagination-wrapper .btn-prev, 
                             .bpa-front-ma--pagination-wrapper .btn-next{
-                                border-color: #CFD6E5 !important;
+                                border-color: #976DC6 !important;
                             }
                             .bpa-front-ma--pagination-wrapper .btn-prev:hover,
                             .bpa-front-ma--pagination-wrapper .btn-next:hover{
-                                background: #12D488 !important;
-                                border-color: #12D488 !important;
+                                background: #A7BAEC !important;
+                                border-color: #A7BAEC !important;
                                 
                             }
                             .bpa-front-ma--pagination-wrapper .btn-next:hover:after,
                             .bpa-front-ma--pagination-wrapper .btn-prev:hover:before {
-                                background-color: #fff !important;
+                                background-color: #976DC6 !important;
                             }
                         }

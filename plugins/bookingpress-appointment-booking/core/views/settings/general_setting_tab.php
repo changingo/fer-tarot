@@ -62,6 +62,57 @@
                             </el-form-item>
                         </el-col>
                     </el-row>
+
+                    <!-- timesolts grouping start-->
+                    <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row">
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16" class="bpa-gs__cb-item-left --bpa-is-not-input-control">
+                            <h4><?php esc_html_e( 'Timeslot Grouping Settings', 'bookingpress-appointment-booking' ); ?></h4>
+                        </el-col>
+                    </el-row>
+                     
+                    <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row bpa-timing-grouping-cls">
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16" class="bpa-gs__cb-item-left --bpa-is-not-input-control">
+                            <h4><?php esc_html_e( 'Afternoon Start Time', 'bookingpress-appointment-booking' ); ?></h4>
+                        </el-col>
+                       
+                        <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="8" class="bpa-gs__cb-item-right">
+                            <el-form-item prop="bpa_afternoon_start_time">
+                                <el-select @change="bookingpress_timesolts_afternoon_grouping()" v-model="general_setting_form.bpa_afternoon_start_time" name ="afternoon_start_time" class="bpa-form-control bpa-form-control__left-icon" placeholder="<?php esc_html_e( 'Start Time', 'bookingpress-appointment-booking' ); ?>" filterable popper-class="bpa-el-select--is-with-navbar"> 
+									<span slot="prefix" class="material-icons-round">access_time</span>
+									<el-option v-for="bpa_timesolts in timeslots_grouping_list"  :label="bpa_timesolts.formatted_start_time" :value="bpa_timesolts.start_time"></el-option >
+								</el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row bpa-timing-grouping-cls">
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16" class="bpa-gs__cb-item-left --bpa-is-not-input-control">
+                            <h4><?php esc_html_e( 'Evening Start Time', 'bookingpress-appointment-booking' ); ?></h4>
+                        </el-col>
+                       
+                        <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="8" class="bpa-gs__cb-item-right">
+                            <el-form-item prop="bpa_evening_start_time">
+                                <el-select @change="bookingpress_timesolts_evening_grouping()" v-model="general_setting_form.bpa_evening_start_time" name ="afternoon_start_time" class="bpa-form-control bpa-form-control__left-icon" placeholder="<?php esc_html_e( 'Start Time', 'bookingpress-appointment-booking' ); ?>" filterable popper-class="bpa-el-select--is-with-navbar"> 
+									<span slot="prefix" class="material-icons-round">access_time</span>
+									<el-option v-for="bpa_timesolts in timeslots_grouping_list"  :label="bpa_timesolts.formatted_start_time" :value="bpa_timesolts.start_time" v-if="bpa_timesolts.start_time > general_setting_form.bpa_afternoon_start_time"></el-option >
+								</el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row bpa-timing-grouping-cls">
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16" class="bpa-gs__cb-item-left --bpa-is-not-input-control">
+                            <h4><?php esc_html_e( 'Night Start Time', 'bookingpress-appointment-booking' ); ?></h4>
+                        </el-col>
+                        <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="8" class="bpa-gs__cb-item-right">
+                            <el-form-item prop="bpa_night_start_time">
+                                <el-select v-model="general_setting_form.bpa_night_start_time" name ="night_start_time" class="bpa-form-control bpa-form-control__left-icon" placeholder="<?php esc_html_e( 'Start Time', 'bookingpress-appointment-booking' ); ?>" filterable> 
+									<span slot="prefix" class="material-icons-round">access_time</span>
+									<el-option v-for="bpa_timesolts in timeslots_grouping_list"  :label="bpa_timesolts.formatted_start_time" :value="bpa_timesolts.start_time" v-if="(bpa_timesolts.start_time > general_setting_form.bpa_evening_start_time && general_setting_form.bpa_evening_start_time != '')"></el-option >
+								</el-select>
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <!-- timesolts grouping end -->
+
                     <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row">
                         <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16" class="bpa-gs__cb-item-left">
                             <h4><?php esc_html_e('Default appointment status', 'bookingpress-appointment-booking'); ?></h4>

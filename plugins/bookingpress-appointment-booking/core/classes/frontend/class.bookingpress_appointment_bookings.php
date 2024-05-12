@@ -3625,22 +3625,36 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                             $service_formatted_start_end_time = sprintf( esc_html__( '%1$s - %2$s', 'bookingpress-appointment-booking' ),$service_formatted_start_time, $service_formatted_end_time);           
                         }                       
 
+                        
+                        $bpa_afternoon_start_time = $BookingPress->bookingpress_get_settings('bpa_afternoon_start_time','general_setting');
+                        $bpa_evening_start_time = $BookingPress->bookingpress_get_settings('bpa_evening_start_time','general_setting');
+                        $bpa_night_start_time = $BookingPress->bookingpress_get_settings('bpa_night_start_time','general_setting');
+
+                        
+                        $bpa_afternoon_solts_timing = !empty( $bpa_afternoon_start_time ) ? date('H', strtotime($bpa_afternoon_start_time)) : '';
+                        $bpa_evening_solts_timing = !empty( $bpa_evening_start_time ) ? date('H', strtotime($bpa_evening_start_time)) : '';
+                        $bpa_night_solts_timing = !empty( $bpa_night_start_time ) ? date('H', strtotime($bpa_night_start_time)) : '';
+
+ 
+                         
+                         
                         $service_time_arr['css_animation_class'] = $css_animation_class = 'bpa-front--ts-item-' . $an;
-                        if ($service_start_time >= 0 && $service_start_time < 12 ) {
+                        if ($service_start_time >= 0 && $service_start_time < $bpa_afternoon_solts_timing ) {
+
                             $morning_time[] = array_merge( $service_time_arr, array(
                                 'formatted_start_time' => $service_formatted_start_time,
                                 'formatted_end_time'   => $service_formatted_end_time,
                                 'formatted_start_end_time' => $service_formatted_start_end_time,
                                 'class'                => ( $service_time_arr['is_booked'] ) ? '__bpa-is-disabled' : '',
                             ) );
-                        } elseif ($service_start_time >= 12 && $service_start_time < 16 ) {
+                        } elseif ($service_start_time >= $bpa_afternoon_solts_timing && ( '' == $bpa_evening_solts_timing || $service_start_time < $bpa_evening_solts_timing ) ) {
                             $afternoon_time[] = array_merge( $service_time_arr, array(
                                 'formatted_start_time' => $service_formatted_start_time,
                                 'formatted_end_time'   => $service_formatted_end_time,
                                 'formatted_start_end_time' => $service_formatted_start_end_time,
                                 'class'                => ( $service_time_arr['is_booked'] ) ? '__bpa-is-disabled' : '',
                             ) );
-                        } elseif ($service_start_time >= 16 && $service_start_time < 20 ) {
+                        } elseif ($service_start_time >= $bpa_evening_solts_timing && ( '' == $bpa_night_solts_timing || $service_start_time < $bpa_night_solts_timing ) ) {
                             $evening_time[] = array_merge( $service_time_arr, array(
                                 'formatted_start_time' => $service_formatted_start_time,
                                 'formatted_end_time'   => $service_formatted_end_time,
@@ -6360,7 +6374,10 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                 }else{
                     vm.service_timing = "-2";
                 }
-                vm.displayResponsiveCalendar = "0";
+
+                if( "d" != vm.appointment_step_form_data.selected_service_duration_unit && vm.current_screen_size == "mobile" ){
+                    vm.displayResponsiveCalendar = "0";
+                }
                 
                 if( null == vm.appointment_step_form_data.selected_date ){
                     vm.appointment_step_form_data.selected_date = new Date('.( !empty( $bookingpress_site_date ) ? '"' . $bookingpress_site_date . '"' : '' ).');
@@ -6432,7 +6449,9 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                             vm.no_timeslot_available = true;
                         }
 						vm.isLoadTimeLoader = "0";
-						vm.displayResponsiveCalendar = "0";
+						if( "d" != vm.appointment_step_form_data.selected_service_duration_unit && vm.current_screen_size == "mobile" ){
+                            vm.displayResponsiveCalendar = "0";
+                        }
                         if(response.data == ""){
                             vm.service_timing = null;
                         }
@@ -7112,7 +7131,6 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                 });
             },
             bookingpress_step_navigation(current_tab, next_tab, previous_tab, is_strict_validate = 1){
-
                 const vm = this;
                 var bookingpress_is_validate = 0;
 

@@ -236,7 +236,7 @@ if(!empty($request_module) && $request_module != 'lite_wizard'){
                                 </defs>
                             </svg>
                         </div>
-                        <div class="bpa-kf__item-title"><?php esc_html_e('35+ Premium add-ons totally free', 'bookingpress-appointment-booking'); ?></div>
+                        <div class="bpa-kf__item-title"><?php esc_html_e('40+ Premium add-ons totally free', 'bookingpress-appointment-booking'); ?></div>
                     </div>
                 </div>
                 <div class="bpa-kf__item-row">
@@ -254,7 +254,7 @@ if(!empty($request_module) && $request_module != 'lite_wizard'){
                                 </defs>
                             </svg>
                         </div>
-                        <div class="bpa-kf__item-title"><?php esc_html_e('17+ Payment gateways completely free', 'bookingpress-appointment-booking'); ?></div>
+                        <div class="bpa-kf__item-title"><?php esc_html_e('20+ Payment gateways completely free', 'bookingpress-appointment-booking'); ?></div>
                     </div>
                     <div class="bpa-kf__item">
                         <div class="bpa-kf__item-icon">

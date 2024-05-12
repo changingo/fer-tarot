@@ -15,7 +15,7 @@
                     <span class="material-icons-round">add</span> 
                     <?php esc_html_e('Add New', 'bookingpress-appointment-booking'); ?>
                 </el-button>
-                <el-button class="bpa-btn" @click="bookingpress_share_url_modal">
+                <el-button id="bpa-appointment-share-url-button" class="bpa-btn" @click="bookingpress_share_url_modal">
 					<span class="material-icons-round">share</span>
 					<?php esc_html_e( 'Share URL', 'bookingpress-appointment-booking' ); ?>
 				</el-button>

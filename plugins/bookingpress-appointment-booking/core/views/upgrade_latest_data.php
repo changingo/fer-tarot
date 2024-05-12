@@ -1652,7 +1652,15 @@ if( version_compare( $bookingpress_old_version, '1.1', '<') ){
 
 }
 
-$bookingpress_new_version = '1.1';
+if( version_compare( $bookingpress_old_version, '1.1.1', '<') ){
+    global $BookingPress;
+
+	$BookingPress->bookingpress_update_settings( 'bpa_afternoon_start_time', 'general_setting', '12:00:00' );
+	$BookingPress->bookingpress_update_settings( 'bpa_evening_start_time', 'general_setting', '16:00:00' );
+	$BookingPress->bookingpress_update_settings( 'bpa_night_start_time', 'general_setting', '20:00:00' );
+}
+
+$bookingpress_new_version = '1.1.1';
 update_option('bookingpress_new_version_installed', 1);
 update_option('bookingpress_version', $bookingpress_new_version);
 update_option('bookingpress_updated_date_' . $bookingpress_new_version, current_time('mysql'));

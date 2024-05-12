@@ -1,0 +1,5 @@
+v1.0.9 - 08-May-2024
+- Improvement: Added Source and Seed parameter while creating provisional account in Starter Templates for SureCart.
+
+v1.0.0
+- Initial Commit

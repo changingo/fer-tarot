@@ -1,0 +1,173 @@
+
+.bpa-btn--ml-translate,
+.bpa-btn--ml-translate:hover,
+.bpa-btn--ml-translate:focus{
+	background-color: var(--bpa-pt-secondary-orange-alpha-12);
+	border-color: var(--bpa-pt-secondary-orange);
+	color: var(--bpa-dt-black-300);
+}
+.bpa-btn--ml-translate:hover,
+.bpa-btn--ml-translate:focus{
+	background-color: transparent;	
+	color: var(--bpa-pt-secondary-orange);
+}
+.bpa-drawer__language-translate .el-drawer__close-btn{
+	display: none;
+}
+.bpa-drawer__language-translate .bpa-dlt__heading{
+	padding: 32px 24px 20px 24px;
+	border-bottom: 1px solid var(--bpa-gt-gray-400);
+}
+.bpa-drawer__language-translate .bpa-dlt__heading h3{
+	color: var(--bpa-dt-black-400);
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 28px;
+	font-family: var(--bpa-primary-font);
+}
+.bpa-dlt__body{
+	height: calc(100% - 205px);
+	overflow: auto;
+}
+.bpa-dlt-language-items{
+	border: 1px solid var(--bpa-gt-gray-400);
+	border-radius: var(--bpa-radius-4px);
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	overflow-x: auto;
+	margin: 24px 24px 0 24px;
+}
+.bpa-li__item{
+	display: flex;
+	align-items: center;
+	padding: 12px 16px;
+	cursor: pointer;
+}
+.bpa-li__item img{
+	width: 20px;
+	margin-right: 6px;
+}
+.bpa-li__item p{
+	font-size: 15px;
+	line-height: 18px;
+	font-weight: normal;
+	color: var(--bpa-dt-black-300);
+}
+.bpa-li__item.__bpa-is-active{
+	background-color: var(--bpa-pt-main-green-alpha-12);
+}
+.bpa-li__item.__bpa-is-active p{
+	color: var(--bpa-dt-black-400);
+}
+.bpa-dlt-body-module-wrapper{
+	margin: 24px 24px 0 24px;
+	height: auto; 
+	padding-bottom: 30px;
+}
+.bpa-drawer__language-translate .el-drawer__body{
+	overflow: hidden;
+}
+.bpa-dlt-body-module-wrapper .bpa-mw__title h4{
+	padding-bottom: 12px;
+	border-bottom: 1px solid var(--bpa-gt-gray-400);
+	margin-bottom: 24px;
+	font-size: 16px;
+	line-height: 18px;
+	font-weight: 500;
+	color: var(--bpa-dt-black-400);
+	font-family: var(--bpa-primary-font);
+}
+.bpa-mw__form{
+	padding: 0 20px;
+}
+.bpa-mw__form .el-form-item:not(:last-child){
+	margin-bottom: 24px;
+}
+.bpa-dlt-body-module-wrapper .bpa-bmw__block:not(:last-child){
+	margin-bottom: 28px;
+}
+.bpa-dlt__footer{
+	position: sticky;
+	width: 100%;
+	bottom: 30px;
+	padding: 20px 32px;
+	border-top: 1px solid var(--bpa-gt-gray-400);
+	background-color: var(--bpa-cl-white);
+	left: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-start;
+}
+.bpa-cb-item__language-row .bpa-gs__cb--item-heading{
+	padding-bottom: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--bpa-gt-gray-300);
+}
+.bpa-cb-item__language-row .bpa-gs__cb--item-heading .bpa-sec--sub-heading{
+	padding-bottom: 0;
+	margin-bottom: 0;
+	border-bottom: none;
+}
+.bpa-cb-item__language-row .bpa-gs__cb--item-heading .bpa-form-control .el-input__inner{
+	margin-left: 0;
+	margin-right: 0;
+}
+.bpa-lr__body-items{
+	margin-top: 24px;
+}
+.bpa-lr-body-item-wrap{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.bpa-multi-lang-sec .bpa-lr__item{
+	padding: 8px 12px;
+	border-radius: var(--bpa-radius-4px);
+	border: 1px solid var(--bpa-gt-gray-400);
+	font-size: 14px;
+	font-family: var(--bpa-primary-font);	
+	font-weight: 500;
+	line-height: 18px;
+	color: var(--bpa-dt-black-300);
+	display: flex;
+	align-items: center;
+	margin-right: 12px;
+	padding-right: 30px;
+	max-width: 300px;
+	position: relative;
+	margin-top: 10px;
+	min-width: 220px;
+}
+.bpa-multi-lang-sec .bpa-lr__item span.material-icons-round{
+	font-size: 16px;
+	color: var(--bpa-dt-black-200);
+	margin-left: 8px;
+	position: absolute;
+	right: 2px;
+	cursor: pointer;
+}
+.bpa-cs__option-row{
+	margin-bottom: 10px;
+}
+.bpa-cs__option-label{
+	font-size: 13px;
+}
+.bpa-form-lang-option-inp{
+	width:95%;
+}
+.bpa-setting-lng-flg{
+	margin-right: 15px;
+}
+.bpa-rextra-margin{
+	margin-left: 15px;
+}
+.bpa-dlt-language-items .bpa-li__item{
+	width: max-content;
+}
+.bpa-dlt-language-items .bpa-li__item p{
+	width: inherit;
+}

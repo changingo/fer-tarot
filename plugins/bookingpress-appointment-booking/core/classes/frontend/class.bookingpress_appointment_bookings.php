@@ -129,6 +129,632 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
             add_action( 'wp_head', array( $this, 'bookingpress_preloaded_fonts'), 99999 );
 
             add_filter( 'jet-reviews/frontend/deps-scripts', array( $this, 'change_jet_review_deps') );
+
+            /* Paypal Payment method added */
+            $bookingpress_pro = $this->bookingpress_pro_plugin_active();
+            if($bookingpress_pro == 0){
+                add_filter('bookingpress_after_selecting_payment_method_booking_form',array($this,'bookingpress_after_selecting_payment_method_func'),10,1);
+                add_action('bookingpress_paypal_payment_button_html',array($this,'bookingpress_paypal_payment_button_html_func'),10);                  
+            }            
+
+            add_action( 'wp_enqueue_scripts',  array($this, 'bookingpress_paypal_scripts_add') ); 
+            /* For Validate Paypal Request & add entries */
+			add_action('wp_ajax_bookingpress_paypal_booking_validate_lite', array($this, 'bookingpress_paypal_booking_validate_lite_func'), 10);
+			add_action('wp_ajax_nopriv_bookingpress_paypal_booking_validate_lite', array($this, 'bookingpress_paypal_booking_validate_lite_func'), 10);	            
+
+            /* For Book Appointment Paypal Request */
+			add_action('wp_ajax_bookingpress_paypal_booking_payment_confirm_lite', array($this, 'bookingpress_paypal_booking_payment_confirm_lite'), 10);
+			add_action('wp_ajax_nopriv_bookingpress_paypal_booking_payment_confirm_lite', array($this, 'bookingpress_paypal_booking_payment_confirm_lite'), 10);            
+
+        }
+
+
+		/**
+		 * Paypal payment button html
+		 *
+		*/
+		function bookingpress_paypal_payment_button_html_func(){
+        ?>
+
+            <el-button v-if="paypal_button_loader != 'false'" class="bpa-front-btn bpa-front-btn__medium bpa-front-btn--primary bpa-loader-button bpa-front-btn--is-loader">                
+                <span class="bpa-btn__label">Test Button</span>
+                <div class="bpa-front-btn--loader__circles">				    
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </el-button>        
+            <div v-if="paypal_button_loader != 'true'" id="paypal-button-container"></div>
+        <?php 
+        }
+
+
+		public function validate_paypal_order($order_id){ 
+            global $BookingPress;
+
+            $bookingpress_payment_mode    = $BookingPress->bookingpress_get_settings('paypal_payment_mode', 'payment_setting');
+            $paypal_client_id = $BookingPress->bookingpress_get_settings( 'paypal_client_id', 'payment_setting' );
+            $paypal_client_secret = $BookingPress->bookingpress_get_settings( 'paypal_client_secret', 'payment_setting' );			
+
+			$paypalAuthAPI = 'https://api-m.paypal.com/v1/oauth2/token';
+			$paypalAPI = 'https://api-m.paypal.com/v2/checkout';
+
+			$Sandbox = $bookingpress_payment_mode;
+			$paypalClientID = $paypal_client_id;
+			$paypalSecret = $paypal_client_secret;
+
+			if ($Sandbox) {
+				$paypalAuthAPI = 'https://api-m.sandbox.paypal.com/v1/oauth2/token';
+				$paypalAPI = 'https://api-m.sandbox.paypal.com/v2/checkout';
+			}
+			
+			$request_args = array(
+				'headers'     => array(
+					'Authorization' => 'Basic ' . base64_encode($paypalClientID . ':' . $paypalSecret),
+				),
+				'body'        => array(
+					'grant_type' => 'client_credentials',
+				),
+			);
+			
+			$response = wp_remote_post($paypalAuthAPI, $request_args);
+			
+			if (is_wp_error($response)) {
+				throw new Exception('Error ' . $response->get_error_code() . ': ' . $response->get_error_message());
+			}
+			
+			$auth_response = json_decode(wp_remote_retrieve_body($response));
+			
+			if (empty($auth_response)) {
+				return false;
+			} else {
+				if (!empty($auth_response->access_token)) {
+					$request_args = array(
+						'headers'     => array(
+							'Authorization' => 'Bearer ' . $auth_response->access_token,
+						),
+					);
+			
+					$response = wp_remote_get($paypalAPI . '/orders/' . $order_id, $request_args);
+			
+					if (is_wp_error($response)) {
+						throw new Exception('Error ' . $response->get_error_code() . ': ' . $response->get_error_message());
+					}
+			
+					$api_data = json_decode(wp_remote_retrieve_body($response), true);
+			
+					if (!empty($api_data['error'])) {
+						throw new Exception('Error ' . $api_data['error'] . ': ' . $api_data['error_description']);
+					}
+			
+					return !empty($api_data) ? $api_data : false;
+				} else {
+					return false;
+				}
+			}			
+
+		} 
+
+        function bookingpress_paypal_booking_payment_confirm_lite(){
+
+            global  $BookingPress,$bookingpress_debug_payment_log_id,$bookingpress_payment_gateways;
+            $wpnonce               = isset( $_POST['_wpnonce'] ) ? sanitize_text_field( $_POST['_wpnonce'] ) : '';
+			$bpa_verify_nonce_flag = wp_verify_nonce( $wpnonce, 'bpa_wp_nonce' );
+			$response              = array();
+			
+			$response['variant'] = 'error';
+			$response['title']   = esc_html__( 'Error', 'bookingpress-appointment-booking' );
+			$response['msg']     = esc_html__( 'Sorry, payment is not successed with the paypal.', 'bookingpress-appointment-booking' );
+
+			$bookingpress_payment_res = (isset($_POST['bookingpress_payment_res']))?$_POST['bookingpress_payment_res']:'';
+			do_action( 'bookingpress_payment_log_entry', 'paypal', 'payment popup response data', 'bookingpress pro', $_POST, $bookingpress_debug_payment_log_id );
+            if ( ! $bpa_verify_nonce_flag ) {
+				$response['variant'] = 'error';
+				$response['title']   = esc_html__( 'Error', 'bookingpress-appointment-booking' );
+				$response['msg']     = esc_html__( 'Sorry, Your request can not process due to security reason.', 'bookingpress-appointment-booking' );
+				wp_send_json( $response );
+				die();
+			}			
+
+            $paypal_client_id = $BookingPress->bookingpress_get_settings( 'paypal_client_id', 'payment_setting' );
+            $paypal_client_secret = $BookingPress->bookingpress_get_settings( 'paypal_client_secret', 'payment_setting' );
+
+            if (empty($paypal_client_id) ) {
+                $bookingpress_paypal_error_msg .= esc_html__('Please configure PayPal Client ID', 'bookingpress-appointment-booking');
+                $response['variant']       = 'error';
+                $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                $response['msg']           = $bookingpress_paypal_error_msg;
+                $response['is_redirect']   = 0;
+                $response['redirect_data'] = '';
+                $response['is_spam']       = 0;
+                echo json_encode($response);
+                exit;
+            }
+            if (empty($paypal_client_secret) ) {
+                $bookingpress_paypal_error_msg .= esc_html__('Please Configure PayPal Client Secret', 'bookingpress-appointment-booking');
+                $response['variant']       = 'error';
+                $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                $response['msg']           = $bookingpress_paypal_error_msg;
+                $response['is_redirect']   = 0;
+                $response['redirect_data'] = '';
+                $response['is_spam']       = 0;
+                echo json_encode($response);
+                exit;
+            }
+
+			$order_id = (isset($bookingpress_payment_res['id']))?$bookingpress_payment_res['id']:'';            
+			$order = "";
+            if(!empty($order_id)){
+                try {  
+                    $order = $this->validate_paypal_order($order_id); 
+                } catch(Exception $e) {  
+                    $api_error = $e->getMessage();  
+                    $response['variant'] = 'error';
+                    $response['title']   = esc_html__( 'Error', 'bookingpress-appointment-booking' );
+                    $response['msg']     = $api_error;
+                    wp_send_json( $response );
+                    die();                
+                }
+                    
+                $reference_id = (isset($order['purchase_units'][0]['reference_id']))?$order['purchase_units'][0]['reference_id']:'';
+                $order_status = (isset($order['status']))?$order['status']:'';
+                $transaction_id  =  (isset($order['purchase_units'][0]['payments']['captures'][0]['id']))?$order['purchase_units'][0]['payments']['captures'][0]['id']:'';
+                $payment_status = (isset($order['purchase_units'][0]['payments']['captures'][0]['status']))?$order['purchase_units'][0]['payments']['captures'][0]['status']:'';
+                $amount = (isset($order['purchase_units'][0]['amount']['value']))?$order['purchase_units'][0]['amount']['value']:'';
+                $currency_code = (isset($order['purchase_units'][0]['amount']['currency_code']))?$order['purchase_units'][0]['amount']['currency_code']:'';
+
+                if(!empty($reference_id)){                    
+
+                    $entry_id = $reference_id;                    
+                    if(!empty($order_id) && $order_status == 'COMPLETED' && !empty($entry_id)){
+    
+                        $bookingpress_webhook_data = array();
+                        $payer_email = (isset($order['payer']['email_address']))?$order['payer']['email_address']:'';
+                        $bookingpress_webhook_data['bookingpress_payer_email'] = $payer_email;
+                        $bookingpress_webhook_data['txn_id'] = $transaction_id;
+                        $bookingpress_webhook_data['mc_gross'] = $amount;
+                        $bookingpress_webhook_data['mc_currency'] = $currency_code;
+                        $bookingpress_webhook_data['amount'] = $amount;
+                        $bookingpress_webhook_data['currency'] = $currency_code;
+                        $payment_add_status = '1';
+                        if($payment_status == "PENDING"){
+                            $payment_add_status = '2';
+                        }
+
+                        $payment_log_id = $bookingpress_payment_gateways->bookingpress_confirm_booking($entry_id, $bookingpress_webhook_data, $payment_add_status, 'txn_id', '', 1);
+                        $response['variant'] = 'success';
+                        $response['title']   = esc_html__( 'Success', 'bookingpress-appointment-booking' );
+                        $response['msg']     = esc_html__( 'Appointment succesfully created.', 'bookingpress-appointment-booking' );
+    
+                        wp_send_json( $response );
+                        die();
+                    }
+    
+                }
+
+            }
+
+
+			echo json_encode($response);
+			die;
+
+        }        
+		
+		/**
+		 * Add for create paypal entries
+		 *
+		*/
+		function bookingpress_paypal_booking_validate_lite_func(){
+
+            global $wpdb, $BookingPress, $tbl_bookingpress_appointment_bookings, $tbl_bookingpress_services, $tbl_bookingpress_customer_bookings, $tbl_bookingpress_customers, $bookingpress_payment_gateways, $bookingpress_debug_payment_log_id;
+            $wpnonce               = isset( $_POST['_wpnonce'] ) ? sanitize_text_field( $_POST['_wpnonce'] ) : '';
+			$bpa_verify_nonce_flag = wp_verify_nonce( $wpnonce, 'bpa_wp_nonce' );
+			$response              = array();
+
+            $wpnonce               = isset($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
+            $bpa_verify_nonce_flag = wp_verify_nonce($wpnonce, 'bpa_wp_nonce');
+            if (! $bpa_verify_nonce_flag ) {
+                $response['variant'] = 'error';
+                $response['title']   = esc_html__('Error', 'bookingpress-appointment-booking');
+                $response['msg']     = esc_html__('Sorry, Your request can not be processed due to security reason.', 'bookingpress-appointment-booking');
+                wp_send_json($response);
+                die();
+            }
+
+            $bookingpress_payment_mode    = $BookingPress->bookingpress_get_settings('paypal_payment_mode', 'payment_setting');
+            $paypal_client_id = $BookingPress->bookingpress_get_settings( 'paypal_client_id', 'payment_setting' );
+            $paypal_client_secret = $BookingPress->bookingpress_get_settings( 'paypal_client_secret', 'payment_setting' );
+
+            if (empty($paypal_client_id) ) {
+                $bookingpress_paypal_error_msg .= esc_html__('Please configure PayPal Client ID', 'bookingpress-appointment-booking');
+                $response['variant']       = 'error';
+                $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                $response['msg']           = $bookingpress_paypal_error_msg;
+                $response['is_redirect']   = 0;
+                $response['redirect_data'] = '';
+                $response['is_spam']       = 0;
+                echo json_encode($response);
+                exit;
+            }
+            if (empty($paypal_client_secret) ) {
+                $bookingpress_paypal_error_msg .= esc_html__('Please Configure PayPal Client Secret', 'bookingpress-appointment-booking');
+                $response['variant']       = 'error';
+                $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                $response['msg']           = $bookingpress_paypal_error_msg;
+                $response['is_redirect']   = 0;
+                $response['redirect_data'] = '';
+                $response['is_spam']       = 0;
+                echo json_encode($response);
+                exit;
+            }
+
+            $response['variant']       = 'error';
+            $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+            $response['msg']           = esc_html__('Something went wrong..', 'bookingpress-appointment-booking');
+            $response['is_redirect']   = 0;
+            $response['redirect_data'] = '';
+            $response['is_spam']       = 1;
+
+            if( !empty( $_REQUEST['appointment_data'] ) && !is_array( $_REQUEST['appointment_data'] ) ){
+                $_REQUEST['appointment_data'] = json_decode( stripslashes_deep( $_REQUEST['appointment_data'] ), true ); //phpcs:ignore
+                $_POST['appointment_data'] = $_REQUEST['appointment_data'] =  !empty($_REQUEST['appointment_data']) ? array_map(array($this,'bookingpress_boolean_type_cast'), $_REQUEST['appointment_data'] ) : array(); // phpcs:ignore
+            }
+
+            $response = apply_filters('bookingpress_validate_spam_protection', $response, array_map(array( $BookingPress, 'appointment_sanatize_field' ), $_REQUEST['appointment_data'])); // phpcs:ignore
+
+            $booking_response = $this->bookingpress_before_book_appointment_func();
+
+            if( !empty( $booking_response ) ){
+                $booking_response_arr = json_decode( $booking_response, true );                
+                if( !empty( $booking_response_arr['variant'] ) && 'error' == $booking_response_arr['variant'] ){
+                    if(!empty($booking_response_arr['msg'])) {
+                        $booking_response_arr['msg'] = stripslashes_deep(html_entity_decode($booking_response_arr['msg'],ENT_QUOTES));
+                    }                                     
+                    wp_send_json($booking_response_arr);
+                    die;
+                }
+            }
+
+            $appointment_booked_successfully = $BookingPress->bookingpress_get_settings('appointment_booked_successfully', 'message_setting');
+
+            if (! empty($_REQUEST) && ! empty($_REQUEST['appointment_data']) ) {
+             
+                $bookingpress_appointment_data            = array_map(array( $BookingPress, 'appointment_sanatize_field' ), $_REQUEST['appointment_data']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized --Reason - $_GET['appointment_data'] contains mixed array and sanitized properly using 'appointment_sanatize_field' function
+                $bookingpress_payment_gateway             = ! empty($bookingpress_appointment_data['selected_payment_method']) ? $bookingpress_appointment_data['selected_payment_method'] : '';
+                $bookingpress_appointment_on_site_enabled = ( $bookingpress_appointment_data['selected_payment_method'] == 'onsite' ) ? 1 : 0;
+                $payment_gateway                          = ( $bookingpress_appointment_on_site_enabled ) ? 'on-site' : $bookingpress_payment_gateway;
+
+                $bookingpress_service_price = isset($bookingpress_appointment_data['service_price_without_currency']) ? floatval($bookingpress_appointment_data['service_price_without_currency']) : 0;
+                if ($bookingpress_service_price == 0 ) {
+                    $payment_gateway = ' - ';
+                }
+
+                $bpa_selected_service = $bookingpress_appointment_data['selected_service'];
+
+                $bpa_service_data               = $BookingPress->get_service_by_id( $bpa_selected_service );
+                $bpa_service_amount             = ! empty($bpa_service_data['bookingpress_service_price']) ? (float) $bpa_service_data['bookingpress_service_price'] : 0;
+
+                if( $bpa_service_amount != $bookingpress_service_price ){
+                    $bookingpress_invalid_amount = esc_html__('Sorry! Appointment could not be processed', 'bookingpress-appointment-booking');
+
+                    $response['variant']       = 'error';
+                    $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                    $response['msg']           = $bookingpress_invalid_amount;
+                    $response['is_redirect']   = 0;
+                    $response['reason']        = 'price mismatched ' . $bpa_service_amount . ' --- ' . $bookingpress_service_price;
+                    $response['redirect_data'] = '';
+                    $response['is_spam']       = 0;
+
+                    echo json_encode($response);
+                    exit;
+                }            
+
+                $bookingpress_return_data = apply_filters('bookingpress_validate_submitted_form', $payment_gateway, $bookingpress_appointment_data);
+
+				$bookingpress_service_name = ! empty( $bookingpress_return_data['service_data']['bookingpress_service_name'] ) ? $bookingpress_return_data['service_data']['bookingpress_service_name'] : __( 'Appointment Booking', 'bookingpress-appointment-booking' );
+
+                if ($bookingpress_service_price == 0 ) {
+                    $response['variant']       = 'error';
+                    $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                    $response['msg']           = esc_html__('Service price must be more then 0 for paypal.', 'bookingpress-appointment-booking');
+                    $response['is_redirect']   = 0;
+                    $response['reason']        = 'price 0';
+                    $response['redirect_data'] = '';
+                    $response['is_spam']       = 0;
+                    echo json_encode($response);
+                    exit;
+                }
+
+                $entry_id = ! empty( $bookingpress_return_data['entry_id'] ) ? $bookingpress_return_data['entry_id'] : '';	
+
+				if(!empty($entry_id)){
+
+					$order_id = "";                   
+                    $currency                          = $bookingpress_return_data['currency'];
+                    $currency_symbol                   = $BookingPress->bookingpress_get_currency_code($currency);
+                    $bookingpress_final_payable_amount = isset($bookingpress_return_data['payable_amount']) ? $bookingpress_return_data['payable_amount'] : 0;
+                    $customer_details                  = $bookingpress_return_data['customer_details'];
+                    $customer_email                    = ! empty($customer_details['customer_email']) ? $customer_details['customer_email'] : '';
+
+                    $bookingpress_service_name = ! empty($bookingpress_return_data['service_data']['bookingpress_service_name']) ? $bookingpress_return_data['service_data']['bookingpress_service_name'] : __('Appointment Booking', 'bookingpress-appointment-booking');
+
+                    $custom_var = $entry_id;
+
+
+
+					$Sandbox = $bookingpress_payment_mode;
+					$paypalClientID = $paypal_client_id;
+					$paypalSecret = $paypal_client_secret;
+
+					$token_url = 'https://api-m.paypal.com/v1/oauth2/token';
+					$api_url = 'https://api-m.paypal.com/v2/checkout/orders';
+					if ($Sandbox) {
+						$token_url = 'https://api-m.sandbox.paypal.com/v1/oauth2/token';
+						$api_url = 'https://api-m.sandbox.paypal.com/v2/checkout/orders';			
+					}						
+					$request_args = array(
+						'headers'     => array(
+							'Authorization' => 'Basic ' . base64_encode($paypalClientID . ':' . $paypalSecret),
+						),
+						'body'        => array(
+							'grant_type' => 'client_credentials',
+						),
+					);			
+					$response_return = wp_remote_post($token_url, $request_args);
+					if (is_wp_error($response_return)) {
+						$error = $response_return->get_error_code() . ': ' . $response_return->get_error_message();
+						$response['variant'] = 'error';
+						$response['title']   = esc_html__( 'Error', 'bookingpress-appointment-booking' );
+						$response['msg']     = $error;	
+						wp_send_json( $response );
+						die();					
+					}
+					
+					$auth_response = json_decode(wp_remote_retrieve_body($response_return));
+					if (empty($auth_response)) {
+						wp_send_json( $response );
+						die();									
+					} else {				
+						if (!empty($auth_response->access_token)) {
+							$headers = array(
+								'Content-Type' => 'application/json',
+								'Authorization' => 'Bearer ' . $auth_response->access_token,
+							);
+							$body = array(
+								'intent' => 'CAPTURE',												
+								'purchase_units' => array(																					
+									array(
+										'reference_id'=> $custom_var,
+										'description' => $bookingpress_service_name,
+										'amount' => array(
+											'currency_code' => ''.$currency_symbol, 
+											'value' => $bookingpress_final_payable_amount, 
+										),
+									),
+								),
+							);				
+							
+						
+							$response_return = wp_remote_post(
+								$api_url,
+								array(
+									'method' => 'POST',
+									'headers' => $headers,
+									'body' => wp_json_encode($body),
+								)
+							);
+		
+		
+							if (is_wp_error($response_return)) {
+								$error_message = $response_return->get_error_message();
+								$response['variant'] = 'error';
+								$response['title']   = esc_html__( 'Error', 'bookingpress-appointment-booking' );
+								$response['msg']     = "Something went wrong:";
+								wp_send_json( $response );
+								die();														
+								
+							} else {
+								$response_body = wp_remote_retrieve_body($response_return);
+								$order_data = json_decode($response_body, true);
+								$order_id = (isset($order_data['id']))?$order_data['id']:'';						
+							}
+						}				
+					}
+					if(!empty($order_id)){
+
+                        $redirect_url                    = $bookingpress_return_data['approved_appointment_url'];
+                        $bookingpress_appointment_status = $BookingPress->bookingpress_get_settings('appointment_status', 'general_setting');
+                        if ($bookingpress_appointment_status == 'Pending' ) {
+                            $redirect_url = $bookingpress_return_data['pending_appointment_url'];
+                        }
+
+                        $bookingpress_paypal_cancel_url_id = $BookingPress->bookingpress_get_customize_settings('after_failed_payment_redirection', 'booking_form');
+                        $bookingpress_paypal_cancel_url = get_permalink($bookingpress_paypal_cancel_url_id);
+                        $cancel_url                     = ! empty($bookingpress_paypal_cancel_url) ? $bookingpress_paypal_cancel_url : BOOKINGPRESS_HOME_URL;
+                        $cancel_url                     = add_query_arg('is_cancel', 1, esc_url($cancel_url));		
+						$booking_form_redirection_mode = 'external_redirection';
+
+						$response['variant'] = 'success';
+						$response['title']   = esc_html__( 'Success', 'bookingpress-appointment-booking' );
+						$response['msg']     = esc_html__( 'Appointment succesfully created.', 'bookingpress-appointment-booking' );
+						$response['order_id']  = $order_id;
+						$response['paypal_success_url']  = $redirect_url;
+						$response['paypal_cancel_url']  = $cancel_url;
+						$response['paypal_booking_form_redirection_mode']  = $booking_form_redirection_mode;
+
+					}	
+
+				}else{
+
+                    $response['variant']       = 'error';
+                    $response['title']         = esc_html__('Error', 'bookingpress-appointment-booking');
+                    $response['msg']           = esc_html__('Something Wrong', 'bookingpress-appointment-booking');
+                    $response['is_redirect']   = 0;
+                    $response['reason']        = 'price 0';
+                    $response['redirect_data'] = '';
+                    $response['is_spam']       = 0;
+                    echo json_encode($response);
+                    exit;
+                }
+            }
+
+			wp_send_json( $response );
+			die();			
+
+		}
+
+		function bookingpress_paypal_scripts_add(){
+			global $BookingPress;
+			$paypal_payment = $BookingPress->bookingpress_get_settings( 'paypal_payment', 'payment_setting' );
+            $paypal_payment_method_type = $BookingPress->bookingpress_get_settings( 'paypal_payment_method_type', 'payment_setting' );						
+			if($paypal_payment_method_type == 'popup' && $paypal_payment == true){				
+				$paypal_client_id = $BookingPress->bookingpress_get_settings( 'paypal_client_id', 'payment_setting' );
+				$paypal_client_secret = $BookingPress->bookingpress_get_settings( 'paypal_client_secret', 'payment_setting' );
+                $bookingpress_currency_name   = $BookingPress->bookingpress_get_settings( 'payment_default_currency', 'payment_setting' );
+                $bookingpress_currency_code = $BookingPress->bookingpress_get_currency_code( $bookingpress_currency_name );
+
+				if(!empty($paypal_client_id) && !empty($paypal_client_secret)){
+					wp_enqueue_script( 'bookingpress-paypal-script', 'https://www.paypal.com/sdk/js?client-id='.$paypal_client_id.'&currency='.$bookingpress_currency_code.'&disable-funding=credit,card', array(), null, true );
+				}
+			}
+		}
+
+		
+
+        /**
+         * After selection payment method paypal script added
+         *
+        */
+        function bookingpress_after_selecting_payment_method_func($bookingpress_after_selecting_payment_method_data){
+                global $BookingPress;
+                
+                $paypal_payment = $BookingPress->bookingpress_get_settings( 'paypal_payment', 'payment_setting' );
+                if($paypal_payment == true){
+
+                    $paypal_payment_method_type = $BookingPress->bookingpress_get_settings( 'paypal_payment_method_type', 'payment_setting' );
+                    $paypal_client_id = $BookingPress->bookingpress_get_settings( 'paypal_client_id', 'payment_setting' );
+                    $paypal_client_secret = $BookingPress->bookingpress_get_settings( 'paypal_client_secret', 'payment_setting' );
+    
+                    if($paypal_payment_method_type == 'popup'){
+    
+                        $bookingpress_after_selecting_payment_method_data.='
+                            var vm7 = this;
+                            if(payment_method == "paypal"){
+                                vm7.show_paypal_popup_button = "true";
+                            }else{
+                                vm7.show_paypal_popup_button = "false";
+                            }
+                        ';
+    
+                        if(empty($paypal_client_id)){					
+                            $client_id_error = esc_html__( 'Client ID is required.', 'bookingpress-appointment-booking' );
+                            $bookingpress_after_selecting_payment_method_data.='
+                                window.app.bookingpress_set_error_msg("'.$client_id_error.'");
+                            ';		
+                        }else if(empty($paypal_client_secret)){
+                            $client_secret_error = esc_html__( 'Client secret is required.', 'bookingpress-appointment-booking' );
+                            $bookingpress_after_selecting_payment_method_data.='
+                                window.app.bookingpress_set_error_msg("'.$client_secret_error.'");
+                            ';		
+                        }else{
+    
+                            $bookingpress_after_selecting_payment_method_data.='
+                                if(payment_method == "paypal"){
+                                    document.getElementById("paypal-button-container").innerHTML = "";
+                                    paypal.Buttons({
+                                        async createOrder(data, actions) {
+                                            var vm2 = this;											
+                                            var bkp_wpnonce_pre = "'.wp_create_nonce( 'bpa_wp_nonce' ).'";
+                                            var bkp_wpnonce_pre_fetch = document.getElementById("_wpnonce");										
+                                            if(typeof bkp_wpnonce_pre_fetch=="undefined" || bkp_wpnonce_pre_fetch==null){
+                                                bkp_wpnonce_pre_fetch = bkp_wpnonce_pre;
+                                            }else {
+                                                bkp_wpnonce_pre_fetch = bkp_wpnonce_pre_fetch.value;
+                                            }
+                                            var final_order_id = "";	
+                                            var postData = { action: "bookingpress_paypal_booking_validate_lite", _wpnonce: bkp_wpnonce_pre_fetch,appointment_data:JSON.stringify( app.appointment_step_form_data)}
+                                            var final_data = "";
+                                            try {
+                                                const response = await axios.post(appoint_ajax_obj.ajax_url, Qs.stringify( postData ));											
+                                                if(response.data.variant != "error") {												
+                                                    if(typeof response.data.order_id != "undefined" && response.data.order_id != ""){
+                                                        app.paypal_success_url = response.data.paypal_success_url;
+                                                        app.paypal_cancel_url = response.data.paypal_cancel_url;
+                                                        app.paypal_booking_form_redirection_mode = response.data.paypal_booking_form_redirection_mode;
+                                                        return response.data.order_id;												
+                                                    }	
+                                                }else{
+                                                    window.app.bookingpress_set_error_msg(response.data.msg);
+                                                    return 0;
+                                                }											
+                                            } catch (error) {
+                                                window.app.bookingpress_set_error_msg("Failed to create PayPal order");
+                                                return 0;
+                                            }
+                
+                                        },																		
+                                        onCancel: function(data){},
+                                        onApprove: (data, actions) => {
+                                            return actions.order.capture().then(function(orderData) {
+                
+                                                app.paypal_button_loader = "true";
+                                                var bkp_wpnonce_pre = "'.wp_create_nonce( 'bpa_wp_nonce' ).'";
+                                                var bkp_wpnonce_pre_fetch = document.getElementById("_wpnonce");										
+                                                if(typeof bkp_wpnonce_pre_fetch=="undefined" || bkp_wpnonce_pre_fetch==null){
+                                                    bkp_wpnonce_pre_fetch = bkp_wpnonce_pre;
+                                                }else {
+                                                    bkp_wpnonce_pre_fetch = bkp_wpnonce_pre_fetch.value;
+                                                }
+    
+                                                var sca_confirm_booking_data = { action: "bookingpress_paypal_booking_payment_confirm_lite", bookingpress_payment_res: orderData, _wpnonce: bkp_wpnonce_pre_fetch}											
+                                                axios.post( appoint_ajax_obj.ajax_url, Qs.stringify( sca_confirm_booking_data ) )
+                                                .then(function(response) {
+                                                    setTimeout(function(){
+                                                        app.paypal_button_loader = "false";
+                                                    },500);
+                                                    if(response.data.variant != "error") {															
+                                                        window.location.href = app.paypal_success_url;
+                                                    }else{
+                                                        window.app.bookingpress_set_error_msg(response.data.msg);
+                                                    }
+                                                }).catch(function(error){
+                                                    setTimeout(function(){
+                                                        app.paypal_button_loader = "false";
+                                                    },500);                                                    
+                                                    console.log(error);
+                                                });
+                
+                                            });									
+                                        },
+                                        style: {
+                                          layout: "vertical",                                     
+                                          color: "gold", 
+                                          shape: "pill", 
+                                          label: "paypal", 
+                                          fundingicons: false, 
+                                        }    
+                                    }).render("#paypal-button-container");
+    
+                                }else{
+                                    document.getElementById("paypal-button-container").innerHTML = "";
+                                }
+                            ';            
+                        }
+                    }
+
+                }
+
+
+        
+            return $bookingpress_after_selecting_payment_method_data;
+        }
+
+        function bookingpress_pro_plugin_active(){
+            if (! function_exists('is_plugin_active') ) {
+                include ABSPATH . '/wp-admin/includes/plugin.php';
+            } 
+            $bookingpress_pro = (is_plugin_active('bookingpress-appointment-booking-pro/bookingpress-appointment-booking-pro.php'))?1:0;            
+            return $bookingpress_pro;
         }
 
         function change_jet_review_deps( $jet_vue_deps ){
@@ -454,7 +1080,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
             $bookingpress_nonce = esc_html(wp_create_nonce('bpa_wp_nonce'));
 
             $content = '<div class="bpa-front-dcw__body-btn-group">';
-            $content .= '<el-button class="el-button bpa-front-btn bpa-front-btn__medium" @click="bookingpress_cancel_delete_account()"><span>'. $atts['cancel_button_text'].'</span></el-button>';
+            $content .= '<el-button class="el-button bpa-front-btn bpa-front-btn__medium bpa-front-delete-account-txt" @click="bookingpress_cancel_delete_account()"><span>'. $atts['cancel_button_text'].'</span></el-button>';
             $content .= '<el-button class="el-button bpa-front-btn bpa-front-btn__medium bpa-front-btn--danger" @click="bookingpress_delete_account()"><span>'.$atts['delete_button_text'].'</span></el-button>';
             $content .= '</div>';
 
@@ -3391,6 +4017,8 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
             
             $booked_timing_keys = array();
             
+            $service_temp_timings = $service_timings;
+
             if( !empty( $total_booked_appiontments ) && !empty( $service_timings ) ){
                 foreach( $total_booked_appiontments as $booked_appointment_data ){
                     $total_guests = 0;
@@ -3406,6 +4034,8 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                         $current_time_start = $time_slot_data['store_start_time'].':00';
                         $current_time_end = $time_slot_data['store_end_time'].':00';
                         if( ( $booked_appointment_start_time >= $current_time_start && $booked_appointment_end_time <= $current_time_end ) || ( $booked_appointment_start_time < $current_time_end && $booked_appointment_end_time > $current_time_start) ){
+                            
+                            $bookingpress_single_time_slot_data = $time_slot_data;
 
                             $service_timings[ $sk ]['total_booked']++;
                             $capacity_count = 1;
@@ -3426,7 +4056,39 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                             } else {                                
                                 $service_timings[ $sk ]['guest_members'] = $total_guests;
                             }
-                            
+                                                        
+
+                            /* Share capacity betweenslot issue fixed start */                                                           
+                            $bookingpress_reduce_capacity = true;
+                            if( 'true' == $shared_quantity ){    
+
+                                if(isset($service_temp_timings[$sk]['booked_timeslot'])){
+                                    $booked_timeslot_data = $service_temp_timings[$sk]['booked_timeslot'];
+                                    if(!empty($booked_timeslot_data)){
+                                        foreach($booked_timeslot_data as $booked_slot){                                            
+                                            $start_time = $booked_slot['start_time'];
+                                            $end_time = $booked_slot['end_time'];
+                                            $block_cap_count = $booked_slot['capacity_count'];
+                                            if($booked_appointment_start_time > $start_time && $booked_appointment_start_time >= $end_time){
+                                                if($capacity_count > $block_cap_count){
+                                                    $final_capacity_count = $capacity_count - $block_cap_count;
+                                                    $capacity_count = $capacity_count+$final_capacity_count;
+                                                }else{
+                                                    $bookingpress_reduce_capacity = false;
+                                                }                                                
+                                            }
+                                        }
+                                    }
+                                }                                
+                                $service_temp_timings[$sk]['booked_timeslot'][] = array('start_time'=>$booked_appointment_start_time,'end_time'=>$booked_appointment_end_time,'capacity_count'=>$capacity_count);
+                                if(!$bookingpress_reduce_capacity){
+                                    $service_timings[ $sk ] = $bookingpress_single_time_slot_data;                                    
+                                    continue;
+                                }
+
+                            }                        
+                            /* Share capacity betweenslot issue fixed start */
+
                             if( 'true' == $shared_quantity ){
                                 $service_timings[ $sk ]['max_capacity'] -= $capacity_count;
                                 if( $service_timings[ $sk ]['max_capacity'] < 0 ){
@@ -5432,6 +6094,12 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
 
             $bookingpress_front_vue_data_fields['appointment_step_form_data']['bookingpress_form_token'] = '';
 
+			$bookingpress_front_vue_data_fields['show_paypal_popup_button'] = "false";
+			$bookingpress_front_vue_data_fields['paypal_button_loader'] = "false";
+            $bookingpress_front_vue_data_fields['paypal_success_url'] = "";
+			$bookingpress_front_vue_data_fields['paypal_cancel_url'] = "";
+			$bookingpress_front_vue_data_fields['paypal_booking_form_redirection_mode'] = "";
+
             $bookingpress_front_vue_data_fields = apply_filters('bookingpress_frontend_apointment_form_add_dynamic_data', $bookingpress_front_vue_data_fields);
             
             $bookingpress_dynamic_data_fields = wp_json_encode($bookingpress_front_vue_data_fields);
@@ -5519,7 +6187,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                                 $bookingpress_calendar_html .= '								
                                         <div v-for="item in bookingpress_calendar_list" :class="\'bpa-front-module--atc__item bpa-fm--atc__\'+item.value" style="margin:0px '.$button_spacing.'px '.$button_spacing.'px 0px">
                                             <el-button class="bpa-front-btn bpa-front-btn__medium bpa-front-btn--full-width" id="bookingpress_ical_calendar" v-if="item.value == \'ical_calendar\'">
-                                                <span>
+                                                <span class="bpa-thank-you-add-cal">
                                                     <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g clip-path="url(#clip0_1235_2762)">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.21165 1.39313C8.26508 0.00788564 9.72934 0 9.72934 0C9.72934 0 9.94793 1.30376 8.89977 2.55758C7.78313 3.89814 6.51375 3.67734 6.51375 3.67734C6.51375 3.67734 6.2741 2.6233 7.21165 1.39313Z" fill="black"/>
@@ -5535,8 +6203,8 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                                                 {{ item.name}}
                                             </el-button>           
                                             <el-link :href="bookingpress_google_calendar_link" target="_blank" class="bpa-front-btn bpa-front-btn__medium bpa-front-btn--full-width bpa-front-link--no-underline" id="bookingpress_google_calendar" v-if="item.value == \'google_calendar\'">
-                                                <span>
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <span class="bpa-thank-you-add-cal">
+                                                    <svg width="16" class="bookingpress_google_calendar_svg" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6444 8.17812C15.6444 7.64479 15.5556 7.02257 15.4667 6.57812H8V9.68924H12.2667C12.0889 10.667 11.5556 11.467 10.6667 12.0892V14.1337H13.3333C14.8444 12.7115 15.6444 10.5781 15.6444 8.17812Z" fill="#4285F4"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M7.99978 15.9996C10.1331 15.9996 11.9998 15.2885 13.3331 14.0441L10.6664 12.0885C9.95534 12.5329 9.06645 12.8885 7.99978 12.8885C5.95534 12.8885 4.17756 11.4663 3.55534 9.59961H0.888672V11.5552C2.13312 14.2218 4.88867 15.9996 7.99978 15.9996Z" fill="#34A853"/>
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M3.55556 9.511C3.37778 9.06656 3.28889 8.53322 3.28889 7.99989C3.28889 7.46656 3.37778 6.93322 3.55556 6.48878V4.44434H0.888889C0.355556 5.511 0 6.75545 0 7.99989C0 9.24434 0.266667 10.4888 0.888889 11.5554L3.55556 9.511Z" fill="#FBBC05"/>
@@ -5546,7 +6214,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                                                 {{ item.name}}
                                             </el-link>                                             
                                             <el-button class="bpa-front-btn bpa-front-btn__medium bpa-front-btn--full-width" id="bookingpress_outlook_calendar" v-if="item.value ==  \'outlook_calendar\'">                                                
-                                                <span>
+                                                <span class="bpa-thank-you-add-cal">
                                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g clip-path="url(#clip0_1235_2768)">
                                                         <path d="M7.57897 0H0V7.57897H7.57897V0Z" fill="#F25022"/>
@@ -5565,7 +6233,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                                             </el-button>                                             
                                             <el-link :href="bookingpress_yahoo_calendar_link" target="_blank" class="bpa-front-btn bpa-front-btn__medium bpa-front-btn--full-width bpa-front-link--no-underline" id="bookingpress_yahoo_calendar" v-if="item.value == 
                                             \'yahoo_calendar\'">                                                
-                                                <span>
+                                                <span class="bpa-thank-you-add-cal">
                                                     <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g clip-path="url(#clip0_1235_2766)">
                                                         <path d="M0 3.89506H3.43247L5.43118 9.00836L7.45588 3.89506H10.7976L5.76558 16H2.40215L3.77968 12.7924L0.000106295 3.89506H0ZM14.6891 7.98076H10.9461L14.2682 0L17.9975 0.000159442L14.6891 7.98076V7.98076ZM11.9266 8.74459C13.075 8.74459 14.006 9.67558 14.006 10.8238C14.006 11.9721 13.075 12.9031 11.9266 12.9031C10.7783 12.9031 9.84751 11.9721 9.84751 10.8238C9.84751 9.67558 10.7784 8.74459 11.9266 8.74459Z" fill="#5F01D1"/>
@@ -5905,6 +6573,9 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
             $bookingpress_after_selecting_payment_method_data = '';
             $bookingpress_after_selecting_payment_method_data = apply_filters('bookingpress_after_selecting_payment_method', $bookingpress_after_selecting_payment_method_data);
 
+            $bookingpress_after_selecting_payment_method_data_booking_form = '';
+            $bookingpress_after_selecting_payment_method_data_booking_form = apply_filters('bookingpress_after_selecting_payment_method_booking_form', $bookingpress_after_selecting_payment_method_data_booking_form);            
+
             $bookingpress_dynamic_add_params_for_timeslot_request = '';
             $bookingpress_dynamic_add_params_for_timeslot_request = apply_filters('bookingpress_dynamic_add_params_for_timeslot_request', $bookingpress_dynamic_add_params_for_timeslot_request);
 
@@ -5919,6 +6590,9 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
 	    
             $bookingpress_dynamic_next_page_request_filter = '';
             $bookingpress_dynamic_next_page_request_filter = apply_filters('bookingpress_dynamic_next_page_request_filter', $bookingpress_dynamic_next_page_request_filter);
+
+            $bookingpress_change_on_summary_steps_filter = '';
+            $bookingpress_change_on_summary_steps_filter = apply_filters('bookingpress_change_on_summary_steps_filter', $bookingpress_change_on_summary_steps_filter);
 
             $bookingpress_dynamic_validation_for_step_change = '';
             $bookingpress_dynamic_validation_for_step_change = apply_filters('bookingpress_dynamic_validation_for_step_change', $bookingpress_dynamic_validation_for_step_change);
@@ -6640,8 +7314,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
 				}else{
 					vm.is_display_card_option = 0;
 				}
-
-
+                '.$bookingpress_after_selecting_payment_method_data_booking_form.'
 			},
 			displayCalendar(){
 				const vm = this;
@@ -7252,7 +7925,10 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                 }
 
                 if( "summary" == current_tab && "summary" == vm.bookingpress_current_tab ) {
+
+                    const vm = this;
                     var total_payment_div_count = document.querySelectorAll(".bpa-front-module--pm-body__item").length;
+                    
                     if(total_payment_div_count == 1){
                         var total_payment_div = document.querySelector(".bpa-front-module--pm-body__item");
                         if( null != total_payment_div && "undefined" != typeof total_payment_div) {
@@ -7261,6 +7937,8 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                             vm.prevent_verification_on_load = false;
                         }
                     }
+                     
+                    '.$bookingpress_change_on_summary_steps_filter.'
                 }
 
                 '.$bookingpress_dynamic_next_page_request_filter.';
@@ -7271,6 +7949,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                     day = vm.appointment_step_form_data.selected_date;
                     vm.bookingpress_selected_date_range = [];
                     if(vm.appointment_step_form_data.selected_service_duration_unit == "d"){
+                        vm.appointment_step_form_data.selected_end_date = vm.appointment_step_form_data.selected_date;
                         var selected_date = new Date(day);
                         var selected_service_duration = vm.appointment_step_form_data.selected_service_duration;
                         var bookingpress_selected_date_range = [];
@@ -7289,6 +7968,9 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                             }
                             var add_date = [year, month, day].join("-");
                             bookingpress_selected_date_range.push(add_date);
+                            if(i == selected_service_duration-1) {
+                                vm.appointment_step_form_data.selected_end_date = add_date;
+                            }
                         }
                         if(bookingpress_selected_date_range.length > 0){
                             vm.bookingpress_selected_date_range = bookingpress_selected_date_range;
@@ -7868,6 +8550,7 @@ $bookingpress_front_vue_data_fields             = array(
         'selected_service_price'         => '',
         'service_price_without_currency' => 0,
         'selected_date'                  => date('Y-m-d', current_time('timestamp')),
+        'selected_end_date'              => '',
         'selected_start_time'            => '',
         'selected_end_time'              => '',
         'customer_email'                 => '',

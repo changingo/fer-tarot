@@ -1660,7 +1660,14 @@ if( version_compare( $bookingpress_old_version, '1.1.1', '<') ){
 	$BookingPress->bookingpress_update_settings( 'bpa_night_start_time', 'general_setting', '20:00:00' );
 }
 
-$bookingpress_new_version = '1.1.1';
+if( version_compare( $bookingpress_old_version, '1.1.2', '<') ){
+    $paypal_payment_method_type = $BookingPress->bookingpress_get_settings('paypal_payment_method_type', 'payment_setting');
+    if(empty($paypal_payment_method_type)){
+        $BookingPress->bookingpress_update_settings('paypal_payment_method_type', 'payment_setting', 'lagacy');
+    }
+}
+
+$bookingpress_new_version = '1.1.2';
 update_option('bookingpress_new_version_installed', 1);
 update_option('bookingpress_version', $bookingpress_new_version);
 update_option('bookingpress_updated_date_' . $bookingpress_new_version, current_time('mysql'));

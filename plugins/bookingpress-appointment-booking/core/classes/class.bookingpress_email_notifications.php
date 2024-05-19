@@ -238,7 +238,8 @@ if (! class_exists('bookingpress_email_notifications') ) {
             $bookingpress_gmail_sent_data .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
             $bookingpress_gmail_sent_data .= "MIME-Version: 1.0\r\n";
             $bookingpress_gmail_sent_data .= "Content-Type: text/html; charset=utf-8\r\n";
-            $bookingpress_gmail_sent_data .= 'Content-Transfer-Encoding: quoted-printable' . "\r\n\r\n";
+            $bookingpress_gmail_sent_data .= 'Content-Transfer-Encoding: base64' . "\r\n\r\n";
+            $gmail_test_msg = chunk_split( base64_encode( $gmail_test_msg ) );
             $bookingpress_gmail_sent_data .= "".$gmail_test_msg."\r\n";
 
             $mime = rtrim(strtr(base64_encode($bookingpress_gmail_sent_data), '+/', '-_'), '=');
@@ -278,7 +279,7 @@ if (! class_exists('bookingpress_email_notifications') ) {
          */
         function bookingpress_send_email_notification( $template_type, $notification_name, $appointment_id, $receiver_email_id, $cc_emails = array(), $force = false )
         {
-            global $wpdb, $BookingPress, $tbl_bookingpress_appointment_bookings, $tbl_bookingpress_notifications, $wp_version, $bookingpress_other_debug_log_id;
+            global $wpdb, $BookingPress, $tbl_bookingpress_appointment_bookings, $tbl_bookingpress_notifications, $wp_version, $bookingpress_other_debug_log_id, $bookingpress_settings;
 
             $bookingpress_send_email_notification_debug_log_data = func_get_args();
             do_action('bookingpress_other_debug_log_entry', 'email_notification_debug_logs', 'Send Email notification argument data', 'bookingpress_email_notiifcation', $bookingpress_send_email_notification_debug_log_data, $bookingpress_other_debug_log_id);
@@ -406,8 +407,17 @@ if (! class_exists('bookingpress_email_notifications') ) {
 
                     switch ( $this->bookingpress_email_notification_type ) {
                     case 'php_mail':
-                        $bookingpress_email_header_data = 'From: ' . $this->bookingpress_email_sender_name . '<' . $this->bookingpress_email_sender_email . "> \r\n";
+
+                        include_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
+
+                        $phpmailer_version = PHPMailer\PHPMailer\PHPMailer::VERSION;
+
+                        $bookingpress_email_header_data = 'Date: '.date('D, j M Y H:i:s O', current_time('timestamp') )."\r\n";
+                        $bookingpress_email_header_data .= 'From: ' . $this->bookingpress_email_sender_name . '<' . $this->bookingpress_email_sender_email . "> \r\n";
                         $bookingpress_email_header_data .= 'Reply-To: ' . $bookingpress_email_reply_to_name . '<' . $bookingpress_email_reply_to_email . "> \r\n";
+                        $bookingpress_email_header_data .= 'Message-ID: '. sprintf('<%s@%s>', $this->bookingpress_generate_random_msgid(), $this->bookingpress_get_host_name())."\r\n";
+                        $bookingpress_email_header_data .= 'X-Mailer: PHPMailer ' . $phpmailer_version . " (https://github.com/PHPMailer/PHPMailer)\r\n";
+                        $bookingpress_email_header_data .= "MIME-Version: 1.0\r\n";
                         $bookingpress_email_header_data .= "Content-Type: text/html; charset=UTF-8\r\n";
 						
                         if(!empty($cc_emails) && is_array($cc_emails)){
@@ -419,8 +429,11 @@ if (! class_exists('bookingpress_email_notifications') ) {
 							
                             $boundary = md5( $attachment_id.'_'.current_time('timestamp') );
 
-                            $bookingpress_email_header_data = 'From: ' . $this->bookingpress_email_sender_name . '<' . $this->bookingpress_email_sender_email . "> \r\n";
+                            $bookingpress_email_header_data = 'Date: '.date('D, j M Y H:i:s O', current_time('timestamp') )."\r\n";
+                            $bookingpress_email_header_data .= 'From: ' . $this->bookingpress_email_sender_name . '<' . $this->bookingpress_email_sender_email . "> \r\n";
                             $bookingpress_email_header_data .= 'Reply-To: ' . $bookingpress_email_reply_to_name . '<' . $bookingpress_email_reply_to_email . "> \r\n";
+                            $bookingpress_email_header_data .= 'Message-ID: '. sprintf('<%s@%s>', $this->bookingpress_generate_random_msgid(), $this->bookingpress_get_host_name())."\r\n";
+                            $bookingpress_email_header_data .= 'X-Mailer: PHPMailer ' . $phpmailer_version . " (https://github.com/PHPMailer/PHPMailer)\r\n";
                             if(!empty($cc_emails) && is_array($cc_emails)){
                                 $bookingpress_email_header_data .= "Cc: ".implode(',', $cc_emails)."\r\n";
                             }
@@ -456,8 +469,7 @@ if (! class_exists('bookingpress_email_notifications') ) {
 							}
 							$bookingpress_email_content .= "\r\n--{$boundary}--\r\n";
 						}
-
-
+                        
                         if (@mail($receiver_email_id, $bookingpress_email_subject, $bookingpress_email_content, $bookingpress_email_header_data) ) {
                              $bookingpress_email_send_res['is_mail_sent'] = 1;
                              $is_mail_sent                                = 1;
@@ -470,10 +482,12 @@ if (! class_exists('bookingpress_email_notifications') ) {
                         if(!empty($cc_emails) && is_array($cc_emails)){
                             $bookingpress_email_header_data .= "Cc: ".implode(',', $cc_emails)."\r\n";
                         }
+                        $bookingpress_settings->bpa_sending_wp_mail_upon_booking = true;
                         if (wp_mail($receiver_email_id, $bookingpress_email_subject, $bookingpress_email_content, $bookingpress_email_header_data, $attachments) ) {
                             $bookingpress_email_send_res['is_mail_sent'] = 1;
                             $is_mail_sent                                = 1;
                         }
+                        $bookingpress_settings->bpa_sending_wp_mail_upon_booking = false;
                         break;
                     case 'smtp':
                         if ( ! empty($this->bookingpress_smtp_host) && ! empty($this->bookingpress_smtp_port) && ! empty($this->bookingpress_smtp_secure) ) {
@@ -609,10 +623,11 @@ if (! class_exists('bookingpress_email_notifications') ) {
                             }
                             $bookingpress_email_content_data .= 'Subject: =?' . $subjectCharset . '?B?' . base64_encode($strSubject) . "?=\r\n";
                             $bookingpress_email_content_data .= 'MIME-Version: 1.0' . "\r\n";
-                            $bookingpress_email_content_data .= 'Content-type: Multipart/Mixed; boundary="' . $boundary . '"' . "\r\n";
+                            $bookingpress_email_content_data .= 'Content-type: Multipart/Related; boundary="' . $boundary . '"' . "\r\n";
                             $bookingpress_email_content_data .= "\r\n--{$boundary}\r\n";
                             $bookingpress_email_content_data .= 'Content-Type: text/html; charset=' . $charset . "\r\n";
                             $bookingpress_email_content_data .= "Content-Transfer-Encoding: base64" . "\r\n\r\n";
+                            $bookingpress_email_content = chunk_split( base64_encode( $bookingpress_email_content ) );
                             $bookingpress_email_content_data .= $bookingpress_email_content . "\r\n";
 
                             foreach( $attachments as $attachment_file ){
@@ -668,6 +683,69 @@ if (! class_exists('bookingpress_email_notifications') ) {
             }
 
             return $bookingpress_email_send_res;
+        }
+
+        function bookingpress_get_host_name(){
+            $result = '';
+            if (isset($_SERVER) && array_key_exists('SERVER_NAME', $_SERVER)) {
+                $result = $_SERVER['SERVER_NAME'];
+            } elseif (function_exists('gethostname') && gethostname() !== false) {
+                $result = gethostname();
+            } elseif (php_uname('n') !== false) {
+                $result = php_uname('n');
+            }
+            if (!static::bookingpress_is_valid_host($result)) {
+                return 'localhost.localdomain';
+            }
+
+            return $result;
+        }
+
+        public static function bookingpress_is_valid_host($host){
+            //Simple syntax limits
+            if (
+                empty($host)
+                || !is_string($host)
+                || strlen($host) > 256
+                || !preg_match('/^([a-zA-Z\d.-]*|\[[a-fA-F\d:]+\])$/', $host)
+            ) {
+                return false;
+            }
+            //Looks like a bracketed IPv6 address
+            if (strlen($host) > 2 && substr($host, 0, 1) === '[' && substr($host, -1, 1) === ']') {
+                return filter_var(substr($host, 1, -1), FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) !== false;
+            }
+            //If removing all the dots results in a numeric string, it must be an IPv4 address.
+            //Need to check this first because otherwise things like `999.0.0.0` are considered valid host names
+            if (is_numeric(str_replace('.', '', $host))) {
+                //Is it a valid IPv4 address?
+                return filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) !== false;
+            }
+            //Is it a syntactically valid hostname (when embeded in a URL)?
+            return filter_var('http://' . $host, FILTER_VALIDATE_URL) !== false;
+        }
+
+        function bookingpress_generate_random_msgid(){
+            $len = 32; //32 bytes = 256 bits
+            $bytes = '';
+            if (function_exists('random_bytes')) {
+                try {
+                    $bytes = random_bytes($len);
+                } catch (\Exception $e) {
+                    //Do nothing
+                }
+            } elseif (function_exists('openssl_random_pseudo_bytes')) {
+                /** @noinspection CryptographicallySecureRandomnessInspection */
+                $bytes = openssl_random_pseudo_bytes($len);
+            }
+            if ($bytes === '') {
+                //We failed to produce a proper random string, so make do.
+                //Use a hash to force the length to the same as the other methods
+                $bytes = hash('sha256', uniqid((string) mt_rand(), true), true);
+            }
+
+            //We don't care about messing up base64 format here, just want a random string
+            return str_replace(['=', '+', '/'], '', base64_encode(hash('sha256', $bytes, true)));
         }
         
         /**

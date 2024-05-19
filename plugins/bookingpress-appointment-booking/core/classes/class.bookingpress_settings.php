@@ -3,6 +3,10 @@ if (! class_exists('bookingpress_settings') ) {
     class bookingpress_settings Extends BookingPress_Core
     {
 
+        public $bpa_sending_wp_mail;
+        public $bpa_sent_test_wpmail_errors;
+        public $bpa_sending_wp_mail_upon_booking;
+
         function __construct()
         {
             add_action('wp_ajax_bookingpress_save_settings_data', array( $this, 'bookingpress_save_settings_details' ));
@@ -26,6 +30,10 @@ if (! class_exists('bookingpress_settings') ) {
             /* gmail send notification */
             add_action('wp_ajax_bookingpress_send_test_gmail_email', array( $this, 'bookingpress_send_test_gmail_email_func' ));
 
+            /** WordPress default send test notification */
+            add_action( 'wp_ajax_bookingpress_send_test_wpmail_email', array( $this, 'bookingpress_send_test_wpmail_email_func') );
+            add_action( 'wp_mail_failed', array( $this, 'bookingpress_record_failed_wpmail') );
+
             add_action('wp_ajax_bookingpress_save_default_daysoff_details', array( $this, 'bookingpress_save_default_daysoff_details_func' ), 10);
             add_action('wp_ajax_bookingpress_get_daysoff_details', array( $this, 'bookingpress_get_daysoff_details_func' ), 10);
             add_action('wp_ajax_bookingpress_delete_daysoff_details', array( $this, 'bookingpress_delete_daysoff_details_func' ), 10);
@@ -41,8 +49,10 @@ if (! class_exists('bookingpress_settings') ) {
             add_action( 'wp',array($this,'bookingpress_add_gmail_api'),10);
 
             add_action('wp_ajax_bookingpress_signout_google_account', array($this, 'bookingpress_signout_google_account_arr'),10);
+
         }
 
+        
         function bookingpress_signout_google_account_arr( ){            
             global $wpdb, $BookingPress;
 
@@ -425,7 +435,7 @@ if (! class_exists('bookingpress_settings') ) {
                     'company_phone_number'  => '',
                 ),
                 'notification_setting_form'        => array(
-                    'selected_mail_service' => 'php_mail',
+                    'selected_mail_service' => 'wp_mail',
                     'sender_name'           => get_option('blogname'),
                     'sender_email'          => get_option('admin_email'),
                     'admin_email'           => get_option('admin_email'),
@@ -452,6 +462,10 @@ if (! class_exists('bookingpress_settings') ) {
                     'gmail_test_receiver_email' => '',
                     'gmail_test_msg'            => '',
                 ),
+                'notification_wpmail_test_mail_form' => array(
+                    'wpmail_test_receiver_email' => '',
+                    'wpmail_test_msg'            => '',
+                ),
                 'payment_setting_form'             => array(
                     'payment_default_currency' => 'USD',
                     'price_symbol_position'    => 'before',
@@ -460,6 +474,9 @@ if (! class_exists('bookingpress_settings') ) {
                     'on_site_payment'          => true,
                     'paypal_payment'           => false,
                     'paypal_payment_mode'      => 'sandbox',
+                    'paypal_payment_method_type' => 'lagacy',
+                    'paypal_client_id'         => '',
+                    'paypal_client_secret'     => '',
                     'paypal_merchant_email'    => '',
                     'paypal_api_username'      => '',
                     'paypal_api_password'      => '',
@@ -665,6 +682,22 @@ if (! class_exists('bookingpress_settings') ) {
                         ),
                     ),
                 ),
+                'rules_wpmail_test_mail'             => array(
+                    'wpmail_test_receiver_email' => array(
+                        array(
+                            'required' => true,
+                            'message'  => esc_html__('Please enter email address', 'bookingpress-appointment-booking'),
+                            'trigger'  => 'blur',
+                        ),
+                    ),
+                    'wpmail_test_msg'            => array(
+                        array(
+                            'required' => true,
+                            'message'  => esc_html__('Please enter message', 'bookingpress-appointment-booking'),
+                            'trigger'  => 'blur',
+                        ),
+                    ),
+                ),
                 'rules_payment'                    => array(
                     'paypal_merchant_email' => array(
                         array(
@@ -677,6 +710,20 @@ if (! class_exists('bookingpress_settings') ) {
                         array(
                             'required' => true,
                             'message'  => esc_html__('Please enter api username', 'bookingpress-appointment-booking'),
+                            'trigger'  => 'blur',
+                        ),
+                    ),
+                    'paypal_client_id'   => array(
+                        array(
+                            'required' => true,
+                            'message'  => esc_html__('Please enter client ID', 'bookingpress-appointment-booking'),
+                            'trigger'  => 'blur',
+                        ),
+                    ),                    
+                    'paypal_client_secret'   => array(
+                        array(
+                            'required' => true,
+                            'message'  => esc_html__('Please enter client secret', 'bookingpress-appointment-booking'),
                             'trigger'  => 'blur',
                         ),
                     ),
@@ -942,6 +989,10 @@ if (! class_exists('bookingpress_settings') ) {
                 'error_text_of_test_gmail_email'         => '',
                 'is_disable_send_test_gmail_email_btn'   => false,
                 'is_display_send_test_gmail_mail_loader' => '0',
+                'is_disable_send_test_wpmail_email_btn'  => false,
+                'is_display_send_test_wpmail_mail_loader' => '0',
+                'succesfully_send_test_wpmail_email'      => 0,
+                'error_send_test_wpmail_email'            => 0,
                 'gmail_mail_error_text'                   => '',
 
             );
@@ -1204,9 +1255,107 @@ if (! class_exists('bookingpress_settings') ) {
             echo json_encode($response);
             exit();
         }
+
+        function bookingpress_record_failed_wpmail( $wp_error_object ){
+
+            if( true == $this->bpa_sending_wp_mail || true == $this->bpa_sending_wp_mail_upon_booking ){
+                $bpa_error_data = array();
+                if( isset( $wp_error_object->errors ) ){
+                    foreach( $wp_error_object->errors as $key_error => $error_description ){
+                        $bpa_error_data[] = implode( ' ', $error_description );
+                    }
+                }
+
+                if ( ! empty( $bpa_error_data ) ) {
+                    $error_description = implode(' ', $bpa_error_data ) ;
+                    
+                    $this->bpa_sent_test_wpmail_errors = $error_description;
+
+                    if( true == $this->bpa_sending_wp_mail_upon_booking ){
+                        update_option( 'bookingpress_display_wpmail_failed_msg_notice', true );
+                        update_option( 'bookingpress_wpmail_failed_msg_data', json_encode( $bpa_error_data ) );
+
+                        global $bookingpress_other_debug_log_id;
+
+                        $bookingpressmailer_errorinfo['error_object'] = $wp_error_object;
+
+                        do_action('bookingpress_other_debug_log_entry', 'email_notification_debug_logs', 'Send Email notification WordPress default error response', 'bookingpress_email_notiifcation', $bookingpressmailer_errorinfo, $bookingpress_other_debug_log_id);
+                    }
+                }
+            }
+
+        }
         
         /**
-         * Send test email notification for SMTP configuration
+         * Send test email notification for WordPress default configuration
+         *
+         * @return void
+         */
+        function bookingpress_send_test_wpmail_email_func(){
+            global $bookingpress_email_notifications;
+            $response               = array();
+            $response['variant']    = 'error';
+            $response['title']      = esc_html__( 'Error', 'bookingpress-appointment-booking');
+            $response['msg']        = esc_html__('Something went wrong', 'bookingpress-appointment-booking');
+
+            $bpa_check_authorization = $this->bpa_check_authentication( 'send_test_gmail_email', true, 'bpa_wp_nonce' );
+            
+            if( preg_match( '/error/', $bpa_check_authorization ) ){
+                $bpa_auth_error = explode( '^|^', $bpa_check_authorization );
+                $bpa_error_msg = !empty( $bpa_auth_error[1] ) ? $bpa_auth_error[1] : esc_html__( 'Sorry. Something went wrong while processing the request', 'bookingpress-appointment-booking');
+
+                $response['variant'] = 'error';
+                $response['title'] = esc_html__( 'Error', 'bookingpress-appointment-booking');
+                $response['msg'] = $bpa_error_msg;
+
+                wp_send_json( $response );
+                die;
+            }
+
+            if (! empty($_REQUEST['notification_formdata']) ) {
+
+                $wpmail_test_receiver_email      = ! empty($_REQUEST['notification_test_mail_formdata']['wpmail_test_receiver_email']) ? sanitize_email($_REQUEST['notification_test_mail_formdata']['wpmail_test_receiver_email']) : '';
+                $wpmail_test_msg                 = ! empty($_REQUEST['notification_test_mail_formdata']['wpmail_test_msg']) ? sanitize_text_field($_REQUEST['notification_test_mail_formdata']['wpmail_test_msg']) : '';
+
+                $from_email = !empty( $_REQUEST['notification_formdata']['sender_email'] ) ? sanitize_email( $_REQUEST['notification_formdata']['sender_email'] ) : get_option( 'admin_email' );
+                $from_name = !empty(  $_REQUEST['notification_formdata']['send_name'] ) ? sanitize_text_field( $_REQUEST['notification_formdata']['send_name'] ) : get_option( 'blogname' );
+
+                $bookingpress_email_header_data  = 'From: ' . $from_name . '<' . $from_email . "> \r\n";
+                $bookingpress_email_header_data .= "Content-Type: text/html; charset=UTF-8\r\n";
+               
+                $this->bpa_sending_wp_mail = true;
+
+                $wpmail_test_msg_subject = esc_html__( ' Test BookingPress WordPress default mail', 'bookingpress-appointment-booking' );
+
+                $return = wp_mail( $wpmail_test_receiver_email, $wpmail_test_msg_subject, $wpmail_test_msg, $bookingpress_email_header_data );
+
+                $this->bpa_sending_wp_mail = false;
+
+                if( !empty( $this->bpa_sent_test_wpmail_errors ) ){
+                    $response = array(
+                        'is_mail_sent' => 0,
+                        'error_msg'    => $this->bpa_sent_test_wpmail_errors,
+                    );
+                } else {
+                    $response = array(
+                        'is_mail_sent' => 1,
+                        'error_msg'    => '',
+                    );
+                }
+                
+                /* if (wp_mail($receiver_email_id, $bookingpress_email_subject, $bookingpress_email_content, $bookingpress_email_header_data, $attachments) ) {
+                    $bookingpress_email_send_res['is_mail_sent'] = 1;
+                    $is_mail_sent                                = 1;
+                } */
+
+            }
+
+            echo json_encode($response);
+            exit();
+        }
+        
+        /**
+         * Send test email notification for Google/Gmail configuration
          *
          * @return void
          */
@@ -2295,6 +2444,49 @@ if (! class_exists('bookingpress_settings') ) {
 
                 vm.bpa_adjust_popup_position( currentElement, 'div#breaks_add_modal .el-dialog.bpa-dialog--add-break', 'bpa-bh__item' );
             },
+            bookingpress_send_test_wpmail_email(){
+                const vm = this;
+                vm.$refs['notification_wpmail_test_mail_form'].validate( (valid) =>{
+                    if( valid ){
+                        vm.is_disabled = true
+                        vm.is_display_send_test_wpmail_mail_loader = '1'
+                        vm.is_disable_send_test_wpmail_email_btn = true
+                        var postdata = []
+                        postdata.action = 'bookingpress_send_test_wpmail_email'
+                        postdata.notification_formdata = vm.notification_setting_form
+                        postdata.notification_test_mail_formdata = vm.notification_wpmail_test_mail_form
+                        postdata._wpnonce = '<?php echo esc_html(wp_create_nonce('bpa_wp_nonce')); ?>';
+                        axios.post( appoint_ajax_obj.ajax_url, Qs.stringify(postdata))
+                        .then(function(response){
+                            vm.is_disabled = false
+                            vm.is_display_send_test_wpmail_mail_loader = '0'    
+                            vm.is_disable_send_test_wpmail_email_btn = false
+                            console.log( response.data.is_mail_sent );
+                            console.log( response.data.is_mail_sent == 1 )
+                            if(response.data.is_mail_sent == 1){
+                                vm.succesfully_send_test_wpmail_email = 1
+                                vm.error_send_test_wpmail_email = 0;
+                                vm.wpmail_mail_error_text = '';
+                                vm.error_text_of_test_wpmail_email = '';
+                            }else{
+                                vm.succesfully_send_test_wpmail_email = 0                                
+                                vm.error_send_test_wpmail_email = 1
+                                vm.error_text_of_test_wpmail_email = response.data.error_msg
+                                vm.wpmail_mail_error_text = response.data.error_log_msg
+                            }
+                        }).catch(function(error){
+                            console.log(error);
+                            vm2.$notify({
+                                title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
+                                message: '<?php echo addslashes( esc_html__('Something went wrong..', 'bookingpress-appointment-booking') ); //phpcs:ignore ?>',
+                                type: 'error',
+                                customClass: 'error_notification',
+                                duration:<?php echo intval($bookingpress_notification_duration); ?>,
+                            });
+                        });
+                    }
+                });
+            },
             bookingpress_send_test_gmail_email(){
                 const vm = this
                 vm.$refs['notification_gmail_test_mail_form'].validate((valid) => {                        
@@ -2725,6 +2917,9 @@ if (! class_exists('bookingpress_settings') ) {
                          
             $bookingpress_dynamic_setting_data_fields['holiday_range_possible_end_date'] = '';
             $bookingpress_dynamic_setting_data_fields['holiday_range_temp'] = array('start'=>'','end'=>'');
+
+            $bookingpress_dynamic_setting_data_fields['bpa_display_wpmail_notice'] = !empty( get_option( 'bookingpress_display_wpmail_failed_msg_notice' ) ) ? get_option( 'bookingpress_display_wpmail_failed_msg_notice' ) : false;
+            $bookingpress_dynamic_setting_data_fields['bpa_wpmail_failed_msg_data'] = !empty( get_option( 'bookingpress_wpmail_failed_msg_data') ) ? json_decode( get_option( 'bookingpress_wpmail_failed_msg_data'), true ) : [];
 
             /* grouping timesolt changes start */
             $default_start_time    = '00:00:00';

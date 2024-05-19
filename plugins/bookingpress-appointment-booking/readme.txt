@@ -3,9 +3,9 @@ Contributors: reputeinfosystems
 Tags: booking, appointment, booking calendar, scheduling, booking system
 Donate link: https://bookingpressplugin.com/
 Requires at least: 5.3.0
-Tested up to: 6.5.2
+Tested up to: 6.5.3
 Requires PHP: 5.6
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,10 +21,10 @@ Anyone who wants to manage their appointment scheduling online can use this plug
 
 ###BOOKINGPRESS IS IDEAL FOR 👇
 
-* **🌺 [Health & Wellness](https://www.bookingpressplugin.com/spa-and-wellness-scheduling-software/ "Health & Wellness Scheduling Plugin")** (spa appointment, massage studio, [wellness centers](https://www.bookingpressplugin.com/health-and-wellness-scheduling-software/ "Health & Well-being Services" ), baths, aromatherapy, therapist booking, life coach, personal coaching, any other specialist who needs appointment booking)
+* **🌺 [Health & Wellness](https://www.bookingpressplugin.com/spa-and-wellness-scheduling-software/ "Health & Wellness Scheduling Plugin")** (spa appointment, massage studio, [wellness centers](https://www.bookingpressplugin.com/health-and-wellness-scheduling-software/ "Health & Well-being Services" ), baths, aromatherapy, therapist booking, life coach booking, personal coaching, any other specialist who needs appointment booking)
 * **🧖‍♀️ [Salon & Lifestyle](https://www.bookingpressplugin.com/salon-booking-system/ "WordPress Salon Booking Plugin")** (barber shops, hair salons, cosmetology centers, nail art studio, tanning studio, beauty salon studio booking, hairdresser booking, manicurist)
-* **🏋️‍♂️ [Fitness & Gyms](https://www.bookingpressplugin.com/fitness-scheduling-software/ "WordPress Booking Plugin for Gym & Fitness Studio")** (Gym and yoga trainers, personal trainers, yoga studio, [Yoga classes](https://www.bookingpressplugin.com/yoga-scheduling-software/ "Yoga Scheduling Plugin"), zumba dance academy, individual personal trainers, dance instructors, golf booking)
-* **🩺 [Medical & Clinics](https://www.bookingpressplugin.com/doctor-appointment-scheduling-software/ "Appointment Booking Plugin for Doctors")** (Doctors Appointment, clinics, medical centers, dentists, clinic booking system, and other areas related to medical & clinic business.)
+* **🏋️‍♂️ [Fitness & Gyms](https://www.bookingpressplugin.com/fitness-scheduling-software/ "WordPress Booking Plugin for Gym & Fitness Studio")** (Gym and yoga trainers, personal trainers, yoga studio, [Yoga classes](https://www.bookingpressplugin.com/yoga-scheduling-software/ "Yoga Scheduling Plugin"), Zumba dance academy, individual personal trainers, dance instructors, golf booking)
+* **🩺 [Medical & Clinics](https://www.bookingpressplugin.com/doctor-appointment-scheduling-software/ "Appointment Booking Plugin for Doctors")** (Doctors Appointment Booking, clinics, medical centers, dentists, clinic booking system, and other areas related to medical & clinic business.)
 * **💼 Professional Services** (consultants, real estate agent, lawyers, photographers, dealers, Wedding Planners, Handyman services, Plumber Service, tattoo parlour, contractor, swimming pool booking service)
 * **📚 [Education](https://www.bookingpressplugin.com/scheduling-software-for-school-tutors-coaches/ "WordPress Scheduling Plugin for Tutors")** (tutors, education centers, coaching centers, private professionals, language schools, language lessons appointments,  booking, private tutor, driving school appointment booking, seminar, webinar booking)
 * **🛥️ Equipment and transport rental** ([car rental booking system](https://www.bookingpressplugin.com/car-rental-booking-software/ "Car Rental Booking System"), bike rental, [boat rental](https://www.bookingpressplugin.com/boat-rental-software), yacht booking, technics booking, or any other kind of hourly or day rental service business)
@@ -51,7 +51,8 @@ Anyone who wants to manage their appointment scheduling online can use this plug
 * **Easy And Quick Configuration Options**
 * **Manage Appointments with Calendar View**
 * **Super handy dashboard to track your business**
-* **Customisable email notifications**
+* **Customizable email notifications**
+* **Import/Export Tool (Hassle-free transfer BookingPress plugin data)**
 * **Translation Ready**
 * **Captcha Free In-built Anti-spam Facility**
 * **Support of Gutenberg**
@@ -72,7 +73,7 @@ Note: BookingPress lite has many cool features than other free WordPress booking
 * 🖌️ Fully customizable booking forms and customer panel
 * 💳 20+ new online payment gateways integration (PayPal, RazorPay, Stripe, Mollie, Authorize.net, 2Checkout, PagSeguro, Braintree, Worldpay, Paystack, PayUMoney, PayPal Pro, PayFast, Square, Skrill, WooCommerce, Klarna, CCAvenue, Paddle, Mercado Pago, ECpay etc.)
 * 🗓️ Google, Outlook calendar integrations.
-* 📽️ Integrations with Zoom, Zapier, Mailchimp, Google ReCaptcha.
+* 📽️ Integrations with Zoom, Zapier, Mailchimp, Aweber, Omnisend, Google ReCaptcha.
 * 📍 Manage Unlimited Business location
 * 😀 Happy Hours (Dynamic) Pricing
 * 📦 Service Package (create packages of multiple services)
@@ -123,6 +124,8 @@ Note: BookingPress lite has many cool features than other free WordPress booking
 [Tip](https://www.bookingpressplugin.com/addon/tip-addon/ "BookingPress - Appointment Booking Plugin") - Make a positive approach to your business by encouraging the Staff Members with the Tip. Customers will be able to add the Tip for the service that they are booking.
 
 [Multi-Language](https://www.bookingpressplugin.com/addon/multi-language-addon/) - Broaden your business's global reach with the added benefit of multiple languages. Customers from around the world will have the ability to book appointments in their preferred language. This addon will contribute to enhancing the user-friendliness of your website, simplifying customer communication more than ever before.
+
+[Import/Export Tool](https://www.bookingpressplugin.com/documents/import-export-tool/) - The BookingPress Import/Export Tool is designed to streamline the secure transfer of your essential data, including Settings, Notifications, and all other BookingPress Configurations, with ease.
 
 **GDPR ready** - We provide instruments to make your booking pages follow the GDPR compliance rules. You'll ask for the user's consent before processing any personal data.
 
@@ -196,6 +199,11 @@ Please follow the steps for installation:
 13. BookingPress - General Settings
 
 == Changelog ==
+
+= 1.1.2 =
+* Added new PayPal Checkout method
+* Added test email notification functionality for WordPress default mail
+* Other minor bug fixes
 
 = 1.1.1 =
 * New: Added an option to set start time for timeslot grouping

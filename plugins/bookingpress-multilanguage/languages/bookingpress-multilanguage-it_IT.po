@@ -1,0 +1,1597 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BookingPress - Multi-Language Addon v1.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-04-24 13:10:15+0000\n"
+"Last-Translator: admin <testrepute123@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#. translators: plugin header field 'Name'
+#: bookingpress-multilanguage.php:0
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Addon"
+msgstr "BookingPress - Componente aggiuntivo multilingue"
+
+#. translators: plugin header field 'PluginURI'
+#. translators: plugin header field 'AuthorURI'
+#: bookingpress-multilanguage.php:0
+#@ bookingpress-multilanguage
+msgid "https://www.bookingpressplugin.com/"
+msgstr "https://www.bookingpressplugin.com/"
+
+#. translators: plugin header field 'Description'
+#: bookingpress-multilanguage.php:0
+#@ bookingpress-multilanguage
+msgid "Extension for BookingPress plugin to translate it in multiple languages."
+msgstr "Estensione per il plugin BookingPress per tradurlo in più lingue."
+
+#. translators: plugin header field 'Author'
+#: bookingpress-multilanguage.php:0
+#@ bookingpress-multilanguage
+msgid "Repute InfoSystems"
+msgstr "Repute InfoSystems"
+
+#: core/classes/class.bookingpress-multilanguage.php:1207
+#@ bookingpress-multilanguage
+msgid "Uncategorized"
+msgstr "Non categorizzato"
+
+#: core/classes/class.bookingpress-multilanguage.php:1869
+#@ bookingpress-multilanguage
+msgid "Language Not Found."
+msgstr "Lingua non trovata."
+
+#: core/classes/class.bookingpress-multilanguage.php:1870
+#@ bookingpress-multilanguage
+msgid "Please select language from general setting."
+msgstr "Seleziona la lingua dalle impostazioni generali."
+
+#: core/classes/class.bookingpress-multilanguage.php:1915
+#@ bookingpress-multilanguage
+msgid "No"
+msgstr "NO"
+
+#: core/classes/class.bookingpress-multilanguage.php:1915
+#@ bookingpress-multilanguage
+msgid "selected for the booking"
+msgstr "selezionato per la prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1918
+#: core/classes/class.bookingpress-multilanguage.php:1922
+#@ bookingpress-multilanguage
+msgid "Service Name"
+msgstr "Nome di Servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:1919
+#: core/classes/class.bookingpress-multilanguage.php:1923
+#@ bookingpress-multilanguage
+msgid "Service Description"
+msgstr "Descrizione del servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:1926
+#@ bookingpress-multilanguage
+msgid "Category Name"
+msgstr "Nome della categoria"
+
+#: core/classes/class.bookingpress-multilanguage.php:1930
+#@ bookingpress-multilanguage
+msgid "Email Subject"
+msgstr "Oggetto dell'email"
+
+#: core/classes/class.bookingpress-multilanguage.php:1931
+#@ bookingpress-multilanguage
+msgid "Email Message"
+msgstr "Messaggio email"
+
+#: core/classes/class.bookingpress-multilanguage.php:1943
+#@ bookingpress-multilanguage
+msgid "Invoice"
+msgstr "Fattura"
+
+#: core/classes/class.bookingpress-multilanguage.php:1948
+#@ bookingpress-multilanguage
+msgid "Company Name"
+msgstr "Nome della ditta"
+
+#: core/classes/class.bookingpress-multilanguage.php:1949
+#@ bookingpress-multilanguage
+msgid "Company Address"
+msgstr "indirizzo aziendale"
+
+#: core/classes/class.bookingpress-multilanguage.php:1954
+#@ bookingpress-multilanguage
+msgid "No service selected for the booking"
+msgstr "Nessun servizio selezionato per la prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1955
+#@ bookingpress-multilanguage
+msgid "No appointment date selected for the booking"
+msgstr "Nessuna data dell'appuntamento selezionata per la prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1956
+#@ bookingpress-multilanguage
+msgid "No appointment time selected for the booking"
+msgstr "Nessun orario dell'appuntamento selezionato per la prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1957
+#@ bookingpress-multilanguage
+msgid "No payment method is selected for the booking"
+msgstr "Nessun metodo di pagamento è selezionato per la prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1958
+#@ bookingpress-multilanguage
+msgid "Duplicate email address found"
+msgstr "Indirizzo email duplicato trovato"
+
+#: core/classes/class.bookingpress-multilanguage.php:1959
+#@ bookingpress-multilanguage
+msgid "Unsupported currency selected for the payment"
+msgstr "Valuta non supportata selezionata per il pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:1960
+#@ bookingpress-multilanguage
+msgid "Time slot already booked"
+msgstr "Fascia oraria già prenotata"
+
+#: core/classes/class.bookingpress-multilanguage.php:1961
+#@ bookingpress-multilanguage
+msgid "No payment method available"
+msgstr "Nessun metodo di pagamento disponibile"
+
+#: core/classes/class.bookingpress-multilanguage.php:1963
+#@ bookingpress-multilanguage
+msgid "Please fill all fields value of card details"
+msgstr "Si prega di compilare tutti i campi valore dei dettagli della carta"
+
+#: core/classes/class.bookingpress-multilanguage.php:1964
+#@ bookingpress-multilanguage
+msgid "Payment token failure message"
+msgstr "Messaggio di errore del token di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:1965
+#@ bookingpress-multilanguage
+msgid "Payment already paid message"
+msgstr "Messaggio di pagamento già pagato"
+
+#: core/classes/class.bookingpress-multilanguage.php:1966
+#@ bookingpress-multilanguage
+msgid "Complete payment success message"
+msgstr "Completare il messaggio di successo del pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:1967
+#@ bookingpress-multilanguage
+msgid "No timeslots available for booking"
+msgstr "Nessuna fascia oraria disponibile per la prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1968
+#@ bookingpress-multilanguage
+msgid "Cancel Appointment Confirmation"
+msgstr "Annulla conferma appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:1969
+#@ bookingpress-multilanguage
+msgid "No Appointment Available to Cancel"
+msgstr "Nessun appuntamento disponibile per la cancellazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1970
+#@ bookingpress-multilanguage
+msgid "Refund policy message"
+msgstr "Messaggio sulla politica di rimborso"
+
+#: core/classes/class.bookingpress-multilanguage.php:1975
+#: core/classes/class.bookingpress-multilanguage.php:1983
+#: core/views/bookingpress_customize_custom_fields_language_translation_popup.php:35
+#: core/views/bookingpress_settings_language_translation_popup.php:121
+#@ bookingpress-multilanguage
+msgid "Label"
+msgstr "Etichetta"
+
+#: core/classes/class.bookingpress-multilanguage.php:1976
+#: core/classes/class.bookingpress-multilanguage.php:1984
+#@ bookingpress-multilanguage
+msgid "Placeholder"
+msgstr "Segnaposto"
+
+#: core/classes/class.bookingpress-multilanguage.php:1977
+#@ bookingpress-multilanguage
+msgid "Error Message"
+msgstr "Messaggio di errore"
+
+#: core/classes/class.bookingpress-multilanguage.php:1978
+#: core/classes/class.bookingpress-multilanguage.php:1985
+#@ bookingpress-multilanguage
+msgid "Options"
+msgstr "Opzioni"
+
+#: core/classes/class.bookingpress-multilanguage.php:1990
+#@ bookingpress-multilanguage
+msgid "My booking title"
+msgstr "Il mio titolo di prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1991
+#@ bookingpress-multilanguage
+msgid "Apply button"
+msgstr "Pulsante Applica"
+
+#: core/classes/class.bookingpress-multilanguage.php:1992
+#@ bookingpress-multilanguage
+msgid "Search appointment placeholder"
+msgstr "Cerca il segnaposto dell'appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:1993
+#@ bookingpress-multilanguage
+msgid "Start date placeholder"
+msgstr "Segnaposto data di inizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:1994
+#@ bookingpress-multilanguage
+msgid "End date placeholder"
+msgstr "Segnaposto data di fine"
+
+#: core/classes/class.bookingpress-multilanguage.php:1995
+#@ bookingpress-multilanguage
+msgid "My appointments title"
+msgstr "Titolo dei miei appuntamenti"
+
+#: core/classes/class.bookingpress-multilanguage.php:1996
+#@ bookingpress-multilanguage
+msgid "Edit account title"
+msgstr "Modifica il titolo dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:1997
+#@ bookingpress-multilanguage
+msgid "Change password title"
+msgstr "Cambia il titolo della password"
+
+#: core/classes/class.bookingpress-multilanguage.php:1998
+#@ bookingpress-multilanguage
+msgid "Logout title"
+msgstr "Titolo di disconnessione"
+
+#: core/classes/class.bookingpress-multilanguage.php:1999
+#@ bookingpress-multilanguage
+msgid "Delete account title"
+msgstr "Elimina il titolo dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2000
+#@ bookingpress-multilanguage
+msgid "Delete account heading title"
+msgstr "Elimina il titolo dell'intestazione dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2001
+#@ bookingpress-multilanguage
+msgid "Delete account description"
+msgstr "Elimina la descrizione dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2002
+#@ bookingpress-multilanguage
+msgid "Delete account button label"
+msgstr "Elimina l'etichetta del pulsante dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2003
+#@ bookingpress-multilanguage
+msgid "ID title"
+msgstr "titolo di identificazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2004
+#: core/classes/class.bookingpress-multilanguage.php:2104
+#@ bookingpress-multilanguage
+msgid "Service title"
+msgstr "Titolo di servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2005
+#@ bookingpress-multilanguage
+msgid "Date title"
+msgstr "Titolo della data"
+
+#: core/classes/class.bookingpress-multilanguage.php:2006
+#@ bookingpress-multilanguage
+msgid "Status title"
+msgstr "Titolo di stato"
+
+#: core/classes/class.bookingpress-multilanguage.php:2007
+#@ bookingpress-multilanguage
+msgid "staff title"
+msgstr "titolo personale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2008
+#@ bookingpress-multilanguage
+msgid "Payment title"
+msgstr "Titolo di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2009
+#@ bookingpress-multilanguage
+msgid "Booking id title"
+msgstr "Titolo ID prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2010
+#@ bookingpress-multilanguage
+msgid "Booking time title"
+msgstr "Titolo del tempo di prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2011
+#@ bookingpress-multilanguage
+msgid "No. Of Person title"
+msgstr "No. Del titolo della persona"
+
+#: core/classes/class.bookingpress-multilanguage.php:2012
+#@ bookingpress-multilanguage
+msgid "Extras details title"
+msgstr "Titolo dettagli extra"
+
+#: core/classes/class.bookingpress-multilanguage.php:2013
+#@ bookingpress-multilanguage
+msgid "Deposit title"
+msgstr "Titolo di deposito"
+
+#: core/classes/class.bookingpress-multilanguage.php:2014
+#: core/classes/class.bookingpress-multilanguage.php:2261
+#@ bookingpress-multilanguage
+msgid "Tax title"
+msgstr "Titolo fiscale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2015
+#@ bookingpress-multilanguage
+msgid "Coupon title"
+msgstr "Titolo tagliando"
+
+#: core/classes/class.bookingpress-multilanguage.php:2016
+#@ bookingpress-multilanguage
+msgid "Payment details title"
+msgstr "Titolo dei dettagli di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2017
+#: core/classes/class.bookingpress-multilanguage.php:2133
+#@ bookingpress-multilanguage
+msgid "Payment method title"
+msgstr "Titolo del metodo di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2018
+#: core/classes/class.bookingpress-multilanguage.php:2131
+#@ bookingpress-multilanguage
+msgid "Total amount title"
+msgstr "Importo totale titolo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2019
+#@ bookingpress-multilanguage
+msgid "Delete account content"
+msgstr "Elimina il contenuto dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2022
+#: core/classes/class.bookingpress-multilanguage.php:2182
+#@ bookingpress-multilanguage
+msgid "Login form title"
+msgstr "Titolo del modulo di accesso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2023
+#: core/classes/class.bookingpress-multilanguage.php:2183
+#@ bookingpress-multilanguage
+msgid "Username / Email field label"
+msgstr "Etichetta campo nome utente/e-mail"
+
+#: core/classes/class.bookingpress-multilanguage.php:2024
+#: core/classes/class.bookingpress-multilanguage.php:2184
+#@ bookingpress-multilanguage
+msgid "Username / Email field Placeholder"
+msgstr "Nome utente/campo Email Segnaposto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2025
+#: core/classes/class.bookingpress-multilanguage.php:2185
+#@ bookingpress-multilanguage
+msgid "Password label"
+msgstr "Etichetta password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2026
+#: core/classes/class.bookingpress-multilanguage.php:2186
+#@ bookingpress-multilanguage
+msgid "Password field Placeholder"
+msgstr "Campo password Segnaposto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2027
+#: core/classes/class.bookingpress-multilanguage.php:2187
+#@ bookingpress-multilanguage
+msgid "User name required field label"
+msgstr "Nome utente etichetta campo obbligatoria"
+
+#: core/classes/class.bookingpress-multilanguage.php:2028
+#: core/classes/class.bookingpress-multilanguage.php:2188
+#@ bookingpress-multilanguage
+msgid "Password required field label"
+msgstr "Etichetta campo richiesta password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2029
+#: core/classes/class.bookingpress-multilanguage.php:2189
+#@ bookingpress-multilanguage
+msgid "Remember Me field label"
+msgstr "Etichetta del campo Ricordati di me"
+
+#: core/classes/class.bookingpress-multilanguage.php:2030
+#: core/classes/class.bookingpress-multilanguage.php:2190
+#@ bookingpress-multilanguage
+msgid "Login button label"
+msgstr "Etichetta del pulsante di accesso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2031
+#: core/classes/class.bookingpress-multilanguage.php:2191
+#@ bookingpress-multilanguage
+msgid "Forgot Password link label"
+msgstr "Etichetta di collegamento password dimenticata"
+
+#: core/classes/class.bookingpress-multilanguage.php:2032
+#: core/classes/class.bookingpress-multilanguage.php:2040
+#: core/classes/class.bookingpress-multilanguage.php:2192
+#: core/classes/class.bookingpress-multilanguage.php:2204
+#@ bookingpress-multilanguage
+msgid "Error message label"
+msgstr "Etichetta del messaggio di errore"
+
+#: core/classes/class.bookingpress-multilanguage.php:2035
+#: core/classes/class.bookingpress-multilanguage.php:2199
+#@ bookingpress-multilanguage
+msgid "Forgot Password form title"
+msgstr "Titolo del modulo Password dimenticata"
+
+#: core/classes/class.bookingpress-multilanguage.php:2036
+#: core/classes/class.bookingpress-multilanguage.php:2200
+#@ bookingpress-multilanguage
+msgid "Email address field label"
+msgstr "Etichetta del campo dell'indirizzo e-mail"
+
+#: core/classes/class.bookingpress-multilanguage.php:2037
+#: core/classes/class.bookingpress-multilanguage.php:2201
+#@ bookingpress-multilanguage
+msgid "Email address placeholder label"
+msgstr "Etichetta segnaposto indirizzo email"
+
+#: core/classes/class.bookingpress-multilanguage.php:2038
+#: core/classes/class.bookingpress-multilanguage.php:2202
+#@ bookingpress-multilanguage
+msgid "Email required field label"
+msgstr "Etichetta campo obbligatorio email"
+
+#: core/classes/class.bookingpress-multilanguage.php:2039
+#: core/classes/class.bookingpress-multilanguage.php:2203
+#@ bookingpress-multilanguage
+msgid "Forgot password button label"
+msgstr "Etichetta del pulsante password dimenticata"
+
+#: core/classes/class.bookingpress-multilanguage.php:2041
+#: core/classes/class.bookingpress-multilanguage.php:2205
+#@ bookingpress-multilanguage
+msgid "Success message label"
+msgstr "Etichetta del messaggio di successo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2042
+#: core/classes/class.bookingpress-multilanguage.php:2206
+#@ bookingpress-multilanguage
+msgid "Sign In Link Label"
+msgstr "Etichetta del collegamento di accesso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2045
+#@ bookingpress-multilanguage
+msgid "My profile title"
+msgstr "Il titolo del mio profilo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2046
+#@ bookingpress-multilanguage
+msgid "Update Profile Button Label"
+msgstr "Aggiorna etichetta pulsante profilo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2047
+#@ bookingpress-multilanguage
+msgid "Update Profile Success Message"
+msgstr "Aggiorna il messaggio di successo del profilo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2050
+#@ bookingpress-multilanguage
+msgid "Current password label"
+msgstr "Etichetta della password corrente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2051
+#@ bookingpress-multilanguage
+msgid "New password label"
+msgstr "Nuova etichetta password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2052
+#@ bookingpress-multilanguage
+msgid "Confirm password label"
+msgstr "Conferma l'etichetta della password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2053
+#@ bookingpress-multilanguage
+msgid "Current password placeholder"
+msgstr "Segnaposto della password corrente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2054
+#@ bookingpress-multilanguage
+msgid "New password placeholder"
+msgstr "Nuovo segnaposto password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2055
+#@ bookingpress-multilanguage
+msgid "Confirm password placeholder"
+msgstr "Conferma segnaposto password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2056
+#@ bookingpress-multilanguage
+msgid "Update password button label"
+msgstr "Aggiorna l'etichetta del pulsante della password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2057
+#@ bookingpress-multilanguage
+msgid "Update password success message"
+msgstr "Aggiorna il messaggio di successo della password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2058
+#@ bookingpress-multilanguage
+msgid "Update password error message"
+msgstr "Aggiorna il messaggio di errore della password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2059
+#@ bookingpress-multilanguage
+msgid "Current password required field label"
+msgstr "Etichetta campo richiesta password corrente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2060
+#@ bookingpress-multilanguage
+msgid "New password required field label"
+msgstr "Nuova etichetta del campo password obbligatoria"
+
+#: core/classes/class.bookingpress-multilanguage.php:2061
+#@ bookingpress-multilanguage
+msgid "Confirm password required field label"
+msgstr "Conferma l'etichetta del campo obbligatorio della password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2064
+#@ bookingpress-multilanguage
+msgid "Reschedule title"
+msgstr "Riprogramma il titolo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2065
+#@ bookingpress-multilanguage
+msgid "Popup title"
+msgstr "Titolo a comparsa"
+
+#: core/classes/class.bookingpress-multilanguage.php:2066
+#@ bookingpress-multilanguage
+msgid "Popup description"
+msgstr "Descrizione a comparsa"
+
+#: core/classes/class.bookingpress-multilanguage.php:2067
+#@ bookingpress-multilanguage
+msgid "Date label"
+msgstr "Etichetta data"
+
+#: core/classes/class.bookingpress-multilanguage.php:2068
+#@ bookingpress-multilanguage
+msgid "Time label"
+msgstr "Etichetta temporale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2069
+#@ bookingpress-multilanguage
+msgid "Time Placeholder"
+msgstr "Segnaposto orario"
+
+#: core/classes/class.bookingpress-multilanguage.php:2070
+#@ bookingpress-multilanguage
+msgid "Cancel button label"
+msgstr "Annulla etichetta pulsante"
+
+#: core/classes/class.bookingpress-multilanguage.php:2071
+#@ bookingpress-multilanguage
+msgid "Update button label"
+msgstr "Aggiorna etichetta pulsante"
+
+#: core/classes/class.bookingpress-multilanguage.php:2072
+#@ bookingpress-multilanguage
+msgid "Reschedule appointment success message"
+msgstr "Riprogrammare il messaggio di successo dell'appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2075
+#@ bookingpress-multilanguage
+msgid "Cancel appointment title"
+msgstr "Cancella il titolo dell'appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2076
+#@ bookingpress-multilanguage
+msgid "Confirmation message"
+msgstr "Messaggio di conferma"
+
+#: core/classes/class.bookingpress-multilanguage.php:2077
+#@ bookingpress-multilanguage
+msgid "No button text"
+msgstr "Nessun testo del pulsante"
+
+#: core/classes/class.bookingpress-multilanguage.php:2078
+#@ bookingpress-multilanguage
+msgid "Yes button text"
+msgstr "Sì testo del pulsante"
+
+#: core/classes/class.bookingpress-multilanguage.php:2081
+#@ bookingpress-multilanguage
+msgid "Booking ID label"
+msgstr "Etichetta ID prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2082
+#@ bookingpress-multilanguage
+msgid "Service label"
+msgstr "Etichetta di servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2083
+#@ bookingpress-multilanguage
+msgid "Date & Time label"
+msgstr "Etichetta data e ora"
+
+#: core/classes/class.bookingpress-multilanguage.php:2084
+#@ bookingpress-multilanguage
+msgid "Paid amount label"
+msgstr "Etichetta dell'importo pagato"
+
+#: core/classes/class.bookingpress-multilanguage.php:2085
+#@ bookingpress-multilanguage
+msgid "Refund amount label"
+msgstr "Etichetta dell'importo del rimborso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2086
+#@ bookingpress-multilanguage
+msgid "Refund payment method label"
+msgstr "Etichetta del metodo di pagamento del rimborso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2087
+#@ bookingpress-multilanguage
+msgid "Confirm cancellation button text"
+msgstr "Conferma il testo del pulsante di annullamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2088
+#@ bookingpress-multilanguage
+msgid "Apply button text (my booking)"
+msgstr "Applica il testo del pulsante (la mia prenotazione)"
+
+#: core/classes/class.bookingpress-multilanguage.php:2089
+#@ bookingpress-multilanguage
+msgid "Cancel button text (my booking)"
+msgstr "Annulla il testo del pulsante (la mia prenotazione)"
+
+#: core/classes/class.bookingpress-multilanguage.php:2093
+#: core/classes/class.bookingpress-multilanguage.php:2164
+#@ bookingpress-multilanguage
+msgid "Go back button"
+msgstr "Pulsante Indietro"
+
+#: core/classes/class.bookingpress-multilanguage.php:2094
+#@ bookingpress-multilanguage
+msgid "Next button"
+msgstr "Pulsante successivo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2095
+#@ bookingpress-multilanguage
+msgid "Book appointment button"
+msgstr "Pulsante Prenota appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2096
+#@ bookingpress-multilanguage
+msgid "Minutes label"
+msgstr "Etichetta minuti"
+
+#: core/classes/class.bookingpress-multilanguage.php:2097
+#@ bookingpress-multilanguage
+msgid "Hours label"
+msgstr "Etichetta ore"
+
+#: core/classes/class.bookingpress-multilanguage.php:2098
+#@ bookingpress-multilanguage
+msgid "Day label"
+msgstr "Etichetta del giorno"
+
+#: core/classes/class.bookingpress-multilanguage.php:2101
+#@ bookingpress-multilanguage
+msgid "Step service"
+msgstr "Servizio di passaggio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2102
+#@ bookingpress-multilanguage
+msgid "Category title"
+msgstr "Titolo di categoria"
+
+#: core/classes/class.bookingpress-multilanguage.php:2103
+#@ bookingpress-multilanguage
+msgid "All category"
+msgstr "Tutta la categoria"
+
+#: core/classes/class.bookingpress-multilanguage.php:2105
+#@ bookingpress-multilanguage
+msgid "Service duration"
+msgstr "Durata del servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2106
+#@ bookingpress-multilanguage
+msgid "Service price"
+msgstr "Prezzo del servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2107
+#@ bookingpress-multilanguage
+msgid "Continue button"
+msgstr "Pulsante Continua"
+
+#: core/classes/class.bookingpress-multilanguage.php:2108
+#@ bookingpress-multilanguage
+msgid "Cancel button"
+msgstr "Pulsante Annulla"
+
+#: core/classes/class.bookingpress-multilanguage.php:2111
+#@ bookingpress-multilanguage
+msgid "Step Date & Time"
+msgstr "Data e ora del passaggio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2112
+#@ bookingpress-multilanguage
+msgid "Time slot title"
+msgstr "Titolo della fascia oraria"
+
+#: core/classes/class.bookingpress-multilanguage.php:2113
+#@ bookingpress-multilanguage
+msgid "Morning time slot title"
+msgstr "Titolo fascia oraria mattutina"
+
+#: core/classes/class.bookingpress-multilanguage.php:2114
+#@ bookingpress-multilanguage
+msgid "Afternoon time slot title"
+msgstr "Titolo fascia oraria pomeridiana"
+
+#: core/classes/class.bookingpress-multilanguage.php:2115
+#@ bookingpress-multilanguage
+msgid "Evening time slot title"
+msgstr "Titolo fascia oraria serale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2116
+#@ bookingpress-multilanguage
+msgid "Night time slot title"
+msgstr "Titolo della fascia oraria notturna"
+
+#: core/classes/class.bookingpress-multilanguage.php:2117
+#@ bookingpress-multilanguage
+msgid "Date & time step note"
+msgstr "Nota passo data e ora"
+
+#: core/classes/class.bookingpress-multilanguage.php:2118
+#@ bookingpress-multilanguage
+msgid "Remaining slots title"
+msgstr "Titolo slot rimanente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2121
+#@ bookingpress-multilanguage
+msgid "Step basic details"
+msgstr "Dettagli di base del passaggio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2124
+#: core/classes/class.bookingpress-multilanguage.php:2247
+#@ bookingpress-multilanguage
+msgid "Summary step"
+msgstr "Passo riassuntivo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2125
+#@ bookingpress-multilanguage
+msgid "Summary description"
+msgstr "Descrizione sommaria"
+
+#: core/classes/class.bookingpress-multilanguage.php:2126
+#@ bookingpress-multilanguage
+msgid "Service summary title"
+msgstr "Titolo di riepilogo del servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2127
+#@ bookingpress-multilanguage
+msgid "Date & time summary title"
+msgstr "Titolo di riepilogo di data e ora"
+
+#: core/classes/class.bookingpress-multilanguage.php:2128
+#@ bookingpress-multilanguage
+msgid "Customer summary title"
+msgstr "Titolo di riepilogo cliente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2129
+#@ bookingpress-multilanguage
+msgid "Summary step note"
+msgstr "Nota di riepilogo del passaggio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2130
+#@ bookingpress-multilanguage
+msgid "Appointment details summary title"
+msgstr "Titolo di riepilogo dei dettagli dell'appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2132
+#@ bookingpress-multilanguage
+msgid "Subtotal title"
+msgstr "Titolo subtotale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2134
+#@ bookingpress-multilanguage
+msgid "Pay locally payment title"
+msgstr "Paga in loco il titolo di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2135
+#: core/classes/class.bookingpress-multilanguage.php:2262
+#@ bookingpress-multilanguage
+msgid "PayPal payment title"
+msgstr "Titolo di pagamento PayPal"
+
+#: core/classes/class.bookingpress-multilanguage.php:2136
+#: core/classes/class.bookingpress-multilanguage.php:2255
+#@ bookingpress-multilanguage
+msgid "Card details title"
+msgstr "Titolo dei dettagli della carta"
+
+#: core/classes/class.bookingpress-multilanguage.php:2138
+#: core/classes/class.bookingpress-multilanguage.php:2257
+#@ bookingpress-multilanguage
+msgid "Card number placeholder"
+msgstr "Segnaposto numero carta"
+
+#: core/classes/class.bookingpress-multilanguage.php:2139
+#: core/classes/class.bookingpress-multilanguage.php:2258
+#@ bookingpress-multilanguage
+msgid "Expire month placeholder"
+msgstr "Scadenza mese segnaposto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2140
+#: core/classes/class.bookingpress-multilanguage.php:2259
+#@ bookingpress-multilanguage
+msgid "Expire year placeholder"
+msgstr "Scadenza anno segnaposto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2142
+#: core/classes/class.bookingpress-multilanguage.php:2260
+#@ bookingpress-multilanguage
+msgid "Cvv placeholder"
+msgstr "Segnaposto cvv"
+
+#: core/classes/class.bookingpress-multilanguage.php:2145
+#@ bookingpress-multilanguage
+msgid "Deposit amount title"
+msgstr "Titolo dell'importo del deposito"
+
+#: core/classes/class.bookingpress-multilanguage.php:2146
+#@ bookingpress-multilanguage
+msgid "Make Payment button title"
+msgstr "Titolo del pulsante Effettua pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2149
+#@ bookingpress-multilanguage
+msgid "Thank you message"
+msgstr "Messaggio di ringraziamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2150
+#@ bookingpress-multilanguage
+msgid "Failed Payment"
+msgstr "Pagamento fallito"
+
+#: core/classes/class.bookingpress-multilanguage.php:2280
+#@ bookingpress-multilanguage
+msgid "Staff Member"
+msgstr "Membro del personale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2285
+#@ bookingpress-multilanguage
+msgid "Service"
+msgstr "Servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2286
+#@ bookingpress-multilanguage
+msgid "Categories"
+msgstr "Categorie"
+
+#: core/classes/class.bookingpress-multilanguage.php:2287
+#: core/classes/class.bookingpress-multilanguage.php:2294
+#@ bookingpress-multilanguage
+msgid "Common field labels"
+msgstr "Etichette di campo comuni"
+
+#: core/classes/class.bookingpress-multilanguage.php:2288
+#@ bookingpress-multilanguage
+msgid "Service step labels"
+msgstr "Etichette delle fasi di servizio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2289
+#@ bookingpress-multilanguage
+msgid "Date & Time labels"
+msgstr "Etichette di data e ora"
+
+#: core/classes/class.bookingpress-multilanguage.php:2290
+#@ bookingpress-multilanguage
+msgid "Basic details step labels"
+msgstr "Etichette dei passaggi dei dettagli di base"
+
+#: core/classes/class.bookingpress-multilanguage.php:2291
+#@ bookingpress-multilanguage
+msgid "Summary step labels"
+msgstr "Etichette dei passaggi di riepilogo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2292
+#@ bookingpress-multilanguage
+msgid "Payment Link Labels"
+msgstr "Etichette link di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2295
+#@ bookingpress-multilanguage
+msgid "Login Related Messages"
+msgstr "Messaggi relativi all'accesso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2296
+#@ bookingpress-multilanguage
+msgid "Forgot Password Messages"
+msgstr "Messaggi password dimenticata"
+
+#: core/classes/class.bookingpress-multilanguage.php:2297
+#@ bookingpress-multilanguage
+msgid "Edit Account Messages"
+msgstr "Modifica i messaggi dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2298
+#@ bookingpress-multilanguage
+msgid "Change Password Messages"
+msgstr "Modifica messaggi password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2299
+#@ bookingpress-multilanguage
+msgid "Reschedule Appointment Messages"
+msgstr "Riprogrammare i messaggi di appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2300
+#@ bookingpress-multilanguage
+msgid "Cancel Appointment Messages"
+msgstr "Annulla i messaggi di appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2301
+#@ bookingpress-multilanguage
+msgid "Cancel Appointment Confirmation Messages"
+msgstr "Annulla i messaggi di conferma dell'appuntamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2302
+#@ bookingpress-multilanguage
+msgid "Company Details"
+msgstr "Dettagli della Compagnia"
+
+#: core/classes/class.bookingpress-multilanguage.php:2303
+#@ bookingpress-multilanguage
+msgid "Message Settings"
+msgstr "Impostazioni messaggio"
+
+#: core/classes/class.bookingpress-multilanguage.php:2304
+#@ bookingpress-multilanguage
+msgid "Waiting List labels"
+msgstr "Etichette della lista d'attesa"
+
+#: core/classes/class.bookingpress-multilanguage.php:2305
+#@ bookingpress-multilanguage
+msgid "Tip Inputs labels"
+msgstr "Suggerimento Consente di inserire le etichette"
+
+#: core/classes/class.bookingpress-multilanguage.php:2307
+#@ bookingpress-multilanguage
+msgid "To Customer"
+msgstr "Al cliente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2309
+#@ bookingpress-multilanguage
+msgid "In-built"
+msgstr "Integrato"
+
+#: core/classes/class.bookingpress-multilanguage.php:2313
+#@ bookingpress-multilanguage
+msgid "To "
+msgstr "A"
+
+#: core/classes/class.bookingpress-multilanguage.php:571
+#: core/classes/class.bookingpress-multilanguage.php:924
+#: core/classes/class.bookingpress-multilanguage.php:2406
+#: core/classes/class.bookingpress-multilanguage.php:3814
+#: core/classes/class.bookingpress-multilanguage.php:3824
+#: core/classes/class.bookingpress-multilanguage.php:3840
+#: core/classes/class.bookingpress-multilanguage.php:3860
+#: core/classes/class.bookingpress-multilanguage.php:3887
+#: core/classes/class.bookingpress-multilanguage.php:3901
+#: core/classes/class.bookingpress-multilanguage.php:4543
+#: core/classes/class.bookingpress-multilanguage.php:4559
+#: core/classes/class.bookingpress-multilanguage.php:4573
+#@ bookingpress-multilanguage
+msgid "Translate"
+msgstr "Tradurre"
+
+#: core/classes/class.bookingpress-multilanguage.php:3477
+#: core/classes/class.bookingpress-multilanguage.php:3780
+#: core/classes/class.bookingpress-multilanguage.php:3786
+#: core/classes/class.bookingpress_pro_plugin_updater.php:520
+#@ bookingpress-multilanguage
+msgid "Error"
+msgstr "Errore"
+
+#: core/classes/class.bookingpress-multilanguage.php:3478
+#: core/classes/class.bookingpress-multilanguage.php:3787
+#@ bookingpress-multilanguage
+msgid "Something went wrong.."
+msgstr "Qualcosa è andato storto.."
+
+#: core/classes/class.bookingpress-multilanguage.php:3781
+#@ bookingpress-multilanguage
+msgid "Sorry, Your request can not be processed due to security reason."
+msgstr "Siamo spiacenti, la tua richiesta non può essere elaborata per motivi di sicurezza."
+
+#: core/classes/class.bookingpress-multilanguage.php:3803
+#@ bookingpress-multilanguage
+msgid "Success"
+msgstr "Successo"
+
+#: core/classes/class.bookingpress-multilanguage.php:3804
+#@ bookingpress-multilanguage
+msgid "Language data has been updated successfully."
+msgstr "I dati della lingua sono stati aggiornati correttamente."
+
+#: core/classes/class.bookingpress-multilanguage.php:4798
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress Cart Plugin to version 2.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in del carrello di BookingPress alla versione 2.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4804
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Custom Service Duration Plugin to version 1.5 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Plugin di durata del servizio personalizzato alla versione 1.5 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4810
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Authorize.Net Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Authorize.Net Payment Gateway alla versione 1.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4816
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Braintree Payment Gateway Plugin to version 1.3 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Braintree Payment Gateway Plugin alla versione 1.3 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4822
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Happy Hours Pricing Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Plugin prezzi Happy Hours alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4828
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Invoice Plugin to version 1.8 or higher."
+msgstr "BookingPress - Multi-Language Plugin Richiede l'aggiornamento del BookingPress - Invoice Plugin alla versione 1.8 o superiore."
+
+#: core/classes/class.bookingpress-multilanguage.php:4834
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Klarna Payment Gateway Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingua Richiede l'aggiornamento del plugin BookingPress - Klarna Payment Gateway alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4840
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Mollie Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Mollie Payment Gateway alla versione 1.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4846
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Paddle Payment Gateway Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Paddle Payment Gateway alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4852
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - PagSeguro Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - PagSeguro Payment Gateway alla versione 1.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4858
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - PayFast Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - PayFast Payment Gateway alla versione 1.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4864
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - PayPal Pro Payment Gateway Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - PayPal Pro Payment Gateway alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4870
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Paystack Payment Gateway Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Paystack Payment Gateway alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4876
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - PayUMoney Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - PayUMoney Payment Gateway alla versione 1.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4882
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Razorpay Payment Gateway Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Razorpay Payment Gateway alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4888
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Skrill Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Skrill Payment Gateway alla versione 1.2 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4894
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - SMS Notification Plugin to version 1.6 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Plugin di notifica SMS alla versione 1.6 o superiore."
+
+#: core/classes/class.bookingpress-multilanguage.php:4900
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Square Payment Gateway Plugin to version 1.3 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Square Payment Gateway alla versione 1.3 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4906
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Stripe Payment Gateway Plugin to version 1.5 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Stripe Payment Gateway alla versione 1.5 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4912
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Tax Plugin to version 1.4 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Plugin fiscale alla versione 1.4 o superiore."
+
+#: core/classes/class.bookingpress-multilanguage.php:4918
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Tip Plugin to version 1.3 or higher."
+msgstr "BookingPress - Multi-Language Plugin Richiede l'aggiornamento del BookingPress - Tip Plugin alla versione 1.3 o superiore."
+
+#: core/classes/class.bookingpress-multilanguage.php:4924
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Two Checkout Payment Gateway Plugin to version 1.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Two Checkout Payment Gateway Plugin alla versione 1.1 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4930
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Waiting List Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Waiting List Plugin alla versione 1.2 o superiore."
+
+#: core/classes/class.bookingpress-multilanguage.php:4936
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - WhatsApp Notification Plugin to version 1.5 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - Plugin di notifica WhatsApp alla versione 1.5 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4942
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - WooCommerce Payment Gateway Plugin to version 1.4 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento di BookingPress - WooCommerce Payment Gateway Plugin alla versione 1.4 o successiva."
+
+#: core/classes/class.bookingpress-multilanguage.php:4948
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress - Worldpay Payment Gateway Plugin to version 1.2 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress - Worldpay Payment Gateway alla versione 1.2 o successiva."
+
+#: core/views/bookingpress_add_general_language_setting_section.php:5
+#@ bookingpress-multilanguage
+msgid "Language Settings"
+msgstr "Impostazioni della lingua"
+
+#: core/views/bookingpress_customize_custom_fields_language_translation_popup.php:4
+#: core/views/bookingpress_customize_language_translation_popup.php:4
+#: core/views/bookingpress_customize_language_translation_popup.php:45
+#: core/views/bookingpress_gift_card_language_translation_popup.php:3
+#: core/views/bookingpress_invoice_settings_language_translation_popup.php:4
+#: core/views/bookingpress_location_language_translation_popup.php:4
+#: core/views/bookingpress_manage_notification_language_translation_popup.php:6
+#: core/views/bookingpress_package_language_translation_popup.php:4
+#: core/views/bookingpress_service_language_translation_popup.php:4
+#: core/views/bookingpress_settings_language_translation_popup.php:4
+#: core/views/bookingpress_settings_language_translation_popup.php:49
+#: core/views/bookingpress_settings_language_translation_popup.php:90
+#@ bookingpress-multilanguage
+msgid "Language Translate"
+msgstr "Lingua Tradurre"
+
+#: core/views/bookingpress_customize_custom_fields_language_translation_popup.php:58
+#: core/views/bookingpress_customize_language_translation_popup.php:38
+#: core/views/bookingpress_customize_language_translation_popup.php:79
+#: core/views/bookingpress_gift_card_language_translation_popup.php:36
+#: core/views/bookingpress_invoice_settings_language_translation_popup.php:40
+#: core/views/bookingpress_location_language_translation_popup.php:40
+#: core/views/bookingpress_manage_notification_language_translation_popup.php:41
+#: core/views/bookingpress_package_language_translation_popup.php:40
+#: core/views/bookingpress_service_language_translation_popup.php:64
+#: core/views/bookingpress_settings_language_translation_popup.php:42
+#: core/views/bookingpress_settings_language_translation_popup.php:83
+#: core/views/bookingpress_settings_language_translation_popup.php:144
+#@ bookingpress-multilanguage
+msgid "Okay"
+msgstr "Va bene"
+
+#: core/views/bookingpress_service_language_translation_popup.php:71
+#@ bookingpress-multilanguage
+msgid "Category Language Translate"
+msgstr "Categoria Lingua Traduci"
+
+#: core/views/bookingpress_service_language_translation_popup.php:102
+#@ bookingpress-multilanguage
+msgid "Close"
+msgstr "Vicino"
+
+#: core/views/bookingpress_service_language_translation_popup.php:104
+#@ bookingpress-multilanguage
+msgid "Save"
+msgstr "Salva"
+
+#: core/classes/class.bookingpress-multilanguage.php:2137
+#: core/classes/class.bookingpress-multilanguage.php:2256
+#@ bookingpress-multilanguage
+msgid "Card name placeholder"
+msgstr "Segnaposto nome carta"
+
+#: core/classes/class.bookingpress-multilanguage.php:4793
+#@ bookingpress-multilanguage
+msgid "BookingPress - Multi-Language Plugin Requires to update the BookingPress Pro Plugin to version 2.6.1 or higher."
+msgstr "BookingPress - Plugin multilingue Richiede l'aggiornamento del plug-in BookingPress Pro alla versione 2.6.1 o superiore."
+
+#: core/views/bookingpress_customize_custom_fields_language_translation_popup.php:32
+#: core/views/bookingpress_settings_language_translation_popup.php:118
+#@ bookingpress-multilanguage
+msgid "Value"
+msgstr "Valore"
+
+#: core/classes/class.bookingpress-multilanguage.php:2156
+#@ bookingpress-multilanguage
+msgid "Package Form Label"
+msgstr "Etichetta del modulo del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2157
+#@ bookingpress-multilanguage
+msgid "Package search placeholder"
+msgstr "Segnaposto per la ricerca del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2158
+#@ bookingpress-multilanguage
+msgid "Search button"
+msgstr "Pulsante Cerca"
+
+#: core/classes/class.bookingpress-multilanguage.php:2159
+#@ bookingpress-multilanguage
+msgid "No Package Found"
+msgstr "Nessun pacchetto trovato"
+
+#: core/classes/class.bookingpress-multilanguage.php:2160
+#@ bookingpress-multilanguage
+msgid "Buy now button"
+msgstr "Pulsante Acquista ora"
+
+#: core/classes/class.bookingpress-multilanguage.php:2161
+#@ bookingpress-multilanguage
+msgid "Services Includes text"
+msgstr "Servizi Include testo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2162
+#@ bookingpress-multilanguage
+msgid "Services Show More text"
+msgstr "Servizi Mostra altro testo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2163
+#@ bookingpress-multilanguage
+msgid "Services Show Less text"
+msgstr "Servizi Mostra meno testo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2165
+#@ bookingpress-multilanguage
+msgid "Package Description Read More"
+msgstr "Descrizione del pacchetto Ulteriori informazioni"
+
+#: core/classes/class.bookingpress-multilanguage.php:2166
+#@ bookingpress-multilanguage
+msgid "Package Description Show Less"
+msgstr "Descrizione del pacchetto Mostra meno"
+
+#: core/classes/class.bookingpress-multilanguage.php:2167
+#@ bookingpress-multilanguage
+msgid "Package month label"
+msgstr "Etichetta del mese del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2168
+#@ bookingpress-multilanguage
+msgid "Package months label"
+msgstr "Etichetta dei mesi del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2169
+#@ bookingpress-multilanguage
+msgid "Package year label"
+msgstr "Etichetta dell'anno del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2170
+#@ bookingpress-multilanguage
+msgid "Package years label"
+msgstr "Etichetta degli anni del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2171
+#@ bookingpress-multilanguage
+msgid "Package day label"
+msgstr "Etichetta del giorno del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2172
+#@ bookingpress-multilanguage
+msgid "Package days label"
+msgstr "Etichetta dei giorni del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2177
+#@ bookingpress-multilanguage
+msgid "User details step"
+msgstr "Passaggio dei dettagli dell'utente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2193
+#@ bookingpress-multilanguage
+msgid "SignUp link label"
+msgstr "Etichetta del collegamento di registrazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2194
+#@ bookingpress-multilanguage
+msgid "Don't have an account label"
+msgstr "Non avere un'etichetta dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2211
+#@ bookingpress-multilanguage
+msgid "Signup form title"
+msgstr "Titolo del modulo di registrazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2212
+#@ bookingpress-multilanguage
+msgid "Full name field label"
+msgstr "Etichetta del campo nome completo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2213
+#@ bookingpress-multilanguage
+msgid "Email field label"
+msgstr "Etichetta del campo e-mail"
+
+#: core/classes/class.bookingpress-multilanguage.php:2214
+#@ bookingpress-multilanguage
+msgid "Mobile Number field label"
+msgstr "Etichetta del campo Numero di cellulare"
+
+#: core/classes/class.bookingpress-multilanguage.php:2215
+#@ bookingpress-multilanguage
+msgid "Password field label"
+msgstr "Etichetta del campo password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2216
+#@ bookingpress-multilanguage
+msgid "Full name field placeholder"
+msgstr "Segnaposto del campo nome completo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2217
+#@ bookingpress-multilanguage
+msgid "Email field placeholder"
+msgstr "Segnaposto del campo e-mail"
+
+#: core/classes/class.bookingpress-multilanguage.php:2218
+#@ bookingpress-multilanguage
+msgid "Password field placeholder"
+msgstr "Segnaposto del campo Password"
+
+#: core/classes/class.bookingpress-multilanguage.php:2219
+#@ bookingpress-multilanguage
+msgid "Full name required message"
+msgstr "Messaggio con nome completo richiesto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2220
+#@ bookingpress-multilanguage
+msgid "Email required message"
+msgstr "Messaggio di posta elettronica richiesto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2221
+#@ bookingpress-multilanguage
+msgid ""
+"Mobile Number required message\n"
+"                "
+msgstr "Messaggio relativo al numero di cellulare richiesto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2223
+#@ bookingpress-multilanguage
+msgid "Password required message"
+msgstr "Messaggio relativo alla password richiesta"
+
+#: core/classes/class.bookingpress-multilanguage.php:2224
+#@ bookingpress-multilanguage
+msgid "Signup button title"
+msgstr "Titolo del pulsante di registrazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2225
+#@ bookingpress-multilanguage
+msgid "Already have account text"
+msgstr "Hai già il testo dell'account"
+
+#: core/classes/class.bookingpress-multilanguage.php:2226
+#@ bookingpress-multilanguage
+msgid "Login link title"
+msgstr "Titolo del collegamento di accesso"
+
+#: core/classes/class.bookingpress-multilanguage.php:2231
+#@ bookingpress-multilanguage
+msgid "Basic Details form title"
+msgstr "Titolo del modulo Dettagli di base"
+
+#: core/classes/class.bookingpress-multilanguage.php:2232
+#@ bookingpress-multilanguage
+msgid "Submit button title"
+msgstr "Titolo del pulsante Invia"
+
+#: core/classes/class.bookingpress-multilanguage.php:2237
+#@ bookingpress-multilanguage
+msgid "Make payment tab title"
+msgstr "Effettua il titolo della scheda di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2238
+#@ bookingpress-multilanguage
+msgid "Make payment form title"
+msgstr "Effettua il titolo del modulo di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2239
+#@ bookingpress-multilanguage
+msgid "Subtotal text"
+msgstr "Testo del totale parziale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2240
+#@ bookingpress-multilanguage
+msgid "Total amount text"
+msgstr "Testo dell'importo totale"
+
+#: core/classes/class.bookingpress-multilanguage.php:2241
+#@ bookingpress-multilanguage
+msgid "Select payment method text"
+msgstr "Seleziona il testo del metodo di pagamento"
+
+#: core/classes/class.bookingpress-multilanguage.php:2242
+#@ bookingpress-multilanguage
+msgid "Buy package button text"
+msgstr "Testo del pulsante Acquista pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2248
+#@ bookingpress-multilanguage
+msgid "Summary form title"
+msgstr "Titolo del modulo di riepilogo"
+
+#: core/classes/class.bookingpress-multilanguage.php:2249
+#@ bookingpress-multilanguage
+msgid "Booking Id"
+msgstr "ID prenotazione"
+
+#: core/classes/class.bookingpress-multilanguage.php:2250
+#@ bookingpress-multilanguage
+msgid "Package booked success message"
+msgstr "Messaggio di avvenuta prenotazione del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2251
+#@ bookingpress-multilanguage
+msgid "Package booking information sent message"
+msgstr "Messaggio inviato con informazioni sulla prenotazione del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2252
+#@ bookingpress-multilanguage
+msgid "Package title"
+msgstr "Titolo del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2253
+#@ bookingpress-multilanguage
+msgid "Customer Name title"
+msgstr "Titolo del nome del cliente"
+
+#: core/classes/class.bookingpress-multilanguage.php:2254
+#@ bookingpress-multilanguage
+msgid "Book Appointment title"
+msgstr "Titolo dell'appuntamento con il libro"
+
+#: core/classes/class.bookingpress-multilanguage.php:2263
+#@ bookingpress-multilanguage
+msgid "Package purchase limit message"
+msgstr "Messaggio relativo al limite di acquisto del pacchetto"
+
+#: core/classes/class.bookingpress-multilanguage.php:2264
+#@ bookingpress-multilanguage
+msgid "Package Payment failed message"
+msgstr "Messaggio di pagamento del pacchetto non riuscito"
+
+#. translators: plugin header field 'Version'
+#: bookingpress-multilanguage.php:0
+#@ bookingpress-multilanguage
+msgid "1.4"
+msgstr "1.4"
+
+#: core/classes/class.bookingpress-multilanguage.php:1058
+#: core/classes/class.bookingpress-multilanguage.php:1071
+#: core/classes/class.bookingpress-multilanguage.php:1102
+#: core/classes/class.bookingpress-multilanguage.php:1113
+#: core/classes/class.bookingpress-multilanguage.php:5031
+#@ bookingpress-multilanguage
+msgid "Please activate license of BookingPress premium plugin to use BookingPress Multi Language Add-on"
+msgstr "Si prega di attivare la licenza del plugin premium BookingPress per utilizzare il componente aggiuntivo del pacchetto di servizi BookingPress"
+
+#: core/classes/class.bookingpress-multilanguage.php:1059
+#: core/classes/class.bookingpress-multilanguage.php:1072
+#: core/classes/class.bookingpress-multilanguage.php:1103
+#: core/classes/class.bookingpress-multilanguage.php:1114
+#: core/classes/class.bookingpress-multilanguage.php:5032
+#, php-format
+#@ bookingpress-multilanguage
+msgid "Please %s Click Here %s to Continue"
+msgstr "Per favore %s fai clic qui %s per continuare"
+
+#: core/classes/class.bookingpress-multilanguage.php:4986
+#: core/classes/class.bookingpress-multilanguage.php:5018
+#@ bookingpress-multilanguage
+msgid "An error occurred, please try again."
+msgstr "Si è verificato un errore. Per favore, riprova."
+
+#: core/classes/class.bookingpress-multilanguage.php:4994
+#, php-format
+#@ bookingpress-multilanguage
+msgid "Your license key expired on %s."
+msgstr "La tua chiave di licenza è scaduta il %s."
+
+#: core/classes/class.bookingpress-multilanguage.php:4999
+#@ bookingpress-multilanguage
+msgid "Your license key has been disabled."
+msgstr "La tua chiave di licenza è stata disabilitata."
+
+#: core/classes/class.bookingpress-multilanguage.php:5002
+#@ bookingpress-multilanguage
+msgid "Invalid license."
+msgstr "Licenza non valida."
+
+#: core/classes/class.bookingpress-multilanguage.php:5006
+#@ bookingpress-multilanguage
+msgid "Your license is not active for this URL."
+msgstr "La tua licenza non è attiva per questo URL."
+
+#: core/classes/class.bookingpress-multilanguage.php:5009
+#: core/classes/class.bookingpress-multilanguage.php:5012
+#@ bookingpress-multilanguage
+msgid "This appears to be an invalid license key for your selected package."
+msgstr "Sembra essere una chiave di licenza non valida per il pacchetto selezionato."
+
+#: core/classes/class.bookingpress-multilanguage.php:5015
+#@ bookingpress-multilanguage
+msgid "Your license key has reached its activation limit."
+msgstr "La tua chiave di licenza ha raggiunto il limite di attivazione."
+
+#. translators: the plugin name. 
+#: core/classes/class.bookingpress_pro_plugin_updater.php:257
+#, php-format
+#@ bookingpress-multilanguage
+msgid "There is a new version of %1$s available."
+msgstr "È disponibile una nuova versione di %1$s."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:263
+#@ bookingpress-multilanguage
+msgid "Contact your network administrator to install the update."
+msgstr "Contatta l'amministratore di rete per installare l'aggiornamento."
+
+#. translators: 1. opening anchor tag, do not translate 2. the new plugin version 3. closing anchor tag, do not translate. 
+#: core/classes/class.bookingpress_pro_plugin_updater.php:268
+#, php-format
+#@ bookingpress-multilanguage
+msgid "%1$sView version %2$s details%3$s."
+msgstr "%1$sVisualizza versione %2$s dettagli%3$s."
+
+#. translators: 1. link for changelog 2. version name 3. opening anchor tag for update link 4. closing tag for update link
+#: core/classes/class.bookingpress_pro_plugin_updater.php:277
+#, php-format
+#@ bookingpress-multilanguage
+msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
+msgstr "%1$sVisualizza versione %2$s dettagli%3$s O %4$saggiorna ora%5$s."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:288
+#@ bookingpress-multilanguage
+msgid "Update now."
+msgstr "Aggiorna ora."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:520
+#@ bookingpress-multilanguage
+msgid "You do not have permission to install plugin updates"
+msgstr "Non hai l'autorizzazione per installare gli aggiornamenti del plug-in"
+

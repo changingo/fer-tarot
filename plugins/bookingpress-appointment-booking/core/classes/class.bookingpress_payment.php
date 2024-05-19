@@ -319,15 +319,21 @@ if (! class_exists('bookingpress_payment') ) {
                     const vm = this
                     vm.toggleBusy()
                     var bookingpress_module_type = bookingpress_dashboard_filter_start_date = bookingpress_dashboard_filter_end_date = '';
+                    bookingpress_dashboard_filter_payment_status = '';
                     bookingpress_module_type = sessionStorage.getItem("bookingpress_module_type");                
                     bookingpress_dashboard_filter_start_date = sessionStorage.getItem("bookingpress_dashboard_filter_start_date");
                     bookingpress_dashboard_filter_end_date = sessionStorage.getItem("bookingpress_dashboard_filter_end_date");
+                    bookingpress_dashboard_filter_payment_status = sessionStorage.getItem("bookingpress_dashboard_filter_payment_status");   
                     sessionStorage.removeItem("bookingpress_module_type");
                     sessionStorage.removeItem("bookingpress_dashboard_filter_start_date");
-                    sessionStorage.removeItem("bookingpress_dashboard_filter_end_date");                    
+                    sessionStorage.removeItem("bookingpress_dashboard_filter_end_date");          
+                    sessionStorage.removeItem("bookingpress_dashboard_filter_payment_status");          
                     if(bookingpress_module_type != '' && bookingpress_module_type == 'payment' && bookingpress_dashboard_filter_start_date != '' && bookingpress_dashboard_filter_end_date != '' ) {                        
                         var payment_date_range = [bookingpress_dashboard_filter_start_date,bookingpress_dashboard_filter_end_date];
                         vm.search_data.search_range = payment_date_range;
+                        if(bookingpress_dashboard_filter_payment_status != ''){
+                           vm.search_data.search_status = bookingpress_dashboard_filter_payment_status;    
+                        }
                     }                
                     var postData = { action:'bookingpress_get_payments_data', perpage:this.perPage, currentpage:this.currentPage, search_data:vm.search_data,_wpnonce:'<?php echo esc_html(wp_create_nonce('bpa_wp_nonce')); ?>' };
 
@@ -344,15 +350,21 @@ if (! class_exists('bookingpress_payment') ) {
                 loadPaymentWithoutLoader(){
                     const vm = this
                     var bookingpress_module_type = bookingpress_dashboard_filter_start_date = bookingpress_dashboard_filter_end_date = '';
+                    bookingpress_dashboard_filter_payment_status = '';
                     bookingpress_module_type = sessionStorage.getItem("bookingpress_module_type");                
                     bookingpress_dashboard_filter_start_date = sessionStorage.getItem("bookingpress_dashboard_filter_start_date");
                     bookingpress_dashboard_filter_end_date = sessionStorage.getItem("bookingpress_dashboard_filter_end_date");
+                    bookingpress_dashboard_filter_payment_status = sessionStorage.getItem("bookingpress_dashboard_filter_payment_status");   
                     sessionStorage.removeItem("bookingpress_module_type");
                     sessionStorage.removeItem("bookingpress_dashboard_filter_start_date");
-                    sessionStorage.removeItem("bookingpress_dashboard_filter_end_date");                    
+                    sessionStorage.removeItem("bookingpress_dashboard_filter_end_date");      
+                    sessionStorage.removeItem("bookingpress_dashboard_filter_payment_status");                        
                     if(bookingpress_module_type != '' && bookingpress_module_type == 'payment' && bookingpress_dashboard_filter_start_date != '' && bookingpress_dashboard_filter_end_date != '' ) {                        
                         var payment_date_range = [bookingpress_dashboard_filter_start_date,bookingpress_dashboard_filter_end_date];
                         vm.search_data.search_range = payment_date_range;
+                        if(bookingpress_dashboard_filter_payment_status != ''){
+                            vm.search_data.search_status = bookingpress_dashboard_filter_payment_status;    
+                        }
                     }                
                     var postData = { action:'bookingpress_get_payments_data', perpage:this.perPage, currentpage:this.currentPage, search_data:vm.search_data,_wpnonce:'<?php echo esc_html(wp_create_nonce('bpa_wp_nonce')); ?>' };
 

@@ -1410,6 +1410,7 @@ if (! class_exists('bookingpress_dashboard') ) {
                 } else if(module == 'customer'){
                     bookingpress_redirect_url ="<?php echo  add_query_arg('page', esc_html($bookingpress_slugs->bookingpress_customers), esc_url(admin_url() . 'admin.php?page=bookingpress')) // phpcs:ignore ?>"                                        
                 } else if(module == 'payment') {
+                    sessionStorage.setItem("bookingpress_dashboard_filter_payment_status",status);                
                     bookingpress_redirect_url ="<?php echo  add_query_arg('page', esc_html($bookingpress_slugs->bookingpress_payments), esc_url(admin_url() . 'admin.php?page=bookingpress')) // phpcs:ignore ?>"    
                 }
                 <?php

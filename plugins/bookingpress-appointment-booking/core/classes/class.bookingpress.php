@@ -1900,7 +1900,7 @@ if (! class_exists('BookingPress') ) {
         {
             global $bookingpress_version;
             $bookingpress_old_version = get_option('bookingpress_version', true);
-            if (version_compare($bookingpress_old_version, '1.1.1', '<') ) {
+            if (version_compare($bookingpress_old_version, '1.1.2', '<') ) {
                 $bookingpress_load_upgrade_file = BOOKINGPRESS_VIEWS_DIR . '/upgrade_latest_data.php';
                 include $bookingpress_load_upgrade_file;
                 $this->bookingpress_send_anonymous_data_cron();
@@ -4152,7 +4152,10 @@ if (! class_exists('BookingPress') ) {
                 ) {$charset_collate}";
                 $bookingpress_dbtbl_create[ $tbl_bookingpress_import_images ] = dbDelta($sql_table);
 
-
+                $paypal_payment_method_type = $BookingPress->bookingpress_get_settings('paypal_payment_method_type', 'payment_setting');
+                if(empty($paypal_payment_method_type)){
+                    $BookingPress->bookingpress_update_settings('paypal_payment_method_type', 'payment_setting', 'lagacy');
+                }
 
                 $BookingPress->bookingpress_add_user_role_and_capabilities();
 
@@ -7080,7 +7083,7 @@ if (! class_exists('BookingPress') ) {
             'company_phone_number'  => '',
             );
             $bookingpress_notification_setting_form_default_data = array(
-            'selected_mail_service' => 'php_mail',
+            'selected_mail_service' => 'wp_mail',
             'sender_name'           => get_option('blogname'),
             'sender_email'          => get_option('admin_email'),
             'admin_email'           => get_option('admin_email'),
@@ -7508,7 +7511,7 @@ if (! class_exists('BookingPress') ) {
 
             $post_author = get_current_user_id();
 
-            $bookingpress_bookingformpage_content = '<div class="wp-block-bookingpress-bookingpress-appointment-form">[bookingpress_form]</div>';
+            $bookingpress_bookingformpage_content = '<!-- wp:shortcode -->[bookingpress_form]<!-- /wp:shortcode -->';
             $bookingpress_bookingform_page_details = array(
                 'post_title'    => esc_html__('Book an Appointment', 'bookingpress-appointment-booking'),
                 'post_name'     => 'book-appointment',
@@ -8909,6 +8912,7 @@ if (! class_exists('BookingPress') ) {
                         .bpa-cp-ma-table.el-table .bpa-cp-ma-cell-val,
                         .bpa-front-ma--pagination-wrapper .el-pager li,
                         .bpa-front-dcw__body-sub-title,
+                        .bpa-front-delete-account-txt,
                         .bpa-mob-col__body .bpa-mob--service-title,
                         .bpa-mob--date-time-details .bpa-mob-dtd__date-val, 
                         .bpa-mob--date-time-details .bpa-mob-dtd__time-val,
@@ -8924,6 +8928,13 @@ if (! class_exists('BookingPress') ) {
                         {
                             color: ' . $sub_title_color . ' !important;
                         }';       
+
+                        $bookingpress_customize_css_content .= '
+                        .btn-prev .el-icon-arrow-left::before,
+                        .btn-next .el-icon-arrow-right::before
+                        {
+                            background-color: '.$sub_title_color.' !important;
+                        }';
 
                         $bookingpress_customize_css_content .= '               
                         @media (min-width: 1200px){    

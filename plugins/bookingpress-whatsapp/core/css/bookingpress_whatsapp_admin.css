@@ -1,0 +1,47 @@
+.bookingpress_whatsapp_template_container .el-form-item__content {
+    display: flex;
+    flex-direction: row;
+}
+
+body:not(.rtl) .bookingpress_whatsapp_template_container .bpa_whatsapp_select_template_input {
+    padding-right: 15px;
+}
+
+body.rtl .bookingpress_whatsapp_template_container .bpa_whatsapp_select_template_input {
+    padding-left: 15px;
+}
+
+.bookingpress_whatsapp_template_container .el-form-item__content .bpa_refresh_whatsapp_template_btn {
+    width: 55px;
+}
+
+.bpa-placeholder-label span::before{
+    content:'{{';
+}
+.bpa-placeholder-label span::after{
+    content:'}}';
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-180deg);
+    }
+}
+@-webkit-keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-180deg);
+    }
+}
+
+.whatsapp-refresh-rotate {
+    animation: rotate 2s linear infinite;
+    -webkit-animation: rotate 2s linear infinite;
+}

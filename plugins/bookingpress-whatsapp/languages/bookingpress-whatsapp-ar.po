@@ -1,0 +1,520 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BookingPress - WhatsApp Notification Addon v2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-04-25 11:57:10+0000\n"
+"Last-Translator: admin <testrepute123@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Arabic\n"
+"X-Poedit-Country: SAUDI ARABIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#. translators: plugin header field 'Name'
+#: bookingpress-whatsapp.php:0
+#@ bookingpress-whatsapp
+msgid "BookingPress - WhatsApp Notification Addon"
+msgstr "BookingPress - ملحق إشعار WhatsApp"
+
+#. translators: plugin header field 'PluginURI'
+#. translators: plugin header field 'AuthorURI'
+#: bookingpress-whatsapp.php:0
+#@ bookingpress-whatsapp
+msgid "https://www.bookingpressplugin.com/"
+msgstr "https://www.bookingpressplugin.com/"
+
+#. translators: plugin header field 'Description'
+#: bookingpress-whatsapp.php:0
+#@ bookingpress-whatsapp
+msgid "Extension for BookingPress plugin to send WhatsApp notification upon appointment booking, appointment cancel, appointment reschedule etc."
+msgstr "تمديد ملحق BookingPress لإرسال إشعار WhatsApp عند حجز الموعد وإلغاء الموعد وإعادة جدولة الموعد وما إلى ذلك."
+
+#. translators: plugin header field 'Author'
+#: bookingpress-whatsapp.php:0
+#@ bookingpress-whatsapp
+msgid "Repute InfoSystems"
+msgstr "سمعة نظم المعلومات"
+
+#: core/classes/class.bookingpress-whatsapp.php:1361
+#@ bookingpress-whatsapp
+msgid "Bookingpress - WhatsApp plugin requires Bookingpress Premium Plugin installed and active."
+msgstr "Bookingpress - يتطلب المكوِّن الإضافي لـ WhatsApp تثبيت وتنشيط المكون الإضافي Bookingpress Premium."
+
+#: core/classes/class.bookingpress-whatsapp.php:1471
+#@ bookingpress-whatsapp
+msgid "WhatsApp Debug Logs"
+msgstr "سجلات تصحيح أخطاء WhatsApp"
+
+#: core/classes/class.bookingpress-whatsapp.php:1549
+#@ bookingpress-whatsapp
+msgid "Something went wrong while sending WhatsApp Message"
+msgstr "حدث خطأ ما أثناء إرسال رسالة WhatsApp"
+
+#: core/classes/class.bookingpress-whatsapp.php:1750
+#@ bookingpress-whatsapp
+msgid "Message"
+msgstr "رسالة"
+
+#: core/classes/class.bookingpress-whatsapp.php:1750
+#@ bookingpress-whatsapp
+msgid "with error code"
+msgstr "مع رمز الخطأ"
+
+#: core/classes/class.bookingpress-whatsapp.php:1753
+#: core/classes/class.bookingpress-whatsapp.php:1833
+#@ bookingpress-whatsapp
+msgid "WhatsApp Message Sent Successfully"
+msgstr "تم إرسال رسالة WhatsApp بنجاح"
+
+#: core/classes/class.bookingpress-whatsapp.php:1758
+#@ bookingpress-whatsapp
+msgid "Something went wrong while sending the message please check your Twilio configuration."
+msgstr "حدث خطأ ما أثناء إرسال الرسالة ، يرجى التحقق من تكوين Twilio الخاص بك."
+
+#: core/classes/class.bookingpress-whatsapp.php:1870
+#: core/classes/class.bookingpress-whatsapp.php:2020
+#: core/classes/class.bookingpress_pro_plugin_updater.php:520
+#@ bookingpress-whatsapp
+msgid "Error"
+msgstr "خطأ"
+
+#: core/classes/class.bookingpress-whatsapp.php:623
+#: core/classes/class.bookingpress-whatsapp.php:2383
+#@ bookingpress-whatsapp
+msgid "Send Whatsapp Notification"
+msgstr "إرسال إشعار Whatsapp"
+
+#: core/classes/class.bookingpress-whatsapp.php:383
+#: core/classes/class.bookingpress-whatsapp.php:386
+#: core/classes/class.bookingpress-whatsapp.php:2431
+#@ bookingpress-whatsapp
+msgid "WhatsApp Notification Message"
+msgstr "رسالة إعلام WhatsApp"
+
+#: core/classes/class.bookingpress-whatsapp.php:2468
+#: core/views/bookingpress_whatsapp_settings.php:76
+#: core/views/bookingpress_whatsapp_settings.php:80
+#@ bookingpress-whatsapp
+msgid "Account SID"
+msgstr "SID الحساب"
+
+#: core/classes/class.bookingpress-whatsapp.php:2474
+#@ bookingpress-whatsapp
+msgid "Account SID can not be left blank"
+msgstr "لا يمكن ترك حقل SID فارغًا"
+
+#: core/classes/class.bookingpress-whatsapp.php:2477
+#: core/views/bookingpress_whatsapp_settings.php:86
+#: core/views/bookingpress_whatsapp_settings.php:90
+#@ bookingpress-whatsapp
+msgid "Auth Token"
+msgstr "رمز المصادقة"
+
+#: core/views/bookingpress_whatsapp_settings.php:3
+#@ bookingpress-whatsapp
+msgid "Whatsapp Settings"
+msgstr "إعدادات Whatsapp"
+
+#: core/views/bookingpress_whatsapp_settings.php:22
+#: core/views/bookingpress_whatsapp_settings.php:26
+#: core/views/bookingpress_whatsapp_settings.php:27
+#@ bookingpress-whatsapp
+msgid "Select WhatsApp Gateway"
+msgstr "حدد WhatsApp Gateway"
+
+#: core/views/bookingpress_whatsapp_settings.php:96
+#: core/views/bookingpress_whatsapp_settings.php:101
+#@ bookingpress-whatsapp
+msgid "From Number"
+msgstr "من الرقم"
+
+#: core/views/bookingpress_whatsapp_settings.php:149
+#@ bookingpress-whatsapp
+msgid "Send Test WhatsApp"
+msgstr "إرسال اختبار WhatsApp"
+
+#: core/views/bookingpress_whatsapp_settings.php:128
+#: core/views/bookingpress_whatsapp_settings.php:132
+#@ bookingpress-whatsapp
+msgid "To Number"
+msgstr "إلى رقم"
+
+#: core/views/bookingpress_whatsapp_settings.php:138
+#@ bookingpress-whatsapp
+msgid "Enter Message"
+msgstr "أدخل رسالة"
+
+#: core/classes/class.bookingpress-whatsapp.php:1400
+#: core/classes/class.bookingpress-whatsapp.php:1403
+#@ bookingpress-whatsapp
+msgid "This field is required"
+msgstr "هذه الخانة مطلوبه"
+
+#: core/classes/class.bookingpress-whatsapp.php:1413
+#@ bookingpress-whatsapp
+msgid "Please enter account sid"
+msgstr "الرجاء إدخال معرف الحساب"
+
+#: core/classes/class.bookingpress-whatsapp.php:1420
+#@ bookingpress-whatsapp
+msgid "Please enter auth token"
+msgstr "الرجاء إدخال رمز المصادقة"
+
+#: core/classes/class.bookingpress-whatsapp.php:1429
+#: core/classes/class.bookingpress-whatsapp.php:2092
+#@ bookingpress-whatsapp
+msgid "Please enter from number"
+msgstr "الرجاء إدخال من الرقم"
+
+#: core/classes/class.bookingpress-whatsapp.php:366
+#: core/classes/class.bookingpress-whatsapp.php:596
+#: core/classes/class.bookingpress-whatsapp.php:2609
+#@ bookingpress-whatsapp
+msgid "Send whatsapp notification"
+msgstr "إرسال إشعار whatsapp"
+
+#: core/views/bookingpress_whatsapp_settings.php:108
+#: core/views/bookingpress_whatsapp_settings.php:112
+#@ bookingpress-whatsapp
+msgid "Select Mobile Number Field"
+msgstr "حدد خانة رقم الهاتف المحمول"
+
+#: core/classes/class.bookingpress-whatsapp.php:529
+#: core/classes/class.bookingpress-whatsapp.php:542
+#: core/classes/class.bookingpress-whatsapp.php:573
+#: core/classes/class.bookingpress-whatsapp.php:584
+#: core/classes/class.bookingpress-whatsapp.php:2576
+#@ bookingpress-whatsapp
+msgid "Please activate license of BookingPress premium plugin to use BookingPress Whatsapp Add-on"
+msgstr "يرجى تفعيل ترخيص المكون الإضافي BookingPress المميز لاستخدام الوظيفة الإضافية BookingPress Whatsapp"
+
+#: core/classes/class.bookingpress-whatsapp.php:530
+#: core/classes/class.bookingpress-whatsapp.php:543
+#: core/classes/class.bookingpress-whatsapp.php:574
+#: core/classes/class.bookingpress-whatsapp.php:585
+#: core/classes/class.bookingpress-whatsapp.php:2577
+#, php-format
+#@ bookingpress-whatsapp
+msgid "Please %s Click Here %s to Continue"
+msgstr "الرجاء ٪s انقر هنا ٪s للمتابعة"
+
+#. translators: the plugin name.
+#: core/classes/class.bookingpress_pro_plugin_updater.php:257
+#, php-format
+#@ bookingpress-whatsapp
+msgid "There is a new version of %1$s available."
+msgstr "يتوفر إصدار جديد من ٪1$s."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:263
+#@ bookingpress-whatsapp
+msgid "Contact your network administrator to install the update."
+msgstr "اتصل بمسؤول الشبكة لتثبيت التحديث."
+
+#. translators: 1. opening anchor tag, do not translate 2. the new plugin version 3. closing anchor tag, do not translate.
+#: core/classes/class.bookingpress_pro_plugin_updater.php:268
+#, php-format
+#@ bookingpress-whatsapp
+msgid "%1$sView version %2$s details%3$s."
+msgstr "٪1$s عرض تفاصيل الإصدار ٪2$s ٪3$s."
+
+#. translators: 1. link for changelog 2. version name 3. opening anchor tag for update link 4. closing tag for update link
+#: core/classes/class.bookingpress_pro_plugin_updater.php:277
+#, php-format
+#@ bookingpress-whatsapp
+msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
+msgstr "٪1$s عرض تفاصيل الإصدار٪2$s ٪3$s أو٪4$ sتحديث الآن٪5$s."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:288
+#@ bookingpress-whatsapp
+msgid "Update now."
+msgstr "تحديث الان."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:520
+#@ bookingpress-whatsapp
+msgid "You do not have permission to install plugin updates"
+msgstr "ليس لديك إذن لتثبيت تحديثات البرنامج المساعد"
+
+#: core/classes/class.bookingpress-whatsapp.php:449
+#@ bookingpress-whatsapp
+msgid "Through Whatsapp"
+msgstr "من خلال الواتس اب"
+
+#: core/classes/class.bookingpress-whatsapp.php:481
+#@ bookingpress-whatsapp
+msgid "Please enter phone number"
+msgstr "الرجاء إدخال رقم الهاتف"
+
+#: core/classes/class.bookingpress-whatsapp.php:492
+#@ bookingpress-whatsapp
+msgid "Whatsapp"
+msgstr "ال WhatsApp"
+
+#: core/classes/class.bookingpress-whatsapp.php:503
+#@ bookingpress-whatsapp
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: core/classes/class.bookingpress-whatsapp.php:505
+#@ bookingpress-whatsapp
+msgid "Enter phone number"
+msgstr "أدخل رقم الهاتف"
+
+#: core/classes/class.bookingpress-whatsapp.php:1867
+#: core/classes/class.bookingpress-whatsapp.php:2017
+#@ bookingpress-whatsapp
+msgid "Sorry. Something went wrong while processing the request"
+msgstr "آسف. حدث خطأ ما أثناء معالجة الطلب"
+
+#: core/views/bookingpress_whatsapp_settings.php:16
+#@ bookingpress-whatsapp
+msgid "API Configuration"
+msgstr "تكوين API"
+
+#: core/views/bookingpress_whatsapp_settings.php:122
+#@ bookingpress-whatsapp
+msgid "WhatsApp Testing"
+msgstr "اختبار WhatsApp"
+
+#: core/classes/class.bookingpress-whatsapp.php:2531
+#: core/classes/class.bookingpress-whatsapp.php:2563
+#@ bookingpress-whatsapp
+msgid "An error occurred, please try again."
+msgstr "حدث خطأ ، يرجى المحاولة مرة أخرى."
+
+#: core/classes/class.bookingpress-whatsapp.php:2539
+#, php-format
+#@ bookingpress-whatsapp
+msgid "Your license key expired on %s."
+msgstr "انتهت صلاحية مفتاح الترخيص الخاص بك في ٪s."
+
+#: core/classes/class.bookingpress-whatsapp.php:2544
+#@ bookingpress-whatsapp
+msgid "Your license key has been disabled."
+msgstr "تم تعطيل مفتاح الترخيص الخاص بك."
+
+#: core/classes/class.bookingpress-whatsapp.php:2547
+#@ bookingpress-whatsapp
+msgid "Invalid license."
+msgstr "ترخيص غير صالح."
+
+#: core/classes/class.bookingpress-whatsapp.php:2551
+#@ bookingpress-whatsapp
+msgid "Your license is not active for this URL."
+msgstr "الترخيص الخاص بك ليس نشطًا لعنوان URL هذا."
+
+#: core/classes/class.bookingpress-whatsapp.php:2554
+#: core/classes/class.bookingpress-whatsapp.php:2557
+#@ bookingpress-whatsapp
+msgid "This appears to be an invalid license key for your selected package."
+msgstr "يبدو أن هذا مفتاح ترخيص غير صالح للحزمة المحددة."
+
+#: core/classes/class.bookingpress-whatsapp.php:2560
+#@ bookingpress-whatsapp
+msgid "Your license key has reached its activation limit."
+msgstr "وصل مفتاح الترخيص الخاص بك إلى حد التنشيط."
+
+#: core/classes/class.bookingpress-whatsapp.php:2392
+#@ bookingpress-whatsapp
+msgid "Enter phone number ( With Contry code ) to send Whatsapp notification to extra recipient"
+msgstr "أدخل رقم الهاتف (مع رمز الدولة) لإرسال إشعار Whatsapp إلى مستلم إضافي"
+
+#: core/classes/class.bookingpress-whatsapp.php:1370
+#@ bookingpress-whatsapp
+msgid "It's Required to update the BookingPress Premium Plugin to version 2.8 or higher in order to use the BookingPress Whatsapp plugin"
+msgstr "يلزم تحديث المكون الإضافي BookingPress Premium إلى الإصدار 2.8 أو أعلى من أجل استخدام المكون الإضافي BookingPress Whatsapp"
+
+#: core/classes/class.bookingpress-whatsapp.php:190
+#@ bookingpress-whatsapp
+msgid "It seems that you're using Free Form message option. It's highly recommended to use the WhatsApp template method for structured messaging and to ensure compliance with WhatsApp's guidelines."
+msgstr "يبدو أنك تستخدم خيار رسالة النموذج المجاني. يوصى بشدة باستخدام طريقة قالب WhatsApp للمراسلة المنظمة ولضمان الامتثال لإرشادات WhatsApp."
+
+#: core/classes/class.bookingpress-whatsapp.php:1444
+#@ bookingpress-whatsapp
+msgid "Please enter Whatsapp Business Phone number id"
+msgstr "الرجاء إدخال معرف رقم هاتف واتساب للأعمال"
+
+#: core/classes/class.bookingpress-whatsapp.php:1452
+#@ bookingpress-whatsapp
+msgid "Please enter Whatsapp Business Account id"
+msgstr "الرجاء إدخال معرف حساب Whatsapp Business"
+
+#: core/classes/class.bookingpress-whatsapp.php:1460
+#@ bookingpress-whatsapp
+msgid "Please enter Whatsapp Permanent Access Token"
+msgstr "الرجاء إدخال رمز الوصول الدائم إلى Whatsapp"
+
+#: core/classes/class.bookingpress-whatsapp.php:2277
+#@ bookingpress-whatsapp
+msgid "Customer"
+msgstr "عميل"
+
+#: core/classes/class.bookingpress-whatsapp.php:2281
+#@ bookingpress-whatsapp
+msgid "Service"
+msgstr "خدمة"
+
+#: core/classes/class.bookingpress-whatsapp.php:2285
+#@ bookingpress-whatsapp
+msgid "Company"
+msgstr "شركة"
+
+#: core/classes/class.bookingpress-whatsapp.php:2289
+#@ bookingpress-whatsapp
+msgid "Staff Member"
+msgstr "موظف"
+
+#: core/classes/class.bookingpress-whatsapp.php:2293
+#@ bookingpress-whatsapp
+msgid "Appointment"
+msgstr "ميعاد"
+
+#: core/classes/class.bookingpress-whatsapp.php:2299
+#@ bookingpress-whatsapp
+msgid "Custom Fields"
+msgstr "الحقول المخصصة"
+
+#: core/classes/class.bookingpress-whatsapp.php:2307
+#@ bookingpress-whatsapp
+msgid "Cart"
+msgstr "عربة التسوق"
+
+#: core/classes/class.bookingpress-whatsapp.php:2315
+#@ bookingpress-whatsapp
+msgid "Advance Discount"
+msgstr "الخصم المسبق"
+
+#: core/classes/class.bookingpress-whatsapp.php:2323
+#@ bookingpress-whatsapp
+msgid "Location"
+msgstr "موقع"
+
+#: core/classes/class.bookingpress-whatsapp.php:2331
+#@ bookingpress-whatsapp
+msgid "Package"
+msgstr "طَرد"
+
+#: core/classes/class.bookingpress-whatsapp.php:2339
+#@ bookingpress-whatsapp
+msgid "Recurring"
+msgstr "يتكرر"
+
+#: core/classes/class.bookingpress-whatsapp.php:2348
+#@ bookingpress-whatsapp
+msgid "Waiting List"
+msgstr "قائمة الانتظار"
+
+#: core/classes/class.bookingpress-whatsapp.php:2356
+#@ bookingpress-whatsapp
+msgid "Zoom Meeting"
+msgstr "اجتماع التكبير"
+
+#: core/classes/class.bookingpress-whatsapp.php:2364
+#@ bookingpress-whatsapp
+msgid "Google Calendar"
+msgstr "تقويم جوجل"
+
+#: core/classes/class.bookingpress-whatsapp.php:2402
+#@ bookingpress-whatsapp
+msgid "Select Template"
+msgstr "حدد قالب"
+
+#: core/classes/class.bookingpress-whatsapp.php:2404
+#@ bookingpress-whatsapp
+msgid "Select the Whatsapp Template"
+msgstr "حدد قالب واتس اب"
+
+#: core/views/bookingpress_whatsapp_settings.php:35
+#@ bookingpress-whatsapp
+msgid "Phone Number ID"
+msgstr "معرف رقم الهاتف"
+
+#: core/views/bookingpress_whatsapp_settings.php:39
+#@ bookingpress-whatsapp
+msgid "Enter Whatsapp Business Phone Number ID"
+msgstr "أدخل معرف رقم هاتف Whatsapp Business"
+
+#: core/views/bookingpress_whatsapp_settings.php:45
+#@ bookingpress-whatsapp
+msgid "Business Account ID"
+msgstr "معرف حساب الأعمال"
+
+#: core/views/bookingpress_whatsapp_settings.php:49
+#@ bookingpress-whatsapp
+msgid "Enter Whatsapp Business Account ID"
+msgstr "أدخل معرف حساب Whatsapp Business"
+
+#: core/views/bookingpress_whatsapp_settings.php:55
+#@ bookingpress-whatsapp
+msgid "Permanent Access Token"
+msgstr "رمز الوصول الدائم"
+
+#: core/views/bookingpress_whatsapp_settings.php:59
+#@ bookingpress-whatsapp
+msgid "Enter Pemanent Access Token"
+msgstr "أدخل رمز الوصول الدائم"
+
+#: core/views/bookingpress_whatsapp_settings.php:65
+#@ bookingpress-whatsapp
+msgid "Message Type"
+msgstr "نوع الرسالة"
+
+#: core/views/bookingpress_whatsapp_settings.php:69
+#@ bookingpress-whatsapp
+msgid "WhatsApp Template"
+msgstr "قالب الواتساب"
+
+#: core/views/bookingpress_whatsapp_settings.php:70
+#@ bookingpress-whatsapp
+msgid "Free Form Message"
+msgstr "رسالة نموذجية مجانية"
+
+#: core/views/bookingpress_whatsapp_settings.php:97
+#: core/views/bookingpress_whatsapp_settings.php:102
+#@ bookingpress-whatsapp
+msgid "Service ID"
+msgstr "معرف الخدمة"
+
+#: core/classes/class.bookingpress-whatsapp.php:1431
+#: core/classes/class.bookingpress-whatsapp.php:2094
+#@ bookingpress-whatsapp
+msgid "Please enter service id"
+msgstr "الرجاء إدخال معرف الخدمة"
+
+#: core/classes/class.bookingpress-whatsapp.php:1936
+#: core/classes/class.bookingpress-whatsapp.php:2000
+#@ bookingpress-whatsapp
+msgid "Success"
+msgstr "نجاح"
+
+#: core/classes/class.bookingpress-whatsapp.php:1938
+#: core/classes/class.bookingpress-whatsapp.php:2002
+#@ bookingpress-whatsapp
+msgid "Template list has been refreshed"
+msgstr "تم تحديث قائمة القوالب"
+
+#: core/classes/class.bookingpress-whatsapp.php:2409
+#@ bookingpress-whatsapp
+msgid "Refresh Template List"
+msgstr "تحديث قائمة القوالب"
+
+#: core/classes/class.bookingpress-whatsapp.php:2440
+#@ bookingpress-whatsapp
+msgid "Placeholder for variable"
+msgstr "العنصر النائب للمتغير"
+
+#. translators: plugin header field 'Version'
+#: bookingpress-whatsapp.php:0
+#@ bookingpress-whatsapp
+msgid "2.2"
+msgstr "2.2"
+

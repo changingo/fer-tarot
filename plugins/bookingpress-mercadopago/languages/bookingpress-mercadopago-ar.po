@@ -1,0 +1,287 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BookingPress - Mercado Pago Payment Gateway Addon v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-04-16 09:05:35+0000\n"
+"Last-Translator: admin <testrepute123@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Arabic\n"
+"X-Poedit-Country: SAUDI ARABIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#. translators: plugin header field 'Name'
+#: bookingpress-mercadopago.php:0
+#@ bookingpress-mercadopago
+msgid "BookingPress - Mercado Pago Payment Gateway Addon"
+msgstr "BookingPress - Mercado Pago Payment Gateway Addon"
+
+#. translators: plugin header field 'PluginURI'
+#. translators: plugin header field 'AuthorURI'
+#: bookingpress-mercadopago.php:0
+#@ bookingpress-mercadopago
+msgid "https://www.bookingpressplugin.com/"
+msgstr "https://www.bookingpressplugin.com/"
+
+#. translators: plugin header field 'Description'
+#: bookingpress-mercadopago.php:0
+#@ bookingpress-mercadopago
+msgid "Extension for BookingPress plugin to accept payments using Mercado pago Payment Gateway."
+msgstr "ملحق للمكون الإضافي BookingPress لقبول المدفوعات باستخدام بوابة الدفع Mercado pago."
+
+#. translators: plugin header field 'Author'
+#: bookingpress-mercadopago.php:0
+#@ bookingpress-mercadopago
+msgid "Repute InfoSystems"
+msgstr "Repute InfoSystems"
+
+#. translators: plugin header field 'Version'
+#: bookingpress-mercadopago.php:0
+#@ bookingpress-mercadopago
+msgid "1.0"
+msgstr "1.0"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:66
+#@ bookingpress-mercadopago
+msgid "BookingPress Package"
+msgstr "باقة بوكينج بريس"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:128
+#: core/classes/class.bookingpress-mercadopago-payment.php:240
+#: core/classes/class.bookingpress-mercadopago-payment.php:358
+#@ bookingpress-mercadopago
+msgid "Error returned from payment gateway "
+msgstr "تم إرجاع خطأ من بوابة الدفع"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:129
+#: core/classes/class.bookingpress-mercadopago-payment.php:157
+#: core/classes/class.bookingpress-mercadopago-payment.php:241
+#: core/classes/class.bookingpress-mercadopago-payment.php:267
+#: core/classes/class.bookingpress-mercadopago-payment.php:359
+#: core/classes/class.bookingpress-mercadopago-payment.php:387
+#@ bookingpress-mercadopago
+msgid "Something went wrong while processing with payment"
+msgstr "حدث خطأ ما أثناء معالجة الدفع"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:131
+#: core/classes/class.bookingpress-mercadopago-payment.php:156
+#: core/classes/class.bookingpress-mercadopago-payment.php:243
+#: core/classes/class.bookingpress-mercadopago-payment.php:266
+#: core/classes/class.bookingpress-mercadopago-payment.php:361
+#: core/classes/class.bookingpress-mercadopago-payment.php:386
+#: core/classes/class.bookingpress-mercadopago-payment.php:538
+#: core/classes/class.bookingpress-mercadopago-payment.php:544
+#: core/classes/class.bookingpress_pro_plugin_updater.php:520
+#@ bookingpress-mercadopago
+msgid "Error"
+msgstr "خطأ"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:296
+#: core/classes/class.bookingpress-mercadopago-payment.php:306
+#@ bookingpress-mercadopago
+msgid "Appointment Booking"
+msgstr "حجز موعد"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:532
+#@ bookingpress-mercadopago
+msgid "Success"
+msgstr "نجاح"
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:539
+#@ bookingpress-mercadopago
+msgid "Sorry! refund could not be processed"
+msgstr "آسف! لا يمكن معالجة استرداد الأموال"
+
+#: core/classes/class.bookingpress-mercadopago.php:182
+#: core/classes/class.bookingpress-mercadopago.php:189
+#: core/classes/class.bookingpress-mercadopago.php:205
+#@ bookingpress-mercadopago
+msgid "Mercago Pago payment title"
+msgstr "عنوان الدفع Mercago Pago"
+
+#: core/classes/class.bookingpress-mercadopago.php:212
+#: core/classes/class.bookingpress-mercadopago.php:259
+#: core/classes/class.bookingpress-mercadopago.php:329
+#@ bookingpress-mercadopago
+msgid "Mercado Pago payment title"
+msgstr "عنوان الدفع في ميركادو باجو"
+
+#: core/classes/class.bookingpress-mercadopago.php:322
+#: core/classes/class.bookingpress-mercadopago.php:388
+#: core/classes/class.bookingpress-mercadopago.php:593
+#: core/classes/class.bookingpress-mercadopago.php:603
+#@ bookingpress-mercadopago
+msgid "Mercado Pago"
+msgstr "ميركادو باجو"
+
+#: core/classes/class.bookingpress-mercadopago.php:360
+#@ bookingpress-mercadopago
+msgid "Please enter the public key"
+msgstr "الرجاء إدخال المفتاح العام"
+
+#: core/classes/class.bookingpress-mercadopago.php:367
+#@ bookingpress-mercadopago
+msgid "Please enter the access token"
+msgstr "الرجاء إدخال رمز الوصول"
+
+#: core/classes/class.bookingpress-mercadopago.php:374
+#@ bookingpress-mercadopago
+msgid "Please enter the secret signature"
+msgstr "الرجاء إدخال التوقيع السري"
+
+#: core/classes/class.bookingpress-mercadopago.php:399
+#@ bookingpress-mercadopago
+msgid "Payment Mode"
+msgstr "طريقة الدفع"
+
+#: core/classes/class.bookingpress-mercadopago.php:408
+#@ bookingpress-mercadopago
+msgid "Public Key"
+msgstr "المفتاح العمومي"
+
+#: core/classes/class.bookingpress-mercadopago.php:412
+#@ bookingpress-mercadopago
+msgid "Enter Public Key"
+msgstr "أدخل المفتاح العام"
+
+#: core/classes/class.bookingpress-mercadopago.php:418
+#@ bookingpress-mercadopago
+msgid "Access Token"
+msgstr "رمز وصول"
+
+#: core/classes/class.bookingpress-mercadopago.php:422
+#@ bookingpress-mercadopago
+msgid "Enter Access Token"
+msgstr "أدخل رمز الوصول"
+
+#: core/classes/class.bookingpress-mercadopago.php:428
+#@ bookingpress-mercadopago
+msgid "Secret Signature"
+msgstr "التوقيع السري"
+
+#: core/classes/class.bookingpress-mercadopago.php:432
+#@ bookingpress-mercadopago
+msgid "Enter Secret Signature"
+msgstr "أدخل التوقيع السري"
+
+#: core/classes/class.bookingpress-mercadopago.php:438
+#@ bookingpress-mercadopago
+msgid "Webhook URL"
+msgstr "عنوان URL للويب هوك"
+
+#: core/classes/class.bookingpress-mercadopago.php:494
+#@ bookingpress-mercadopago
+msgid "Bookingpress - Mercado pago plugin requires Bookingpress Premium Plugin installed and active."
+msgstr "Bookingpress - يتطلب المكون الإضافي Mercado pago تثبيت وتنشيط المكون الإضافي Bookingpress Premium."
+
+#: core/classes/class.bookingpress-mercadopago-payment.php:193
+#@ bookingpress-mercadopago
+msgid "BookingPress Gift Card"
+msgstr "BookingPress كرت هدية"
+
+#: core/classes/class.bookingpress-mercadopago.php:83
+#: core/classes/class.bookingpress-mercadopago.php:97
+#: core/classes/class.bookingpress-mercadopago.php:129
+#: core/classes/class.bookingpress-mercadopago.php:141
+#: core/classes/class.bookingpress-mercadopago.php:569
+#@ bookingpress-mercadopago
+msgid "Please activate license of BookingPress premium plugin to use BookingPress Mercadopago Add-on"
+msgstr "يرجى تفعيل ترخيص المكون الإضافي المميز لـ BookingPress لاستخدام الوظيفة الإضافية لـ BookingPress Mercadopago"
+
+#. translators: 1. Redirect URL link starts 2.Redirect URL link ends
+#. translators: 1. Redirect URL link starts. 2. Redirect URL Link ends
+#: core/classes/class.bookingpress-mercadopago.php:85
+#: core/classes/class.bookingpress-mercadopago.php:99
+#: core/classes/class.bookingpress-mercadopago.php:131
+#: core/classes/class.bookingpress-mercadopago.php:143
+#: core/classes/class.bookingpress-mercadopago.php:571
+#, php-format
+#@ bookingpress-mercadopago
+msgid "Please %s Click Here %s to Continue"
+msgstr "من فضلك %s انقر هنا %s للمتابعة"
+
+#: core/classes/class.bookingpress-mercadopago.php:525
+#: core/classes/class.bookingpress-mercadopago.php:556
+#@ bookingpress-mercadopago
+msgid "An error occurred, please try again."
+msgstr "حدث خطأ، يرجى المحاولة مرة أخرى."
+
+#. translators: the expiry date.
+#: core/classes/class.bookingpress-mercadopago.php:533
+#, php-format
+#@ bookingpress-mercadopago
+msgid "Your license key expired on %s."
+msgstr "انتهت صلاحية مفتاح الترخيص الخاص بك في %s."
+
+#: core/classes/class.bookingpress-mercadopago.php:537
+#@ bookingpress-mercadopago
+msgid "Your license key has been disabled."
+msgstr "لقد تم تعطيل مفتاح الترخيص الخاص بك."
+
+#: core/classes/class.bookingpress-mercadopago.php:540
+#@ bookingpress-mercadopago
+msgid "Invalid license."
+msgstr "ترخيص غير صالح."
+
+#: core/classes/class.bookingpress-mercadopago.php:544
+#@ bookingpress-mercadopago
+msgid "Your license is not active for this URL."
+msgstr "ترخيصك غير نشط لعنوان URL هذا."
+
+#: core/classes/class.bookingpress-mercadopago.php:547
+#: core/classes/class.bookingpress-mercadopago.php:550
+#@ bookingpress-mercadopago
+msgid "This appears to be an invalid license key for your selected package."
+msgstr "يبدو أن هذا مفتاح ترخيص غير صالح للحزمة التي حددتها."
+
+#: core/classes/class.bookingpress-mercadopago.php:553
+#@ bookingpress-mercadopago
+msgid "Your license key has reached its activation limit."
+msgstr "لقد وصل مفتاح الترخيص الخاص بك إلى حد التنشيط الخاص به."
+
+#. translators: the plugin name.
+#: core/classes/class.bookingpress_pro_plugin_updater.php:257
+#, php-format
+#@ bookingpress-mercadopago
+msgid "There is a new version of %1$s available."
+msgstr "هناك نسخة جديدة متاحة من %s."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:263
+#@ bookingpress-mercadopago
+msgid "Contact your network administrator to install the update."
+msgstr "اتصل بمسؤول الشبكة لتثبيت التحديث."
+
+#. translators: 1. opening anchor tag, do not translate 2. the new plugin version 3. closing anchor tag, do not translate.
+#: core/classes/class.bookingpress_pro_plugin_updater.php:268
+#, php-format
+#@ bookingpress-mercadopago
+msgid "%1$sView version %2$s details%3$s."
+msgstr "%s عرض الإصدار %s تفاصيل %s."
+
+#. translators: 1. link for changelog 2. version name 3. opening anchor tag for update link 4. closing tag for update link
+#: core/classes/class.bookingpress_pro_plugin_updater.php:277
+#, php-format
+#@ bookingpress-mercadopago
+msgid "%1$sView version %2$s details%3$s or %4$supdate now%5$s."
+msgstr "%s عرض الإصدار %s تفاصيل %s أو %s تحديث الان %s."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:288
+#@ bookingpress-mercadopago
+msgid "Update now."
+msgstr "تحديث الان."
+
+#: core/classes/class.bookingpress_pro_plugin_updater.php:520
+#@ bookingpress-mercadopago
+msgid "You do not have permission to install plugin updates"
+msgstr "ليس لديك إذن لتثبيت تحديثات البرنامج المساعد"
+

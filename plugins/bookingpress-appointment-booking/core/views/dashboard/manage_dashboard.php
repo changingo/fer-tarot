@@ -32,7 +32,7 @@
                         <h3 v-text="summary_data.pending_appoint"></h3>
                         <p><?php esc_html_e('Pending Appointments', 'bookingpress-appointment-booking'); ?></p>
                     </div>
-                    <div class="bpa-dash-summary-item bpa-dash-summary-item__royal-blue" @click="bookingpress_dashboard_redirect_filter(currently_selected_filter,'payment')">
+                    <div class="bpa-dash-summary-item bpa-dash-summary-item__royal-blue" @click="bookingpress_dashboard_redirect_filter(currently_selected_filter,'payment', '1')">
                         <h3 v-text="summary_data.total_revenue"></h3>
                         <p><?php esc_html_e('Revenue', 'bookingpress-appointment-booking'); ?></p>
                     </div>

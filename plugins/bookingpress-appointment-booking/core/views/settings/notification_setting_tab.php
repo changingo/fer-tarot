@@ -24,13 +24,26 @@
         <div class="bpa-gs--tabs-pb__content-body">            
             <el-form :rules="rules_notification" ref="notification_setting_form" :model="notification_setting_form" @submit.native.prevent>
                 <div class="bpa-gs__cb--item">
+                    <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row" v-if="'wp_mail' == notification_setting_form.selected_mail_service && true == bpa_display_wpmail_notice">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <div class="bpa-pg-warning-belt-box bpa-warning">
+                                <p class="bpa-wbb__desc">
+                                    <span class="material-icons-round bpa-wbb__desc-icon">warning</span>
+                                    <span class="bpa-wbb__desc-content"><?php echo esc_html__('It seems that the email upon booking could not be sent. Your site may not be correctly configured to send emails. Please check the following error message','bookingpress-appointment-booking'); //phpcs:ignore ?></span>
+                                </p>
+                                <ul class="bpa-pg-warning-lists">
+                                    <li v-for="error_msg in bpa_wpmail_failed_msg_data">{{error_msg}}</li>
+                                </ul>
+                            </div>
+                        </el-col>
+                    </el-row> 
                     <el-row type="flex" class="bpa-gs--tabs-pb__cb-item-row">
                         <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="8" class="bpa-gs__cb-item-left">
                             <h4><?php esc_html_e('Email delivery method', 'bookingpress-appointment-booking'); ?></h4>                                        
                         </el-col>
-                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16">                                                        
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16">
+                            <el-radio v-model="notification_setting_form.selected_mail_service" label="wp_mail"><?php esc_html_e('WordPress default', 'bookingpress-appointment-booking'); ?></el-radio>
                             <el-radio v-model="notification_setting_form.selected_mail_service" label="php_mail"><?php esc_html_e('PHP mail() function', 'bookingpress-appointment-booking'); ?></el-radio>
-                            <el-radio v-model="notification_setting_form.selected_mail_service" label="wp_mail"><?php esc_html_e('Wordpress default', 'bookingpress-appointment-booking'); ?></el-radio>
                             <el-radio v-model="notification_setting_form.selected_mail_service" label="smtp"><?php esc_html_e('SMTP method', 'bookingpress-appointment-booking'); ?></el-radio>
                             <el-radio v-model="notification_setting_form.selected_mail_service" label="Google_Gmail"><?php esc_html_e('Google/Gmail', 'bookingpress-appointment-booking'); ?></el-radio>
                         </el-col>
@@ -234,6 +247,58 @@
                 </el-form>
             </div>
             <!-- for gmail notification test email end-->
+            <!-- for WordPress notification test email start-->
+            <div class="bpa-ns--sub-module__card" v-if="notification_setting_form.selected_mail_service == 'wp_mail'">
+                <el-form :rules="rules_wpmail_test_mail" ref="notification_wpmail_test_mail_form" :model="notification_wpmail_test_mail_form" @submit.native.prevent>                    
+                    <h4><?php esc_html_e('Send test email notification', 'bookingpress-appointment-booking'); ?></h4>
+                    <el-row type="flex" class="bpa-ns--sub-module__card--row">    
+                        <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="8" class="bpa-gs__cb-item-left --bpa-is-not-input-control">
+                            <h4> <?php esc_html_e('To', 'bookingpress-appointment-booking'); ?></h4>
+                        </el-col>
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16">                            
+                            <el-form-item prop="wpmail_test_receiver_email">
+                                <el-input class="bpa-form-control" type="email" v-model="notification_wpmail_test_mail_form.wpmail_test_receiver_email"></el-input>    
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row type="flex" class="bpa-ns--sub-module__card--row">    
+                        <el-col :xs="12" :sm="12" :md="12" :lg="8" :xl="8" class="bpa-gs__cb-item-left --bpa-is-not-input-control">
+                            <h4><?php esc_html_e('Message', 'bookingpress-appointment-booking'); ?></h4>
+                        </el-col>
+                        <el-col :xs="12" :sm="12" :md="12" :lg="16" :xl="16">
+                            <el-form-item prop="wpmail_test_msg">    
+                                <el-input class="bpa-form-control" type="textarea" v-model="notification_wpmail_test_mail_form.wpmail_test_msg"></el-input>    
+                            </el-form-item>
+                        </el-col>
+                    </el-row>
+                    <el-row type="flex">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <div class="bpa-ns--sub-module__card--row --is-button">
+                                <el-button class="bpa-btn bpa-btn--primary bpa-btn__medium" :class="(is_display_send_test_wpmail_mail_loader == '1') ? 'bpa-btn--is-loader' : ''" :disabled="is_disable_send_test_wpmail_email_btn" @click="bookingpress_send_test_wpmail_email" >                    
+                                  <span class="bpa-btn__label"><?php esc_html_e('Send Test Email', 'bookingpress-appointment-booking'); ?></span>
+                                  <div class="bpa-btn--loader__circles">                    
+                                      <div></div>
+                                      <div></div>
+                                      <div></div>
+                                  </div>
+                                </el-button>    
+                            </div>
+                        </el-col>
+                    </el-row>                    
+                    <el-row type="flex" v-if="notification_setting_form.selected_mail_service == 'wp_mail'">                            
+                        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                            <div class="bpa-toast-notification --error" :class="succesfully_send_test_wpmail_email == 1 ? '--success' : ''" v-if="succesfully_send_test_wpmail_email == 1 || error_send_test_wpmail_email == 1">
+                                <label class="bpa-text--primary-color" v-if="succesfully_send_test_wpmail_email == 1">
+                                    <?php esc_html_e('Test Email Sent Successfully', 'bookingpress-appointment-booking'); ?>
+                                </label>
+                                <label class="bpa-text--danger-color" v-if="error_send_test_wpmail_email == 1" > {{error_text_of_test_wpmail_email}}
+                                </label>
+                            </div>                            
+                        </el-col>
+                    </el-row>                                    
+                </el-form>
+            </div>
+            <!-- for WordPress notification test email end-->
 
             <div class="bpa-ns--sub-module__card" v-if="notification_setting_form.selected_mail_service == 'smtp'">
                 <el-form :rules="rules_smtp_test_mail" ref="notification_smtp_test_mail_form" :model="notification_smtp_test_mail_form" @submit.native.prevent>                    

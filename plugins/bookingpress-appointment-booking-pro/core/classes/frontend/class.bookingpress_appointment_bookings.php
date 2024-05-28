@@ -9355,14 +9355,6 @@ if ( ! class_exists( 'bookingpress_pro_appointment_bookings' )  && class_exists(
 			$bookingpress_dynamic_add_params_for_timeslot_request .= 'postData.bookingpress_timezone = vm.bookingpress_timezone;';
 			$bookingpress_dynamic_add_params_for_timeslot_request .= 'postData.bookingpress_selected_staffmember = vm.appointment_step_form_data.bookingpress_selected_staff_member_details;';
 
-			$bookingpress_dynamic_add_params_for_timeslot_request .= 'if( vm.appointment_step_form_data.selected_service_duration_unit == "d" ){
-				let elem = document.querySelector(".bpa-front-module--date-and-time.__sm");
-				let computed_style = getComputedStyle( elem );
-				
-				if( "none" != computed_style.display && "undefined" != typeof postData && "bookingpress_front_get_timings" == postData.action && "datetime" == vm.bookingpress_current_tab ){
-					vm.bookingpress_step_navigation(vm.bookingpress_sidebar_step_data[vm.bookingpress_current_tab].next_tab_name, vm.bookingpress_sidebar_step_data[vm.bookingpress_current_tab].next_tab_name, vm.bookingpress_sidebar_step_data[vm.bookingpress_current_tab].previous_tab_name)
-				}
-			}';
 
 			return $bookingpress_dynamic_add_params_for_timeslot_request;
 		}
@@ -11139,7 +11131,7 @@ if ( ! class_exists( 'bookingpress_pro_appointment_bookings' )  && class_exists(
 					if($bookingpress_appointment_status ==  '1' ) {               
                         $bookingpress_pro_payment_gateways->bookingpress_confirm_booking($entry_id, array(), '1', '', '', 1, $bookingpress_is_cart);
                         $bookingpress_redirect_url = $bookingpress_return_data['approved_appointment_url'];
-                    } else {                    
+                    } else {
                         $bookingpress_pro_payment_gateways->bookingpress_confirm_booking($entry_id, array(), '2', '', '', 1, $bookingpress_is_cart);
                         $bookingpress_redirect_url = $bookingpress_return_data['pending_appointment_url'];
                     }

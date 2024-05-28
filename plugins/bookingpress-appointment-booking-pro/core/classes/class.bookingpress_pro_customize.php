@@ -2126,7 +2126,7 @@ if ( ! class_exists( 'bookingpress_pro_customize' ) ) {
 						
 					
 
-					if (!empty($db_inner_fields) && ('2_col' != $iv['field_type'] && '3_col' != $iv['field_type'] && '4_col' != $iv['field_type'])) {
+					if (!empty($db_inner_fields) && ( !empty( $iv['field_type'] ) && '2_col' != $iv['field_type'] && '3_col' != $iv['field_type'] && '4_col' != $iv['field_type'])) {
 
 						
 

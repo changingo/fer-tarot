@@ -249,22 +249,22 @@ if (! class_exists('bookingpress_customers') ) {
                     if ($bookingpress_allow_customer_create == 'false' || $is_front == 2 ) {
                         // If user create switch turned off then this condition executes.
                         $customer_details = array(
-                        'bookingpress_wpuser_id'      => $bookingpress_wpuser_id,
-                        'bookingpress_user_login'     => $bookingpress_customer_email,
-                        'bookingpress_user_status'    => 1,
-                        'bookingpress_user_type'      => 2,
-                        'bookingpress_user_email'     => $bookingpress_customer_email,
-                        'bookingpress_user_name'      => $bookingpress_user_name,
-                        'bookingpress_customer_full_name'  => $bookingpress_customer_name,
-                        'bookingpress_user_firstname' => $bookingpress_customer_firstname,
-                        'bookingpress_user_lastname'  => $bookingpress_customer_lastname,
-                        'bookingpress_user_phone'     => $bookingpress_customer_phone,
-                        'bookingpress_user_country_phone' => $bookingpress_customer_country,
-                        'bookingpress_user_country_dial_code' => $bookingpress_customer_dial_code,
-                        'bookingpress_user_timezone'  => $bookingpress_customer_timezone,
-                        'bookingpress_user_created'   => current_time('mysql'),
-                        'bookingpress_created_at'     => $is_front,
-                        'bookingpress_created_by'     => ( is_user_logged_in() ) ? get_current_user_id() : '',
+                            'bookingpress_wpuser_id'      => $bookingpress_wpuser_id,
+                            'bookingpress_user_login'     => $bookingpress_customer_email,
+                            'bookingpress_user_status'    => 1,
+                            'bookingpress_user_type'      => 2,
+                            'bookingpress_user_email'     => $bookingpress_customer_email,
+                            'bookingpress_user_name'      => $bookingpress_user_name,
+                            'bookingpress_customer_full_name'  => $bookingpress_customer_name,
+                            'bookingpress_user_firstname' => $bookingpress_customer_firstname,
+                            'bookingpress_user_lastname'  => $bookingpress_customer_lastname,
+                            'bookingpress_user_phone'     => $bookingpress_customer_phone,
+                            'bookingpress_user_country_phone' => $bookingpress_customer_country,
+                            'bookingpress_user_country_dial_code' => $bookingpress_customer_dial_code,
+                            'bookingpress_user_timezone'  => $bookingpress_customer_timezone,
+                            'bookingpress_user_created'   => current_time('mysql'),
+                            'bookingpress_created_at'     => $is_front,
+                            'bookingpress_created_by'     => ( is_user_logged_in() ) ? get_current_user_id() : '',
                         );
 
                         $wpdb->insert($tbl_bookingpress_customers, $customer_details);
@@ -467,9 +467,9 @@ if (! class_exists('bookingpress_customers') ) {
             }
 
             return array(
-            'bookingpress_customer_id' => $bookingpress_customer_id,
-            'bookingpress_wpuser_id'   => $bookingpress_wpuser_id,
-            'bookingpress_is_customer_create' => $bookingpress_is_customer_create,
+                'bookingpress_customer_id' => $bookingpress_customer_id,
+                'bookingpress_wpuser_id'   => $bookingpress_wpuser_id,
+                'bookingpress_is_customer_create' => $bookingpress_is_customer_create,
             );
         }
 

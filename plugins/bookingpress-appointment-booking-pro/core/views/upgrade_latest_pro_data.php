@@ -761,7 +761,7 @@ if( version_compare( $bookingpress_pro_old_version, '3.7', '<') ){
 
 
 $BookingPressPro->update_bookingpress_lite();
-$bookingpress_pro_new_version = '3.7';
+$bookingpress_pro_new_version = '3.7.1';
 update_option('bookingpress_pro_new_version_installed', 1);
 update_option('bookingpress_pro_version', $bookingpress_pro_new_version);
 update_option('bookingpress_pro_updated_date_' . $bookingpress_pro_new_version, current_time('mysql'));

@@ -275,7 +275,7 @@ if ( ! class_exists( 'bookingpress_pro_payment_gateways' ) ) {
 					'bookingpress_order_id'                       => 0,
 					'bookingpress_customer_name'                  => $customer_full_name,
 					'bookingpress_username'                       => $customer_username,
-					'bookingpress_password'                       => wp_hash_password( $customer_password ),
+					'bookingpress_password'                       => !empty( $customer_password ) ? wp_hash_password( $customer_password ) : '',
 					'bookingpress_customer_phone'                 => $customer_phone,
 					'bookingpress_customer_firstname'             => $customer_firstname,
 					'bookingpress_customer_lastname'              => $customer_lastname,

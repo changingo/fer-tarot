@@ -597,7 +597,7 @@ if ( ! class_exists( 'bookingpress_paypal' ) ) {
 											bkp_wpnonce_pre_fetch = bkp_wpnonce_pre_fetch.value;
 										}
 
-										await app.bookingpress_verify_total_payment_amount();
+										await app.bookingpress_verify_total_payment_amount_v2();
 
 										var final_order_id = "";	
 										var postData = { action: "bookingpress_paypal_booking_validate", _wpnonce: bkp_wpnonce_pre_fetch,appointment_data:JSON.stringify( app.appointment_step_form_data)}

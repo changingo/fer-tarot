@@ -75,7 +75,7 @@ $bookingpress_user_type = array(
 
 /* Defining BookingPress Plugin Version */
 global $bookingpress_pro_version;
-$bookingpress_pro_version = '3.7';
+$bookingpress_pro_version = '3.7.1';
 define( 'BOOKINGPRESS_PRO_VERSION', $bookingpress_pro_version );
 
 global $bookingpress_ajaxurl;

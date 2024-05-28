@@ -215,13 +215,13 @@ $bookingpress_summary_step_service_extras_label = stripslashes_deep( $bookingpre
 																		<div class="bpa-sei__body-desc">{{ service_extra_details.bookingpress_service_description }}</div>
 																	</div>
 																</div>
-																<div class="bpa-service-extra__load-more" v-if="appointment_step_form_data.is_extra_service_exists == '1' && service_details.extra_service_counter != 0 && service_details.extra_service_counter != 1 && service_details.extra_service_counter != 2 && is_load_more_extras == '0'">
+																<div class="bpa-service-extra__load-more" v-if="appointment_step_form_data.is_extra_service_exists == '1' && 2 < Object.keys( service_details.service_extras ).length && is_load_more_extras == '0'">
 																	<el-link class="bpa-se__lm--btn" @click="bookingpress_load_more_extras">
 																		<?php esc_html_e( 'Load More', 'bookingpress-appointment-booking' ); ?>																		
 																		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M24 24H0V0h24v24z" fill="none" opacity=".87"/><path d="M15.88 9.29L12 13.17 8.12 9.29c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"/></svg>
 																	</el-link>
 																</div>
-																<div class="bpa-service-extra__load-more" v-if="appointment_step_form_data.is_extra_service_exists == '1' && service_details.extra_service_counter != 0 && service_details.extra_service_counter != 1 && service_details.extra_service_counter != 2 && is_load_more_extras == '1'">
+																<div class="bpa-service-extra__load-more" v-if="appointment_step_form_data.is_extra_service_exists == '1' && 2 < Object.keys( service_details.service_extras ).length && is_load_more_extras == '1'">
 																	<el-link class="bpa-se__lm--btn" @click="bookingpress_load_more_extras">
 																		<?php esc_html_e( 'Load Less', 'bookingpress-appointment-booking' ); ?>																		
 																		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.29 8.71L6.7 13.3c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 10.83l3.88 3.88c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.7 8.71c-.38-.39-1.02-.39-1.41 0z"/></svg>
@@ -1780,12 +1780,12 @@ $bookingpress_summary_step_service_extras_label = stripslashes_deep( $bookingpre
 											<el-col :xs="24" :sm="24" :md="24" :lg="20" :xl="20">
 												<el-row :gutter="12">
 													<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-														<el-select class="bpa-front-form-control" popper-class="bpa-custom-dropdown" :placeholder="expire_month_text" v-model="appointment_step_form_data.expire_month">
+														<el-select class="bpa-front-form-control" popper-class="bpa-custom-dropdown bpa-card-details" :placeholder="expire_month_text" v-model="appointment_step_form_data.expire_month">
 															<el-option v-for="item in months" :key="item.month" :label="item.month" :value="item.month"></el-option>
 														</el-select>
 													</el-col>
 													<el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-														<el-select class="bpa-front-form-control" popper-class="bpa-custom-dropdown" :placeholder="expire_year_text"  v-model="appointment_step_form_data.expire_year">
+														<el-select class="bpa-front-form-control" popper-class="bpa-custom-dropdown bpa-card-details" :placeholder="expire_year_text"  v-model="appointment_step_form_data.expire_year">
 															<el-option v-for="item in years" :key="item.year" :label="item.year" :value="item.year"></el-option>
 														</el-select>
 													</el-col>

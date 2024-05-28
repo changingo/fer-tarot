@@ -1234,117 +1234,125 @@ if ( ! class_exists( 'bookingpress_pro_timesheet' ) ) {
 			save_break_data(){
 				const vm = this					
 				var is_edit = 0;
-				vm.$refs['break_timings'].validate((valid) => {                        
-					if(valid) {    
-						var update = 0;             
-						if(vm.break_timings.start_time > vm.break_timings.end_time) {
-							vm.$notify({
-								title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
-								message: '<?php esc_html_e('Start time is not greater than End time', 'bookingpress-appointment-booking'); ?>',
-								type: 'error',
-								customClass: 'error_notification',
-								duration:<?php echo intval($bookingpress_notification_duration); ?>,
-							});
-						}else if(vm.break_timings.start_time == vm.break_timings.end_time) {                    
-							vm.$notify({
-								title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
-								message: '<?php esc_html_e('Start time & End time are not same', 'bookingpress-appointment-booking'); ?>',
-								type: 'error',
-								customClass: 'error_notification',
-								duration:<?php echo intval($bookingpress_notification_duration); ?>,
-							});
-						} else if(vm.selected_break_timings[vm.break_selected_day] != '' ) {                            
-							vm.selected_break_timings[vm.break_selected_day].forEach(function(currentValue, index, arr) {
-								if(is_edit == 0) {
-									if(vm.workhours_timings[vm.break_selected_day].start_time > vm.break_timings.start_time || vm.workhours_timings[vm.break_selected_day].end_time < vm.break_timings.end_time) {    
-										is_edit = 1;
-										vm.$notify({
-											title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
-											message: '<?php esc_html_e('Please enter valid time for break', 'bookingpress-appointment-booking'); ?>',
-											type: 'error',
-											customClass: 'error_notification',
-											duration:<?php echo intval($bookingpress_notification_duration); ?>,
-										});                
-									} else if(currentValue['start_time'] == vm.break_timings.start_time && currentValue['end_time'] == 
-										vm.break_timings.end_time && ( vm.break_timings.edit_index != index || vm.is_edit_break == 0 )) {                                        
-										is_edit = 1;
-										vm.$notify({
-											title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
-											message: '<?php esc_html_e('Break time already added', 'bookingpress-appointment-booking'); ?>',
-											type: 'error',
-											customClass: 'error_notification',
-											duration:<?php echo intval($bookingpress_notification_duration); ?>,
-										});
-									}else if(((currentValue['start_time'] < vm.break_timings.start_time  && currentValue['end_time'] > vm.break_timings.start_time) || (currentValue['start_time'] < vm.break_timings.end_time  && currentValue['end_time'] > vm.break_timings.end_time) || (currentValue['start_time'] > vm.break_timings.start_time && currentValue['end_time'] <= vm.break_timings.end_time) || (currentValue['start_time'] >= vm.break_timings.start_time && currentValue['end_time'] < vm.break_timings.end_time)) && (vm.break_timings.edit_index != index || vm.is_edit_break == 0) )  {                                       
-										is_edit = 1;
-										vm.$notify({
-											title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
-											message: '<?php esc_html_e('Break time already added', 'bookingpress-appointment-booking'); ?>',
-											type: 'error',
-											customClass: 'error_notification',
-											duration:<?php echo intval($bookingpress_notification_duration); ?>,
-										});                
-									}                                                
-								}    
-							});
-							if(is_edit == 0) {
-								var formatted_start_time = formatted_end_time = '';                                 
-								vm.default_break_timings.forEach(function(currentValue, index, arr) {
-									if(currentValue.start_time == vm.break_timings.start_time) {
-										formatted_start_time = currentValue.formatted_start_time;
-									}
-									if(currentValue.end_time == vm.break_timings.end_time) {
-										formatted_end_time = currentValue.formatted_end_time;
-									}
-								});
-								if(vm.break_selected_day != '' && vm.is_edit_break != 0) {
-									vm.selected_break_timings[vm.break_selected_day].forEach(function(currentValue, index, arr) {
-										if(index == vm.break_timings.edit_index) {
-											currentValue.start_time = vm.break_timings.start_time;
-											currentValue.end_time = vm.break_timings.end_time;
-											currentValue.formatted_start_time = formatted_start_time;
-											currentValue.formatted_end_time = formatted_end_time;
-										}
-									});   
-								}else {
-									vm.selected_break_timings[vm.break_selected_day].push({ start_time: vm.break_timings.start_time, end_time: vm.break_timings.end_time,formatted_start_time:formatted_start_time,formatted_end_time:formatted_end_time });                                    
-								}
-								vm.close_add_break_model()
-							} 
-						}  else {
-							if(vm.workhours_timings[vm.break_selected_day].start_time > vm.break_timings.start_time || vm.workhours_timings[vm.break_selected_day].end_time < vm.break_timings.end_time) {
+				if( "undefined" == typeof vm.display_staff_working_hours || vm.display_staff_working_hours == true ){
+						vm.$refs['break_timings'].validate((valid) => {                        
+						if(valid) {    
+							var update = 0;             
+							if(vm.break_timings.start_time > vm.break_timings.end_time) {
 								vm.$notify({
 									title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
-									message: '<?php esc_html_e('Please enter valid time for break', 'bookingpress-appointment-booking'); ?>',
+									message: '<?php esc_html_e('Start time is not greater than End time', 'bookingpress-appointment-booking'); ?>',
 									type: 'error',
 									customClass: 'error_notification',
 									duration:<?php echo intval($bookingpress_notification_duration); ?>,
-								});                
-							}else{
-								var formatted_start_time = formatted_end_time = '';									
-								vm.default_break_timings.forEach(function(currentValue, index, arr) {
-									if(currentValue.start_time == vm.break_timings.start_time) {
-										formatted_start_time = currentValue.formatted_start_time;
+								});
+							}else if(vm.break_timings.start_time == vm.break_timings.end_time) {                    
+								vm.$notify({
+									title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
+									message: '<?php esc_html_e('Start time & End time are not same', 'bookingpress-appointment-booking'); ?>',
+									type: 'error',
+									customClass: 'error_notification',
+									duration:<?php echo intval($bookingpress_notification_duration); ?>,
+								});
+							} else if(vm.selected_break_timings[vm.break_selected_day] != '' ) {                            
+								vm.selected_break_timings[vm.break_selected_day].forEach(function(currentValue, index, arr) {
+									if(is_edit == 0) {
+										if(vm.workhours_timings[vm.break_selected_day].start_time > vm.break_timings.start_time || vm.workhours_timings[vm.break_selected_day].end_time < vm.break_timings.end_time) {    
+											is_edit = 1;
+											vm.$notify({
+												title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
+												message: '<?php esc_html_e('Please enter valid time for break', 'bookingpress-appointment-booking'); ?>',
+												type: 'error',
+												customClass: 'error_notification',
+												duration:<?php echo intval($bookingpress_notification_duration); ?>,
+											});                
+										} else if(currentValue['start_time'] == vm.break_timings.start_time && currentValue['end_time'] == 
+											vm.break_timings.end_time && ( vm.break_timings.edit_index != index || vm.is_edit_break == 0 )) {                                        
+											is_edit = 1;
+											vm.$notify({
+												title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
+												message: '<?php esc_html_e('Break time already added', 'bookingpress-appointment-booking'); ?>',
+												type: 'error',
+												customClass: 'error_notification',
+												duration:<?php echo intval($bookingpress_notification_duration); ?>,
+											});
+										}else if(((currentValue['start_time'] < vm.break_timings.start_time  && currentValue['end_time'] > vm.break_timings.start_time) || (currentValue['start_time'] < vm.break_timings.end_time  && currentValue['end_time'] > vm.break_timings.end_time) || (currentValue['start_time'] > vm.break_timings.start_time && currentValue['end_time'] <= vm.break_timings.end_time) || (currentValue['start_time'] >= vm.break_timings.start_time && currentValue['end_time'] < vm.break_timings.end_time)) && (vm.break_timings.edit_index != index || vm.is_edit_break == 0) )  {                                       
+											is_edit = 1;
+											vm.$notify({
+												title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
+												message: '<?php esc_html_e('Break time already added', 'bookingpress-appointment-booking'); ?>',
+												type: 'error',
+												customClass: 'error_notification',
+												duration:<?php echo intval($bookingpress_notification_duration); ?>,
+											});                
+										}                                                
+									}    
+								});
+								if(is_edit == 0) {
+									var formatted_start_time = formatted_end_time = '';                                 
+									vm.default_break_timings.forEach(function(currentValue, index, arr) {
+										if(currentValue.start_time == vm.break_timings.start_time) {
+											formatted_start_time = currentValue.formatted_start_time;
+										}
+										if(currentValue.end_time == vm.break_timings.end_time) {
+											formatted_end_time = currentValue.formatted_end_time;
+										}
+									});
+									if(vm.break_selected_day != '' && vm.is_edit_break != 0) {
+										vm.selected_break_timings[vm.break_selected_day].forEach(function(currentValue, index, arr) {
+											if(index == vm.break_timings.edit_index) {
+												currentValue.start_time = vm.break_timings.start_time;
+												currentValue.end_time = vm.break_timings.end_time;
+												currentValue.formatted_start_time = formatted_start_time;
+												currentValue.formatted_end_time = formatted_end_time;
+											}
+										});   
+									}else {
+										vm.selected_break_timings[vm.break_selected_day].push({ start_time: vm.break_timings.start_time, end_time: vm.break_timings.end_time,formatted_start_time:formatted_start_time,formatted_end_time:formatted_end_time });                                    
 									}
-									if(currentValue.end_time == vm.break_timings.end_time) {
-										formatted_end_time = currentValue.formatted_end_time;
-									}
-								});        
-								vm.selected_break_timings[vm.break_selected_day].push({ start_time: vm.break_timings.start_time, end_time: vm.break_timings.end_time,formatted_start_time:formatted_start_time,formatted_end_time:formatted_end_time });
-								vm.close_add_break_model();
+									vm.close_add_break_model()
+								} 
+							}  else {
+								if(vm.workhours_timings[vm.break_selected_day].start_time > vm.break_timings.start_time || vm.workhours_timings[vm.break_selected_day].end_time < vm.break_timings.end_time) {
+									vm.$notify({
+										title: '<?php esc_html_e('Error', 'bookingpress-appointment-booking'); ?>',
+										message: '<?php esc_html_e('Please enter valid time for break', 'bookingpress-appointment-booking'); ?>',
+										type: 'error',
+										customClass: 'error_notification',
+										duration:<?php echo intval($bookingpress_notification_duration); ?>,
+									});                
+								}else{
+									var formatted_start_time = formatted_end_time = '';									
+									vm.default_break_timings.forEach(function(currentValue, index, arr) {
+										if(currentValue.start_time == vm.break_timings.start_time) {
+											formatted_start_time = currentValue.formatted_start_time;
+										}
+										if(currentValue.end_time == vm.break_timings.end_time) {
+											formatted_end_time = currentValue.formatted_end_time;
+										}
+									});        
+									vm.selected_break_timings[vm.break_selected_day].push({ start_time: vm.break_timings.start_time, end_time: vm.break_timings.end_time,formatted_start_time:formatted_start_time,formatted_end_time:formatted_end_time });
+									vm.close_add_break_model();
+								}
 							}
 						}
-					}
-				})   				
+					})  
+
+				}else{
+					<?php do_action( 'bookingpress_save_external_staff_break_data' ); ?>
+				}
 			},
 			bookingpress_remove_workhour(start_time, end_time, break_day){
-				const vm = this		
-				vm.selected_break_timings[break_day].forEach(function(currentValue, index, arr){
-					if(currentValue.start_time == start_time && currentValue.end_time == end_time)
-					{
-						vm.selected_break_timings[break_day].splice(index, 1);
-					}
-				});					
+				const vm = this;		
+				if( "undefined" == typeof vm.display_staff_working_hours || vm.display_staff_working_hours == true ){
+					vm.selected_break_timings[break_day].forEach(function(currentValue, index, arr){
+						if(currentValue.start_time == start_time && currentValue.end_time == end_time){
+							vm.selected_break_timings[break_day].splice(index, 1);
+						}
+					});
+				}else{
+					<?php do_action('bookingpress_remove_workhours_break_times'); ?>
+				}					
 			},
 			saveStaffwhDetails(){
 				const vm2 = this

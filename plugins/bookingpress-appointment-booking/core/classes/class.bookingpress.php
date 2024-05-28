@@ -1900,7 +1900,7 @@ if (! class_exists('BookingPress') ) {
         {
             global $bookingpress_version;
             $bookingpress_old_version = get_option('bookingpress_version', true);
-            if (version_compare($bookingpress_old_version, '1.1.2', '<') ) {
+            if (version_compare($bookingpress_old_version, '1.1.3', '<') ) {
                 $bookingpress_load_upgrade_file = BOOKINGPRESS_VIEWS_DIR . '/upgrade_latest_data.php';
                 include $bookingpress_load_upgrade_file;
                 $this->bookingpress_send_anonymous_data_cron();
@@ -3647,7 +3647,9 @@ if (! class_exists('BookingPress') ) {
 
 			if( preg_match( $regex, $tag, $matches ) ){
 				$replaced = preg_replace( $regex, '$1<script$3id=$4bookingpress$5-$6$7 data-cfasync=$4false$7>$8', $tag );
-				$tag = $replaced;
+                if( null != $replaced ){
+                    $tag = $replaced;
+                }
 			}
 
             if( preg_match( '/(<img data\-cfasync\=\"false\")/', $tag ) ){
@@ -9326,6 +9328,7 @@ if (! class_exists('BookingPress') ) {
                             .bpa-front-tabs--foot .bpa-front-btn--primary span,
                             .bpa-front-tabs--foot .bpa-front-btn--primary strong,
                             .bpa-front-module--service-item .bpa-front-si-card .bpa-front-si__card-body .bpa-front-si-cb__specs .bpa-front-si-cb__specs-item p strong.--is-service-price,
+                            .bpa-front-tabs .bpa-front--dt__calendar .vc-day.is-today .vc-highlights + .bpa_day-select .vc-day-content,
                             .bpa-front-tabs .bpa-front--dt__calendar .vc-day .vc-highlights + .vc-day-content{
                                 color: ' . $price_button_text_content_color . ' !important;
                             }

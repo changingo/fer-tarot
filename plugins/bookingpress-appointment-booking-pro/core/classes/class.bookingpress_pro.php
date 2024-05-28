@@ -4032,7 +4032,7 @@ if ( ! class_exists( 'BookingPressPro' ) ) {
         {	
             global $BookingPress,$bookingpress_pro_version;
             $bookingpress_pro_old_version = get_option('bookingpress_pro_version', true);			
-            if (version_compare($bookingpress_pro_old_version, '3.7', '<') ) {
+            if (version_compare($bookingpress_pro_old_version, '3.7.1', '<') ) {
 				$bookingpress_load_pro_upgrade_file = BOOKINGPRESS_PRO_VIEWS_DIR . '/upgrade_latest_pro_data.php';
                 include $bookingpress_load_pro_upgrade_file;
                 $BookingPress->bookingpress_send_anonymous_data_cron();

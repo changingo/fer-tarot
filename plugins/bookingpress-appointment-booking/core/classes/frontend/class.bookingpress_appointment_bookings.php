@@ -2932,7 +2932,7 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                         $bookingpress_search_string       = $bookingpress_search_data['search_appointment'];
                         $bookingpress_search_query_where .= "AND (bookingpress_service_name LIKE '%{$bookingpress_search_string}%') ";
                     }
-                    if ( !empty ( $bookingpress_search_data['selected_date_range'] ) && ! empty($bookingpress_search_data['selected_date_range'][0] && $bookingpress_search_data['selected_date_range'][1]) ) {                        
+                    if ( !empty ( $bookingpress_search_data['selected_date_range'] ) && ! empty($bookingpress_search_data['selected_date_range'][0]) && !empty($bookingpress_search_data['selected_date_range'][1]) ) {
                         $bookingpress_search_date         = $bookingpress_search_data['selected_date_range'];
                         $start_date                       = date('Y-m-d', strtotime($bookingpress_search_date[0]));
                         $end_date                         = date('Y-m-d', strtotime($bookingpress_search_date[1]));
@@ -6613,6 +6613,10 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
             $bookingpress_modify_select_service_category = apply_filters( 'bookingpress_modify_select_service_category', $bookingpress_modify_select_service_category );
 
 
+            $bookingpress_step_navigation_before_validation = '';
+            $bookingpress_step_navigation_before_validation = apply_filters( 'bookingpress_step_navigation_before_validation', $bookingpress_step_navigation_before_validation );            
+
+
             $bookingpress_disable_multiple_days_event_xhr_resp_after = '';
             $bookingpress_disable_multiple_days_event_xhr_resp_after = apply_filters( 'bookingpress_disable_multiple_days_event_xhr_resp_after', $bookingpress_disable_multiple_days_event_xhr_resp_after );
 
@@ -7750,6 +7754,13 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                 }else if(window.outerWidth < 768){
                     vm.current_screen_size = "mobile";
                 }
+
+                let is_mobile_device = "'.wp_is_mobile().'";
+
+                if( "mobile" != vm.current_screen_size && ("true" == is_mobile_device || true == is_mobile_device) ){
+                    vm.current_screen_size = "mobile";
+                }
+
                 if(window.innerWidth <= 576){
                     vm.bookingpress_container_dynamic_class = "";
                     let bookingpress_container = vm.$el;
@@ -7810,6 +7821,8 @@ if (! class_exists('bookingpress_appointment_bookings')  && class_exists('Bookin
                 vm.bookingpress_remove_error_msg();
 
                 var bookingpress_validate_fields_arr = vm.bookingpress_sidebar_step_data[vm.bookingpress_current_tab].validate_fields;
+
+                '.$bookingpress_step_navigation_before_validation.'
 
                 if((vm.bookingpress_current_tab == "basic_details") && vm.bookingpress_current_tab != next_tab && current_tab != previous_tab){
                     bookingpress_validate_fields_arr.forEach(function(currentValue, index, arr){

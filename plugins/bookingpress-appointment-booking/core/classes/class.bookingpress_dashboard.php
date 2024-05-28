@@ -439,6 +439,8 @@ if (! class_exists('bookingpress_dashboard') ) {
                     $appointment['created_date']     = date_i18n($bookingpress_date_format, strtotime($get_appointment['bookingpress_created_at']));
                     $appointment['appointment_date'] = date_i18n($bookingpress_date_format, strtotime($appointment_date_time));
 
+                    $appointment['service_id']       = $get_appointment['bookingpress_service_id'];
+
                     $appointment['booking_id'] = !empty($get_appointment['bookingpress_booking_id']) ? $get_appointment['bookingpress_booking_id'] : 1;
                     $customer_email = ! empty($get_appointment['bookingpress_customer_email']) ? $get_appointment['bookingpress_customer_email'] : '';
                     $customer_phone = ! empty($get_appointment['bookingpress_customer_phone']) ? $get_appointment['bookingpress_customer_phone'] : '';
